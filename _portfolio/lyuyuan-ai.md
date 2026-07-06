@@ -21,4 +21,4 @@ An LLM-powered conversational character engine with **multiple personalized AI c
 - Web Technologies
 
 ### Repository
-[View on GitHub](https://github.com/ID-WJY001/Lyuyuan_AI)
+[View on GitHub](https://github.com/jywang001/Lyuyuan_AI)

@@ -1,33 +1,32 @@
 ---
 title: "PKUHub"
-excerpt: "An open-source note-sharing platform for Peking University with 3K+ users and 13K+ downloads<br/><img src='/images/pkuhub_preview.png' style='max-width: 500px;'>"
+excerpt: "A Peking University campus note-sharing platform with 5,000+ registered users<br/><img src='/images/pkuhub_preview.png' style='max-width: 500px;'>"
 collection: portfolio
 ---
 
 ## PKUHub
 
-An open-source note-sharing platform designed for Peking University students, providing a centralized hub for academic resources and collaborative learning.
+PKUHub is a campus note-sharing and academic-resource platform for Peking University students.
 
 *Note: Access may require Peking University VPN (访问可能需要北大VPN)*
 
 ### My Contributions
-- **Frontend & Backend Development**: Designed and implemented the interactive module and resource interface
-- **Full-Stack Implementation**: Responsible for both client-side and server-side development
+- Contributed to the PKUHub / PLIB campus project as part of a student AI builder community.
+- Participated in the development of user-facing platform features and resource-sharing workflows.
+- Helped support a platform that has served **5,000+ registered users**.
 
 ### Impact
-- 🎓 **3,000+** Active Users
-- 📥 **13,000+** Downloads
-- 🏫 Serving the Peking University community
+- **5,000+** registered users
+- Campus-facing resource sharing for Peking University students
+- Built around student-led AI and engineering collaboration
 
 ### Features
-- Open-source note sharing
-- Interactive community features
-- Resource management interface
-- Academic collaboration tools
+- Course notes and academic resource sharing
+- Community-oriented student workflows
+- Campus resource discovery
 
 ### Access
 - **Website**: [pkuhub.cn](https://pkuhub.cn) (May require PKU VPN)
-- Platform specifically designed for Peking University students
 
 ### Technologies
 - Full-stack web development

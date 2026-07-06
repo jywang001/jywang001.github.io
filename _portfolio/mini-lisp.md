@@ -20,4 +20,4 @@ A lightweight Lisp interpreter implemented in C++, featuring core functional pro
 - Interpreter Design
 
 ### Repository
-[View on GitHub](https://github.com/ID-WJY001/Mini_Lisp)
+[View on GitHub](https://github.com/jywang001/Mini-Lisp)

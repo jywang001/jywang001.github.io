@@ -7,31 +7,76 @@ redirect_from:
   - /about.html
 ---
 
-## Introduction
+<div class="home-hero">
+  <div>
+    <p class="home-kicker">Peking University · Computer Science and Technology (Elite Program)</p>
+    <h1 class="home-title">Junyang Wang / 王俊阳</h1>
+    <p class="home-lead">I am an undergraduate student at Peking University working on embodied AI, multimodal agents, and post-training. My current work sits around data pipelines, SFT/RL training, evaluation loops, and failure analysis for models that need to understand and act in visual or physical environments.</p>
+    <div class="home-actions">
+      <a class="btn btn--primary" href="/cv/">Experience</a>
+      <a class="btn" href="/projects/">Projects</a>
+      <a class="btn" href="mailto:junyangwang@stu.pku.edu.cn">Email</a>
+      <a class="btn" href="https://github.com/jywang001">GitHub</a>
+    </div>
+  </div>
+  <img class="home-portrait" src="/images/avatar.jpg" alt="Junyang Wang profile photo">
+</div>
 
-Hello! I'm **Junyang Wang (王俊阳)**, a sophomore student majoring in Computer Science at **Peking University**.
+<div class="home-metrics">
+  <div class="home-metric">
+    <strong>Embodied AI</strong>
+    <span>Post-training and evaluation for multimodal embodied models.</span>
+  </div>
+  <div class="home-metric">
+    <strong>Agent Systems</strong>
+    <span>LLM agents, tool use, data feedback loops, and product prototypes.</span>
+  </div>
+  <div class="home-metric">
+    <strong>Campus Builder</strong>
+    <span>Core contributor to student AI communities and PKUHub/PLIB projects.</span>
+  </div>
+</div>
 
-My research interests focus on:
-- **Computer Vision (CV)**: Exploring advanced techniques in image processing, object detection, and visual recognition
-- **Agent Systems**: Developing intelligent agents and autonomous systems
+## Research
 
-## Education
+<div class="home-list">
+  <div class="home-entry">
+    <h3>Center for Frontier Computing Research, Peking University</h3>
+    <p class="home-entry-meta">Advisor: Hao Dong · Dec 2025 - Present</p>
+    <p>I work on post-training for multimodal embodied models, including data cleaning and synthesis, SFT/CoT sample construction, RL candidate filtering, evaluation analysis, and error-case feedback.</p>
+    <ul class="home-tags">
+      <li>Qwen-VL</li>
+      <li>SFT</li>
+      <li>GRPO/RL</li>
+      <li>RoboVQA</li>
+      <li>RoboCasa365</li>
+    </ul>
+  </div>
+  <div class="home-entry">
+    <h3>Wangxuan Institute of Computer Technology, Peking University</h3>
+    <p class="home-entry-meta">Advisor: Yang Liu · Research Rotation</p>
+    <p>I participate in video spatio-temporal grounding research based on multi-agent debating, focusing on temporal/spatial grounding experiments, pipeline construction, model evaluation, and error analysis.</p>
+    <ul class="home-tags">
+      <li>Video Grounding</li>
+      <li>Multi-Agent Debating</li>
+      <li>Spatial Localization</li>
+    </ul>
+  </div>
+</div>
 
-**Peking University**  
-Bachelor of Science in Computer Science  
-*Sophomore (2024 - Present)*  
-Beijing, China
+## Selected Work
 
-## Research Interests
+- **CritPT-RL**: A personal RL post-training prototype around Qwen3-8B, verl/vLLM, synthetic and teacher-spec data, strict rubrics, LLM-as-a-judge, reward analysis, and official-style evaluation.
+- **Embodied Navigation Evaluation**: Real-world robot-dog evaluation, scene scanning, navigation task recording, data synthesis, and failure-case analysis for embodied navigation research.
+- **PKUHub / PLIB**: Core contributor to a large Peking University student AI organization and the PKUHub campus note-sharing platform, which has served 5,000+ registered users.
 
-I am passionate about pushing the boundaries of artificial intelligence, particularly in:
-- Computer Vision applications
-- Intelligent agent development
-- Machine learning and deep learning
+## Skills
+
+- **Post-training**: SFT, GRPO/RL, CoT data construction, reward design, error-case feedback, evaluation loops.
+- **Data pipelines**: multi-source data cleaning, synthesis, filtering, annotation alignment, and benchmark construction.
+- **Engineering**: Python, FastAPI, SQL/ORM, Git, vLLM, verl, official-style evaluation, LLM-as-a-judge.
 
 ## Contact
 
-Feel free to reach out to me through:
 - **Email**: [junyangwang@stu.pku.edu.cn](mailto:junyangwang@stu.pku.edu.cn)
-- **GitHub**: [ID-WJY001](https://github.com/ID-WJY001)
-- **WeChat**: ID-WJY001
+- **GitHub**: [jywang001](https://github.com/jywang001)

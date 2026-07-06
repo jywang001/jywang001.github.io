@@ -12,11 +12,11 @@ site_theme               : "default" # Currently available options are "default"
 title                    : "Junyang Wang / 王俊阳"
 title_separator          : "-"
 name                     : &name "Junyang Wang"
-description              : &description "Computer Science Student at Peking University"   # Update this with a general description of your site, this is the default if not overridden by a page
-url                      : https://ID-WJY001.github.io # The base hostname & protocol for your site e.g. "https://[your GitHub username].github.io",
+description              : &description "Peking University CS undergraduate working on embodied AI, multimodal agents, and post-training."   # Update this with a general description of your site, this is the default if not overridden by a page
+url                      : https://jywang001.github.io # The base hostname & protocol for your site e.g. "https://[your GitHub username].github.io",
                                                            # or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
-repository               : "ID-WJY001/ID-WJY001.github.io"
+repository               : "jywang001/jywang001.github.io"
 
 # Site Author - The following control what appear as part of the author content on the side bar.
 #               If a field is blank the icon and link will not appear, otherwise it will be shown.
@@ -26,7 +26,7 @@ author:
   avatar           : "avatar.jpg"
   name             : "Junyang Wang (王俊阳)"
   pronouns         : # example: "she/her"  
-  bio              : "Sophomore at Peking University<br>Computer Science<br>Research: CV, Agent"
+  bio              : "Peking University CS undergraduate<br>Research: embodied AI, multimodal agents, post-training"
   location         : "Beijing, China"
   employer         : "Peking University"
   uri              : # URL
@@ -48,7 +48,7 @@ author:
   bitbucket        : # Username - Update with your username on the site
   codepen          : # Username
   dribbble         : # Username
-  github           : "ID-WJY001"
+  github           : "jywang001"
   kaggle           : # Username  
   stackoverflow    : # User number or user number and name (i.e., use "1" or "1/jeff-atwood")    
 
@@ -78,7 +78,7 @@ author:
   xing             : # Username
   youtube          : # Username
   zhihu            : # Username
-  wechat           : "ID-WJY001" # WeChat ID
+  wechat           : # WeChat ID
 
 # Publication Category - The following the list of publication categories and their headings
 publication_category:
