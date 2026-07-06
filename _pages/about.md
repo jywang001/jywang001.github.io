@@ -1,8 +1,8 @@
 ---
 permalink: /
-title: "About Me"
-title_en: "About Me"
-title_zh: "关于我"
+title: "Home"
+title_en: "Home"
+title_zh: "主页"
 author_profile: true
 redirect_from: 
   - /about/
@@ -13,11 +13,11 @@ redirect_from:
 
 <div class="home-hero">
   <div>
-    <p class="home-kicker">Peking University · Computer Science and Technology (Elite Program)</p>
+    <p class="home-kicker">Personal site · Peking University CS</p>
     <h1 class="home-title">Junyang Wang / 王俊阳</h1>
-    <p class="home-lead">I am an undergraduate student at Peking University working on embodied AI, multimodal agents, and post-training. My current work sits around data pipelines, SFT/RL training, evaluation loops, and failure analysis for models that need to understand and act in visual or physical environments.</p>
+    <p class="home-lead">I build and study AI systems that connect models, data, evaluation, and real-world tasks. This homepage is a compact map of what I care about; the full timeline lives on the Experience page.</p>
     <div class="home-actions">
-      <a class="btn btn--primary" href="/cv/">Experience</a>
+      <a class="btn btn--primary" href="/cv/">Full Experience</a>
       <a class="btn" href="/projects/">Projects</a>
       <a class="btn" href="mailto:junyangwang@stu.pku.edu.cn">Email</a>
       <a class="btn" href="https://github.com/jywang001">GitHub</a>
@@ -28,57 +28,59 @@ redirect_from:
 
 <div class="home-metrics">
   <div class="home-metric">
-    <strong>Embodied AI</strong>
-    <span>Post-training and evaluation for multimodal embodied models.</span>
+    <strong>Research Lens</strong>
+    <span>Embodied AI, multimodal grounding, post-training, and evaluation loops.</span>
   </div>
   <div class="home-metric">
-    <strong>Agent Systems</strong>
-    <span>LLM agents, tool use, data feedback loops, and product prototypes.</span>
+    <strong>Builder Mode</strong>
+    <span>Agent prototypes, data pipelines, backend systems, and campus products.</span>
   </div>
   <div class="home-metric">
-    <strong>Campus Builder</strong>
-    <span>Core contributor to student AI communities and PKUHub/PLIB projects.</span>
+    <strong>Working Style</strong>
+    <span>Start from failures, turn them into data, and close the eval loop.</span>
   </div>
 </div>
 
-## Research
+## Now
 
-<div class="home-list">
-  <div class="home-entry">
-    <h3>Center for Frontier Computing Research, Peking University</h3>
-    <p class="home-entry-meta">Advisor: Hao Dong · Dec 2025 - Present</p>
-    <p>I work on post-training for multimodal embodied models, including data cleaning and synthesis, SFT/CoT sample construction, RL candidate filtering, evaluation analysis, and error-case feedback.</p>
-    <ul class="home-tags">
-      <li>Qwen-VL</li>
-      <li>SFT</li>
-      <li>GRPO/RL</li>
-      <li>RoboVQA</li>
-      <li>RoboCasa365</li>
-    </ul>
+<div class="home-now-grid">
+  <div class="home-now-card">
+    <span>01</span>
+    <h3>Training useful embodied models</h3>
+    <p>I care about the messy loop after the model starts failing: data cleanup, sample construction, reward design, evaluation, and error-case feedback.</p>
   </div>
-  <div class="home-entry">
-    <h3>Wangxuan Institute of Computer Technology, Peking University</h3>
-    <p class="home-entry-meta">Advisor: Yang Liu · Research Rotation</p>
-    <p>I participate in video spatio-temporal grounding research based on multi-agent debating, focusing on temporal/spatial grounding experiments, pipeline construction, model evaluation, and error analysis.</p>
-    <ul class="home-tags">
-      <li>Video Grounding</li>
-      <li>Multi-Agent Debating</li>
-      <li>Spatial Localization</li>
-    </ul>
+  <div class="home-now-card">
+    <span>02</span>
+    <h3>Making agents easier to evaluate</h3>
+    <p>My personal projects explore strict rubrics, LLM-as-a-judge, failure mining, and official-style evaluation for post-training pipelines.</p>
+  </div>
+  <div class="home-now-card">
+    <span>03</span>
+    <h3>Building things people can actually use</h3>
+    <p>I enjoy turning research-shaped ideas into product-shaped systems, from campus platforms to agent demos and backend tools.</p>
   </div>
 </div>
 
-## Selected Work
+## Featured Paths
 
-- **CritPT-RL**: A personal RL post-training prototype around Qwen3-8B, verl/vLLM, synthetic and teacher-spec data, strict rubrics, LLM-as-a-judge, reward analysis, and official-style evaluation.
-- **Embodied Navigation Evaluation**: Real-world robot-dog evaluation, scene scanning, navigation task recording, data synthesis, and failure-case analysis for embodied navigation research.
-- **PKUHub / PLIB**: Core contributor to a large Peking University student AI organization and the PKUHub campus note-sharing platform, which has served 5,000+ registered users.
+<div class="home-paths">
+  <a class="home-path" href="/cv/">
+    <strong>Research Timeline</strong>
+    <span>Labs, advisors, research rotations, embodied AI, video grounding, and project details.</span>
+  </a>
+  <a class="home-path" href="/projects/">
+    <strong>Project Gallery</strong>
+    <span>CritPT-RL, PKUHub, Lyuyuan AI, Mini Lisp, and other work worth opening.</span>
+  </a>
+  <a class="home-path" href="mailto:junyangwang@stu.pku.edu.cn">
+    <strong>Contact</strong>
+    <span>Email is the best way to reach me for research, collaboration, or campus building.</span>
+  </a>
+</div>
 
-## Skills
+## Notes
 
-- **Post-training**: SFT, GRPO/RL, CoT data construction, reward design, error-case feedback, evaluation loops.
-- **Data pipelines**: multi-source data cleaning, synthesis, filtering, annotation alignment, and benchmark construction.
-- **Engineering**: Python, FastAPI, SQL/ORM, Git, vLLM, verl, official-style evaluation, LLM-as-a-judge.
+I like small, inspectable systems: one clear dataset, one clear failure mode, one clear evaluation question. Most of my work starts there and grows outward.
 
 ## Contact
 
@@ -91,11 +93,11 @@ redirect_from:
 
 <div class="home-hero">
   <div>
-    <p class="home-kicker">北京大学 · 计算机科学与技术（拔尖班）</p>
+    <p class="home-kicker">个人主页 · 北京大学计算机</p>
     <h1 class="home-title">王俊阳 / Junyang Wang</h1>
-    <p class="home-lead">我是北京大学计算机科学与技术本科生，关注具身智能、多模态 Agent 与大模型 post-training。当前工作主要围绕数据管线、SFT/RL 后训练、评测闭环和错误案例分析，希望让模型在视觉与真实环境任务中更可靠地理解、推理和行动。</p>
+    <p class="home-lead">我关注模型、数据、评测与真实任务之间的连接，尤其是具身智能、多模态 Agent 与大模型 post-training。这个首页更像一张索引地图；完整时间线和细节放在经历页。</p>
     <div class="home-actions">
-      <a class="btn btn--primary" href="/cv/">经历</a>
+      <a class="btn btn--primary" href="/cv/">完整经历</a>
       <a class="btn" href="/projects/">项目</a>
       <a class="btn" href="mailto:junyangwang@stu.pku.edu.cn">邮箱</a>
       <a class="btn" href="https://github.com/jywang001">GitHub</a>
@@ -106,57 +108,59 @@ redirect_from:
 
 <div class="home-metrics">
   <div class="home-metric">
-    <strong>具身智能</strong>
-    <span>面向多模态具身模型的后训练、评测与数据回流。</span>
+    <strong>研究视角</strong>
+    <span>具身智能、多模态定位、post-training 与评测闭环。</span>
   </div>
   <div class="home-metric">
-    <strong>Agent 系统</strong>
-    <span>LLM Agent、工具调用、数据反馈闭环与产品原型。</span>
+    <strong>工程状态</strong>
+    <span>Agent 原型、数据管线、后端系统和校园产品。</span>
   </div>
   <div class="home-metric">
-    <strong>校园建设者</strong>
-    <span>参与学生 AI 社群、PKUHub / PLIB 等校内项目建设。</span>
+    <strong>工作方式</strong>
+    <span>从失败案例出发，把问题变成数据，再闭合评测循环。</span>
   </div>
 </div>
 
-## 科研
+## 现在
 
-<div class="home-list">
-  <div class="home-entry">
-    <h3>北京大学前沿计算研究中心</h3>
-    <p class="home-entry-meta">导师：董豪 · 2025.12 - 至今</p>
-    <p>参与多模态具身大模型 post-training 实验闭环，负责数据清洗与合成、SFT/CoT 样本构造、RL 候选样本筛选、评测结果分析和错误案例回流。</p>
-    <ul class="home-tags">
-      <li>Qwen-VL</li>
-      <li>SFT</li>
-      <li>GRPO/RL</li>
-      <li>RoboVQA</li>
-      <li>RoboCasa365</li>
-    </ul>
+<div class="home-now-grid">
+  <div class="home-now-card">
+    <span>01</span>
+    <h3>训练更有用的具身模型</h3>
+    <p>我关心模型失败之后的那一圈工作：数据清洗、样本构造、reward 设计、评测分析和错误案例回流。</p>
   </div>
-  <div class="home-entry">
-    <h3>北京大学王选计算机研究所</h3>
-    <p class="home-entry-meta">导师：刘洋 · 拔尖班科研轮转</p>
-    <p>参与基于 multi-agent debating 的视频时空定位研究，关注 temporal/spatial grounding 实验、pipeline 搭建、模型评测与错误案例分析。</p>
-    <ul class="home-tags">
-      <li>视频定位</li>
-      <li>Multi-Agent Debating</li>
-      <li>空间定位</li>
-    </ul>
+  <div class="home-now-card">
+    <span>02</span>
+    <h3>让 Agent 更容易被评测</h3>
+    <p>个人项目里会尝试 strict rubric、LLM-as-a-judge、failure mining 和 official-style evaluation 等方法。</p>
+  </div>
+  <div class="home-now-card">
+    <span>03</span>
+    <h3>做真的有人会用的系统</h3>
+    <p>我喜欢把研究想法做成能交互、能迭代的系统，从校园平台到 Agent demo，再到后端工具。</p>
   </div>
 </div>
 
-## 代表工作
+## 推荐入口
 
-- **CritPT-RL**：围绕 Qwen3-8B、verl/vLLM、synthetic/teacher-spec 数据、strict rubric、LLM-as-a-judge、reward 分析和 official-style evaluation 搭建的个人 RL post-training 原型。
-- **具身导航真实环境评测**：参与机器狗实机评测、真实场景扫描、导航任务记录、数据合成与失败轨迹分析。
-- **PKUHub / PLIB**：参与北京大学学生 AI 社群与校内笔记共享平台建设，PKUHub 已服务 5,000+ 注册用户。
+<div class="home-paths">
+  <a class="home-path" href="/cv/">
+    <strong>科研与经历时间线</strong>
+    <span>实验室、导师、科研轮转、具身智能、视频定位与项目细节。</span>
+  </a>
+  <a class="home-path" href="/projects/">
+    <strong>项目陈列</strong>
+    <span>CritPT-RL、PKUHub、Lyuyuan AI、Mini Lisp 等可以展开看的项目。</span>
+  </a>
+  <a class="home-path" href="mailto:junyangwang@stu.pku.edu.cn">
+    <strong>联系我</strong>
+    <span>如果想聊科研合作、工程项目或校内 AI 社群，可以直接发邮件。</span>
+  </a>
+</div>
 
-## 技术栈
+## 一点偏好
 
-- **Post-training**：SFT、GRPO/RL、CoT 数据构造、reward 设计、错误案例回流与评测闭环。
-- **数据管线**：多源数据清洗、合成、筛选、标注对齐与 benchmark 构建。
-- **工程能力**：Python、FastAPI、SQL/ORM、Git、vLLM、verl、official-style evaluation、LLM-as-a-judge。
+我喜欢小而可检查的系统：一个清楚的数据集，一个明确的失败模式，一个能回答问题的评测。多数工作都是从这里长出来的。
 
 ## 联系
 

@@ -5,7 +5,7 @@
       htmlLang: 'en',
       toggleLabel: '切换到中文',
       pageTitles: {
-        '/': 'About Me - Junyang Wang / 王俊阳',
+        '/': 'Home - Junyang Wang / 王俊阳',
         '/cv/': 'Experience - Junyang Wang / 王俊阳',
         '/projects/': 'Projects - Junyang Wang / 王俊阳',
         '/year-archive/': 'Blog posts - Junyang Wang / 王俊阳'
@@ -15,7 +15,7 @@
       htmlLang: 'zh-CN',
       toggleLabel: 'Switch to English',
       pageTitles: {
-        '/': '关于我 - Junyang Wang / 王俊阳',
+        '/': '主页 - Junyang Wang / 王俊阳',
         '/cv/': '经历 - Junyang Wang / 王俊阳',
         '/projects/': '项目 - Junyang Wang / 王俊阳',
         '/year-archive/': '博客 - Junyang Wang / 王俊阳'
