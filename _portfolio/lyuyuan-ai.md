@@ -1,6 +1,10 @@
 ---
 title: "Lyuyuan AI"
+title_en: "Lyuyuan AI"
+title_zh: "Lyuyuan AI"
 excerpt: "An LLM-powered conversational character engine with personalized AI companions<br/><img src='/images/lyuyuan_ai_preview.png' style='max-width: 500px;'>"
+excerpt_en: "An LLM-powered conversational character engine with personalized AI companions<br/><img src='/images/lyuyuan_ai_preview.png' style='max-width: 500px;'>"
+excerpt_zh: "一个基于 LLM 的多角色对话引擎，用于构建个性化 AI 角色与陪伴体验<br/><img src='/images/lyuyuan_ai_preview.png' style='max-width: 500px;'>"
 collection: portfolio
 ---
 

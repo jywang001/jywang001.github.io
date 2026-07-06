@@ -1,0 +1,32 @@
+/* ==========================================================================
+   Language switcher
+   ========================================================================== */
+
+.lang-content,
+.lang-inline {
+  display: none !important;
+}
+
+html[data-site-lang="en"] .lang-content[data-lang-content="en"],
+html[data-site-lang="zh"] .lang-content[data-lang-content="zh"] {
+  display: block !important;
+}
+
+html[data-site-lang="en"] .lang-inline[data-lang-content="en"],
+html[data-site-lang="zh"] .lang-inline[data-lang-content="zh"] {
+  display: inline !important;
+}
+
+.language-choice {
+  white-space: nowrap;
+}
+
+.greedy-nav .visible-links #language-toggle a {
+  min-width: 2.4rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.greedy-nav .hidden-links #language-toggle a {
+  text-align: left;
+}

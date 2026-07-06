@@ -1,6 +1,10 @@
 ---
 title: "PKUHub"
+title_en: "PKUHub"
+title_zh: "PKUHub"
 excerpt: "A Peking University campus note-sharing platform with 5,000+ registered users<br/><img src='/images/pkuhub_preview.png' style='max-width: 500px;'>"
+excerpt_en: "A Peking University campus note-sharing platform with 5,000+ registered users<br/><img src='/images/pkuhub_preview.png' style='max-width: 500px;'>"
+excerpt_zh: "一个面向北京大学学生的校园笔记与资源共享平台，注册用户超过 5,000<br/><img src='/images/pkuhub_preview.png' style='max-width: 500px;'>"
 collection: portfolio
 ---
 

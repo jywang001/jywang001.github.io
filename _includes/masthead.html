@@ -13,8 +13,23 @@
             {% else %}
               {% assign domain = base_path %}
             {% endif %}
-            <li class="masthead__menu-item"><a href="{{ domain }}{{ link.url }}">{{ link.title }}</a></li>
+            <li class="masthead__menu-item">
+              <a href="{{ domain }}{{ link.url }}">
+                {% if link.title_en and link.title_zh %}
+                  <span class="lang-inline" data-lang-content="en">{{ link.title_en }}</span>
+                  <span class="lang-inline" data-lang-content="zh">{{ link.title_zh }}</span>
+                {% else %}
+                  {{ link.title }}
+                {% endif %}
+              </a>
+            </li>
           {% endfor %}
+          <li id="language-toggle" class="masthead__menu-item persist tail">
+            <a role="button" data-language-toggle aria-label="Switch language" title="Switch language">
+              <span class="lang-inline" data-lang-content="en">中文</span>
+              <span class="lang-inline" data-lang-content="zh">EN</span>
+            </a>
+          </li>
           <li id="theme-toggle" class="masthead__menu-item persist tail">
             <a role="button" aria-labelledby="theme-icon"><i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true" title="toggle theme"></i></a>
           </li>
