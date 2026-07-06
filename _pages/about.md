@@ -70,7 +70,7 @@ redirect_from:
   </a>
   <a class="home-path" href="/projects/">
     <strong>Project Gallery</strong>
-    <span>CritPT-RL, PKUHub, Lyuyuan AI, Mini Lisp, and other work worth opening.</span>
+    <span>Texas-Poker-Agents, CritPT-RL, OpenGame, Lyuyuan AI, and Mini-Lisp.</span>
   </a>
   <a class="home-path" href="mailto:junyangwang@stu.pku.edu.cn">
     <strong>Contact</strong>
@@ -150,7 +150,7 @@ I like small, inspectable systems: one clear dataset, one clear failure mode, on
   </a>
   <a class="home-path" href="/projects/">
     <strong>项目陈列</strong>
-    <span>CritPT-RL、PKUHub、Lyuyuan AI、Mini Lisp 等可以展开看的项目。</span>
+    <span>Texas-Poker-Agents、CritPT-RL、OpenGame、Lyuyuan AI、Mini-Lisp。</span>
   </a>
   <a class="home-path" href="mailto:junyangwang@stu.pku.edu.cn">
     <strong>联系我</strong>

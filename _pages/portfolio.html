@@ -9,8 +9,21 @@ author_profile: true
 
 {% include base_path %}
 
+<div class="lang-content" data-lang-content="en" markdown="1">
 
-{% for post in site.portfolio %}
+These projects mirror the main repositories in my GitHub account, excluding this personal website repository. Public repositories link to GitHub directly; private repositories are summarized at a high level.
+
+</div>
+
+<div class="lang-content" data-lang-content="zh" markdown="1">
+
+这里的项目根据我当前 GitHub 账号下的主要仓库整理，不包含这个个人主页仓库。公开仓库会直接链接到 GitHub；私有仓库只展示高层简介。
+
+</div>
+
+
+{% assign portfolio_items = site.portfolio | sort: "order" %}
+{% for post in portfolio_items %}
   {% include archive-single.html %}
 {% endfor %}
 
