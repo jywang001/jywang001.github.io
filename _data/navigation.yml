@@ -22,11 +22,6 @@ main:
     title_zh: "项目"
     url: /projects/
         
-  - title: "Blog Posts"
-    title_en: "Blog Posts"
-    title_zh: "博客"
-    url: /year-archive/
-    
   - title: "Experience"
     title_en: "Experience"
     title_zh: "经历"

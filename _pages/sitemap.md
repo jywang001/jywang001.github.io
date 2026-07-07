@@ -1,37 +1,50 @@
 ---
 layout: archive
 title: "Sitemap"
+title_en: "Sitemap"
+title_zh: "站点地图"
 permalink: /sitemap/
 author_profile: true
 ---
 
 {% include base_path %}
 
-A list of all the posts and pages found on the site. For you robots out there, there is an [XML version]({{ base_path }}/sitemap.xml) available for digesting as well.
+<div class="lang-content" data-lang-content="en" markdown="1">
 
-<h2>Pages</h2>
-{% for post in site.pages %}
-  {% include archive-single.html %}
-{% endfor %}
+This sitemap lists the maintained public pages on this site. The machine-readable XML sitemap is available at [sitemap.xml]({{ base_path }}/sitemap.xml).
 
-<h2>Posts</h2>
-{% for post in site.posts %}
-  {% include archive-single.html %}
-{% endfor %}
+## Main Pages
 
-{% capture written_label %}'None'{% endcapture %}
+- [Home]({{ base_path }}/)
+- [Projects]({{ base_path }}/projects/)
+- [Experience]({{ base_path }}/cv/)
 
-{% for collection in site.collections %}
-{% unless collection.output == false or collection.label == "posts" %}
-  {% capture label %}{{ collection.label }}{% endcapture %}
-  {% if label != written_label %}
-  <h2>{{ label }}</h2>
-  {% capture written_label %}{{ label }}{% endcapture %}
-  {% endif %}
-{% endunless %}
-{% for post in collection.docs %}
-  {% unless collection.output == false or collection.label == "posts" %}
-  {% include archive-single.html %}
-  {% endunless %}
-{% endfor %}
-{% endfor %}
+## Project Pages
+
+- [CritPT-RL]({{ base_path }}/portfolio/critpt-rl/)
+- [Texas-Poker-Agents]({{ base_path }}/portfolio/texas-poker-agents/)
+- [Lyuyuan AI]({{ base_path }}/portfolio/lyuyuan-ai/)
+- [OpenGame]({{ base_path }}/portfolio/opengame/)
+- [Mini Lisp Interpreter]({{ base_path }}/portfolio/mini-lisp/)
+
+</div>
+
+<div class="lang-content" data-lang-content="zh" markdown="1">
+
+这里列出本站维护中的公开页面。机器可读的 XML 版本在 [sitemap.xml]({{ base_path }}/sitemap.xml)。
+
+## 主要页面
+
+- [主页]({{ base_path }}/)
+- [项目]({{ base_path }}/projects/)
+- [经历]({{ base_path }}/cv/)
+
+## 项目页面
+
+- [CritPT-RL]({{ base_path }}/portfolio/critpt-rl/)
+- [Texas-Poker-Agents]({{ base_path }}/portfolio/texas-poker-agents/)
+- [Lyuyuan AI]({{ base_path }}/portfolio/lyuyuan-ai/)
+- [OpenGame]({{ base_path }}/portfolio/opengame/)
+- [Mini Lisp 解释器]({{ base_path }}/portfolio/mini-lisp/)
+
+</div>

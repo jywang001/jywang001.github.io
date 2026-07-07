@@ -8,7 +8,7 @@
         '/': 'Home - Junyang Wang / 王俊阳',
         '/cv/': 'Experience - Junyang Wang / 王俊阳',
         '/projects/': 'Projects - Junyang Wang / 王俊阳',
-        '/year-archive/': 'Blog posts - Junyang Wang / 王俊阳'
+        '/sitemap/': 'Sitemap - Junyang Wang / 王俊阳'
       }
     },
     zh: {
@@ -18,7 +18,7 @@
         '/': '主页 - Junyang Wang / 王俊阳',
         '/cv/': '经历 - Junyang Wang / 王俊阳',
         '/projects/': '项目 - Junyang Wang / 王俊阳',
-        '/year-archive/': '博客 - Junyang Wang / 王俊阳'
+        '/sitemap/': '站点地图 - Junyang Wang / 王俊阳'
       }
     }
   };

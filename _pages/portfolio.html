@@ -11,19 +11,17 @@ author_profile: true
 
 <div class="lang-content" data-lang-content="en" markdown="1">
 
-These projects mirror the main repositories in my GitHub account, excluding this personal website repository. Public repositories link to GitHub directly; private repositories are summarized at a high level.
+I use this page as a portfolio rather than a full repository mirror. The flagship projects come first because they best support my current thread: post-training/evaluation, agents, logs, and replayable systems. Public projects link to GitHub; private prototypes are marked as summaries only.
 
 </div>
 
 <div class="lang-content" data-lang-content="zh" markdown="1">
 
-这里的项目根据我当前 GitHub 账号下的主要仓库整理，不包含这个个人主页仓库。公开仓库会直接链接到 GitHub；私有仓库只展示高层简介。
+这个页面更像作品集，而不是 GitHub 仓库的简单镜像。最靠前的项目最能支撑我当前的主线：后训练与评测、Agent、日志、复盘和可运行系统。公开项目会链接到 GitHub；私有原型会明确标注为高层总结。
 
 </div>
-
 
 {% assign portfolio_items = site.portfolio | sort: "order" %}
 {% for post in portfolio_items %}
   {% include archive-single.html %}
 {% endfor %}
-

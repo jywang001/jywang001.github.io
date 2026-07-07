@@ -13,86 +13,120 @@ redirect_from:
 
 <div class="lang-content" data-lang-content="en" markdown="1">
 
-This page is adapted from my latest CV and kept as a web-native overview of my education, research, projects, and skills.
+This page is a web-native overview of my education, research, selected projects, and toolbox. It is intentionally more narrative than a full CV: the goal is to show what I worked on, what my role was, and what evidence is public.
 
 Education
 ======
+
 * **Peking University**, B.S. in Computer Science and Technology (Elite Program), 2024.09 - 2028.07
 
 Research Experience
 ======
-* **Center for Frontier Computing Research, Peking University**<br>
-  Advisor: Hao Dong, 2025.12 - Present
-  * **Post-training for multimodal embodied models**: participate in the experimental loop for multimodal embodied large models, including open/self-collected data processing, SFT/CoT sample construction, RL candidate filtering, evaluation analysis, and error-case feedback.
-  * Clean and align multi-source datasets including RoboVQA, ShareRobot, and RoboCasa365 for SFT/RL training samples, data synthesis, annotation alignment, quality checks, and training strategy iteration.
-  * Run and inspect SFT and GRPO/RL post-training experiments around Qwen-VL and Pi-series models, maintaining evaluation scripts and analyzing failures around format learning, capability gaps, and benchmark transfer.
-  * **Real-world embodied navigation evaluation and data synthesis**: operate robot-dog experiments, scan real scenes, set up evaluation environments, record navigation tasks, synthesize navigation data, and analyze failed trajectories.
 
-* **Wangxuan Institute of Computer Technology, Peking University**<br>
-  Advisor: Yang Liu, Research Rotation
-  * Study video spatio-temporal grounding with a multi-agent debating framework, where visual/language agents interact, challenge one another, and fuse decisions to improve grounding robustness.
-  * Work on temporal and spatial grounding experiments, localization module debugging, model evaluation, result logging, and error-case analysis.
-  * Help build the model pipeline and evaluation workflow for video clips, candidate regions, and spatio-temporal localization outputs.
+### Center for Frontier Computing Research, Peking University
+
+**Advisor:** Hao Dong  
+**Role:** Undergraduate research assistant  
+**Time:** 2025.12 - Present
+
+**Problem:** Multimodal embodied models often fail in ways that are hard to reuse. A useful training loop needs to turn those failures into cleaned data, training samples, reward signals, evaluation scripts, and the next round of diagnosis.
+
+**My role:** I participate in the post-training and evaluation loop: cleaning and aligning multi-source robot datasets, constructing SFT/CoT samples, filtering RL candidates, maintaining evaluation scripts, and analyzing error cases.
+
+**Methods:** SFT/CoT sample construction, GRPO/RL candidate filtering, benchmark-style evaluation, error-case feedback, and real-world navigation evaluation.
+
+**Artifacts / evidence:** Internal experiment records and evaluation scripts; public-facing related evidence is [CritPT-RL]({{ base_path }}/portfolio/critpt-rl/), where I made a smaller open post-training/eval loop to study reward/eval mismatch.
+
+**Status / lesson:** Ongoing. The strongest lesson so far is that failure cases are only useful when their data path and evaluation target are explicit enough to reproduce.
+
+### Wangxuan Institute of Computer Technology, Peking University
+
+**Advisor:** Yang Liu  
+**Role:** Research rotation  
+
+**Problem:** Video spatio-temporal grounding needs robust localization across language descriptions, video clips, temporal intervals, and candidate spatial regions.
+
+**My role:** I worked on experiments around a multi-agent debating framework for video grounding, including localization module debugging, model evaluation, result logging, and error-case analysis.
+
+**Methods:** Temporal grounding, spatial grounding, multi-agent debating, evaluation workflow construction, and localization result inspection.
+
+**Artifacts / evidence:** Research rotation work; public details are limited.
+
+**Status / lesson:** Completed rotation. The useful lesson was that grounding errors are easier to study when temporal and spatial failures are logged separately.
 
 Selected Projects
 ======
-* **[CritPT-RL](https://github.com/jywang001/CritPT-RL)**, personal project
-  * Reproduce and build a Qwen3-8B RL post-training prototype using verl/vLLM, connecting synthetic/teacher-spec data construction, rollout inspection, reward analysis, checkpoint evaluation, and official-style evaluation.
-  * Design failure mining, LLM-as-a-judge, strict rubric, and automated evaluation-analysis flows to diagnose reward hacking, format learning, and benchmark-transfer failures.
-  * Compare synthetic/local rewards against official-style evaluation and summarize findings around data distribution, reward semantic alignment, and benchmark transfer.
 
-* **PKUHub / PLIB**, campus project
-  * Core contributor to one of the largest student AI organizations at Peking University.
-  * Helped organize student talks around AI topics and contributed to PKUHub, a campus note-sharing platform with 5,000+ registered users.
+* **[CritPT-RL]({{ base_path }}/portfolio/critpt-rl/)**: a public Qwen-style GRPO post-training and evaluation lab for scientific Python-answer tasks. The key result is a negative finding: better format and cleaner `answer()` structure did not automatically improve official70 accuracy.
+* **[Texas-Poker-Agents]({{ base_path }}/portfolio/texas-poker-agents/)**: a public local Hold'em environment for one human and multiple LLM seats, with strict visible-state prompts, rules-engine validation, logs, fallback actions, and replay.
+* **PKUHub / PLIB**: campus AI community and product work, including student AI talks and PKUHub, a note-sharing platform with 5,000+ registered users.
 
-Skills
+Toolbox
 ======
-* **Post-training**: SFT, GRPO/RL, CoT data processing, training-sample construction, reward design, error-case feedback, evaluation loops.
-* **Data pipelines**: RoboVQA, ShareRobot, RoboCasa365 data cleaning, filtering, synthesis, annotation alignment, evaluation-set construction, and automated processing.
-* **Evaluation and engineering**: official-style evaluation, LLM-as-a-judge, strict rubrics, verl, vLLM, Python, FastAPI, SQL/ORM, Git.
-* **Relevant coursework**: Probability and Statistics in Informatics (93), Frontier Computing Research Practice I (95), Foundations of Artificial Intelligence (90).
+
+* **Post-training / eval:** SFT, GRPO/RL, CoT sample construction, reward design, failure mining, official-style evaluation, LLM-as-a-judge.
+* **Data pipelines:** robot data cleaning, filtering, synthesis, annotation alignment, quality checks, evaluation-set construction, automated processing.
+* **Systems / product:** Python, JavaScript, C++, Flask, Django, FastAPI, SQL/ORM, Git, browser UIs, JSON/JSONL logs.
+* **Interests:** embodied AI, multimodal agents, post-training, benchmark transfer, inspectable agent systems.
 
 </div>
 
 <div class="lang-content" data-lang-content="zh" markdown="1">
 
-本页根据我的最新 CV 整理为网页版经历概览，覆盖教育背景、科研经历、项目经历与技术栈。
+这个页面是网页版经历概览，覆盖教育背景、科研经历、代表项目和工具箱。它不是完整 CV 的逐条搬运，而是更强调：我做过什么、我的角色是什么、哪些证据可以公开看到。
 
 教育背景
 ======
+
 * **北京大学**，计算机科学与技术（拔尖班），本科，2024.09 - 2028.07
 
 科研经历
 ======
-* **北京大学前沿计算研究中心**<br>
-  导师：董豪，2025.12 - 至今
-  * **面向多模态具身大模型的 post-training**：参与多模态具身大模型后训练实验闭环，负责开源/自采数据处理、SFT/CoT 样本构造、RL 候选样本筛选、评测结果分析与错误案例回流。
-  * 负责 RoboVQA、ShareRobot、RoboCasa365 等多源数据清洗、筛选、合成、标注对齐与质量检查，支持 SFT/RL 训练样本构造与训练策略迭代。
-  * 基于 Qwen-VL、Pi 系列等模型参与 SFT 与 GRPO/RL 后训练实验，维护评测脚本并分析格式学习、能力短板和 benchmark 迁移失败等问题。
-  * **具身导航真实环境评测与数据合成**：参与机器狗实机操作与评测、真实场景扫描、实验环境搭建、多轮导航任务记录、导航数据合成与失败轨迹分析。
 
-* **北京大学王选计算机研究所**<br>
-  导师：刘洋，拔尖班科研轮转
-  * 参与基于 multi-agent debating 的视频时空定位研究，通过视觉/语言 Agent 的交互、质询与决策融合提升 video grounding 的鲁棒性。
-  * 负责 temporal grounding 与 spatial grounding 相关实验，包括定位模块调试、模型评测、结果记录与错误案例分析。
-  * 参与模型 pipeline 搭建、实验设计和评测流程整理，覆盖视频片段、候选区域和时空定位结果。
+### 北京大学前沿计算研究中心
+
+**导师：**董豪  
+**角色：**本科生科研助理  
+**时间：**2025.12 - 至今
+
+**Problem：**多模态具身模型在真实任务中失败后，需要把失败案例转化为清洗后的数据、训练样本、reward 信号、评测脚本和下一轮诊断依据。
+
+**My role：**我参与 post-training 与评测闭环，包括多源机器人数据清洗与对齐、SFT/CoT 样本构造、RL 候选样本筛选、评测脚本维护和错误案例分析。
+
+**Methods：**SFT/CoT 样本构造、GRPO/RL 候选筛选、benchmark-style evaluation、错误案例回流和真实环境导航评测。
+
+**Artifacts / evidence：**内部实验记录和评测脚本；公开可看的相关证据是 [CritPT-RL]({{ base_path }}/portfolio/critpt-rl/)，我在其中做了一个更小的开放后训练/评测闭环，用来研究 reward/eval mismatch。
+
+**Status / lesson：**进行中。到目前为止最重要的体会是：失败案例只有在数据路径和评测目标都足够明确时，才真的能被复现和利用。
+
+### 北京大学王选计算机研究所
+
+**导师：**刘洋  
+**角色：**拔尖班科研轮转
+
+**Problem：**视频时空定位需要同时处理语言描述、视频片段、时间区间和候选空间区域，鲁棒性很容易被细粒度定位误差影响。
+
+**My role：**我参与 multi-agent debating 框架下的视频 grounding 实验，包括定位模块调试、模型评测、结果记录和错误案例分析。
+
+**Methods：**temporal grounding、spatial grounding、multi-agent debating、评测流程整理和定位结果检查。
+
+**Artifacts / evidence：**科研轮转工作；公开细节有限。
+
+**Status / lesson：**轮转已完成。比较有用的体会是：如果 temporal failure 和 spatial failure 能分开记录，grounding 错误会更容易分析。
 
 代表项目
 ======
-* **[CritPT-RL](https://github.com/jywang001/CritPT-RL)**，个人项目
-  * 复现并搭建基于 verl/vLLM 的 Qwen3-8B RL post-training 原型流程，串联 synthetic/teacher-spec 数据构造、rollout 检查、reward 分析、checkpoint 评测与 official-style evaluation。
-  * 设计 failure mining、LLM-as-a-judge、strict rubric 与自动化评测分析流程，用于定位 reward hacking、格式学习与 benchmark 迁移失败等关键问题。
-  * 系统比较 synthetic/local reward 与 official-style eval 的偏差，沉淀关于数据分布、reward 语义对齐与 benchmark 迁移的诊断结论。
 
-* **PKUHub / PLIB**，校内项目
-  * 北京大学大型学生 AI 社群核心参与者之一。
-  * 参与策划多场 AI 相关学生讲座，并参与开发校内笔记共享平台 PKUHub，平台注册用户超过 5,000。
+* **[CritPT-RL]({{ base_path }}/portfolio/critpt-rl/)**：公开的 Qwen-style GRPO 后训练与评测实验，面向 scientific Python-answer 任务。关键结论是一个负结果：格式更干净、`answer()` 结构更像样，并不自动提升 official70 accuracy。
+* **[Texas-Poker-Agents]({{ base_path }}/portfolio/texas-poker-agents/)**：公开的本地德州扑克实验环境，真人对战多个 LLM 座位，包含严格可见状态 prompt、规则引擎校验、日志、fallback 行为和复盘。
+* **PKUHub / PLIB**：校内 AI 社群与产品工作，包括学生 AI 讲座，以及注册用户超过 5,000 的校内笔记共享平台 PKUHub。
 
-技术栈
+工具箱
 ======
-* **Post-training**：SFT、GRPO/RL、CoT 数据处理、训练样本构造、reward 设计、错误案例回流与评测闭环。
-* **数据管线**：RoboVQA、ShareRobot、RoboCasa365 数据清洗、筛选、合成、标注对齐、评测集构建与自动化处理。
-* **评测与工程**：official-style evaluation、LLM-as-a-judge、strict rubric、verl、vLLM、Python、FastAPI、SQL/ORM、Git。
-* **相关课程**：信息学中的概率统计 93，前沿计算研究实践 I 95，人工智能基础 90。
+
+* **Post-training / eval：**SFT、GRPO/RL、CoT 样本构造、reward 设计、failure mining、official-style evaluation、LLM-as-a-judge。
+* **数据管线：**机器人数据清洗、筛选、合成、标注对齐、质量检查、评测集构建和自动化处理。
+* **系统 / 产品：**Python、JavaScript、C++、Flask、Django、FastAPI、SQL/ORM、Git、浏览器 UI、JSON/JSONL 日志。
+* **兴趣方向：**具身智能、多模态 agent、后训练、benchmark transfer、可检查的 agent 系统。
 
 </div>
