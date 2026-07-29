@@ -1,0 +1,91 @@
+---
+layout: studio
+page_class: project
+---
+
+<article class="project-page">
+  <header class="project-header">
+    <div class="studio-container project-header__grid">
+      <div class="project-header__index" aria-hidden="true">{{ page.number }}</div>
+      <div class="project-header__copy">
+        <p class="studio-eyebrow">
+          <span class="lang-inline" data-lang-content="en">{{ page.label_en }}</span>
+          <span class="lang-inline" data-lang-content="zh">{{ page.label_zh }}</span>
+        </p>
+        <h1>
+          <span class="lang-inline" data-lang-content="en">{{ page.title_en | default: page.title }}</span>
+          <span class="lang-inline" data-lang-content="zh">{{ page.title_zh | default: page.title }}</span>
+        </h1>
+        <p class="project-header__lead lang-content" data-lang-content="en">{{ page.lead_en }}</p>
+        <p class="project-header__lead lang-content" data-lang-content="zh">{{ page.lead_zh }}</p>
+        <div class="project-header__links">
+          {% if page.repository %}
+            <a class="studio-text-link" href="{{ page.repository }}">
+              <span>GitHub</span>
+              <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+            </a>
+          {% endif %}
+          <a class="studio-text-link" href="/projects/">
+            <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+            <span class="lang-inline" data-lang-content="en">All projects</span>
+            <span class="lang-inline" data-lang-content="zh">全部项目</span>
+          </a>
+        </div>
+      </div>
+      <div class="project-header__meta">
+        <div>
+          <span class="lang-inline" data-lang-content="en">Status</span>
+          <span class="lang-inline" data-lang-content="zh">状态</span>
+          <strong class="lang-content" data-lang-content="en">{{ page.status_en }}</strong>
+          <strong class="lang-content" data-lang-content="zh">{{ page.status_zh }}</strong>
+        </div>
+        <div>
+          <span class="lang-inline" data-lang-content="en">Built with</span>
+          <span class="lang-inline" data-lang-content="zh">主要技术</span>
+          <strong>{{ page.stack }}</strong>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  {% if page.image %}
+    <figure class="project-cover studio-container">
+      <img src="{{ page.image }}" alt="{{ page.image_alt }}">
+    </figure>
+  {% elsif page.visual == "poker" %}
+    <div class="project-cover studio-container">
+      <div class="poker-visual" role="img" aria-label="A stylized four-player LLM poker table">
+        <div class="poker-table">
+          <div class="poker-board" aria-hidden="true">
+            <span class="playing-card">A♠</span>
+            <span class="playing-card playing-card--red">9♥</span>
+            <span class="playing-card">7♣</span>
+            <span class="playing-card playing-card--red">Q♦</span>
+            <span class="playing-card">2♠</span>
+          </div>
+          <span class="poker-pot">POT 480 · RIVER</span>
+          <span class="poker-seat poker-seat--top">Qwen · check</span>
+          <span class="poker-seat poker-seat--right">GPT · call</span>
+          <span class="poker-seat poker-seat--bottom">YOU · action</span>
+          <span class="poker-seat poker-seat--left">Claude · raise</span>
+        </div>
+        <div class="poker-log" aria-hidden="true">
+          <span>VISIBLE STATE ONLY</span>
+          <span>HAND #0042 · JSONL SAVED</span>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="project-body studio-container">
+    {{ content }}
+  </div>
+
+  <nav class="project-next studio-container" aria-label="Project navigation">
+    <a href="/projects/">
+      <span class="lang-inline" data-lang-content="en">Back to selected work</span>
+      <span class="lang-inline" data-lang-content="zh">回到项目列表</span>
+      <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+    </a>
+  </nav>
+</article>

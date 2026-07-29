@@ -1,162 +1,262 @@
 ---
+layout: studio
 permalink: /
-title: "Home"
+title: "Junyang Wang"
 title_en: "Home"
 title_zh: "主页"
-author_profile: true
+page_class: home
+sitemap: true
 redirect_from:
   - /about/
   - /about.html
 ---
 
-<div class="lang-content" data-lang-content="en" markdown="1">
+<section class="home-stage">
+  <div class="home-stage__inner">
+    <div class="home-stage__copy lang-content" data-lang-content="zh">
+      <p class="studio-eyebrow">王俊阳 · 北京大学计算机本科</p>
+      <h1 id="home-title">王俊阳</h1>
+      <p class="home-stage__lead">在北大读计算机。最近主要做具身模型的后训练与评测，也会自己搭 Agent、小工具和游戏原型。</p>
+      <p class="home-stage__note">这个网站只放我真正做过、还愿意继续讲的东西。</p>
+      <div class="home-stage__links">
+        <a class="studio-text-link" href="/projects/">
+          <span>看项目</span>
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a class="studio-text-link" href="https://github.com/jywang001">
+          <span>GitHub</span>
+          <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+        </a>
+        <a class="studio-text-link" href="mailto:junyangwang@stu.pku.edu.cn">
+          <span>给我写信</span>
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
 
-<div class="home-hero">
-  <div>
-    <p class="home-kicker">Peking University CS · embodied AI and agents</p>
-    <h1 class="home-title">Junyang Wang / 王俊阳</h1>
-    <p class="home-lead">I am a Computer Science undergraduate at Peking University. My current thread is post-training and evaluation for embodied and multimodal models: turning failure cases into data, rewards, eval scripts, and the next training signal.</p>
-    <p class="home-lead">I also like making agent ideas runnable. Recent public projects include <a href="/portfolio/critpt-rl/">CritPT-RL</a>, a post-training/eval experiment for scientific Python-answer tasks, and <a href="/portfolio/texas-poker-agents/">Texas-Poker-Agents</a>, a local table where a human plays with multiple LLM agents under imperfect information.</p>
-    <div class="home-actions">
-      <a class="btn btn--primary" href="/projects/">Selected Work</a>
-      <a class="btn" href="/cv/">Experience</a>
-      <a class="btn" href="https://github.com/jywang001">GitHub</a>
-      <a class="btn" href="mailto:junyangwang@stu.pku.edu.cn">Email</a>
+    <div class="home-stage__copy lang-content" data-lang-content="en">
+      <p class="studio-eyebrow">Junyang Wang · PKU Computer Science</p>
+      <h1 id="home-title-en">Junyang Wang</h1>
+      <p class="home-stage__lead">I study computer science at Peking University. Lately I have been working on post-training and evaluation for embodied models, alongside agent systems, small tools, and game prototypes.</p>
+      <p class="home-stage__note">This site is a small record of things I actually built and still want to talk about.</p>
+      <div class="home-stage__links">
+        <a class="studio-text-link" href="/projects/">
+          <span>See my work</span>
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a class="studio-text-link" href="https://github.com/jywang001">
+          <span>GitHub</span>
+          <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+        </a>
+        <a class="studio-text-link" href="mailto:junyangwang@stu.pku.edu.cn">
+          <span>Email me</span>
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+        </a>
+      </div>
     </div>
   </div>
-  <img class="home-portrait" src="/images/avatar.jpg" alt="Junyang Wang profile photo">
-</div>
+  <p class="home-stage__caption">Beijing, 2026</p>
+</section>
 
-<div class="home-metrics">
-  <div class="home-metric">
-    <strong>Main Thread</strong>
-    <span>Embodied/multimodal post-training, reward design, benchmark-style evaluation, and failure feedback loops.</span>
-  </div>
-  <div class="home-metric">
-    <strong>Public Evidence</strong>
-    <span>CritPT-RL documents a working pipeline and a useful negative result: cleaner format did not automatically improve official accuracy.</span>
-  </div>
-  <div class="home-metric">
-    <strong>Builder Habit</strong>
-    <span>Agent systems should run, log decisions, expose visible information boundaries, and leave traces that can be replayed.</span>
-  </div>
-</div>
+<section class="studio-band studio-band--surface">
+  <div class="studio-container">
+    <div class="home-now lang-content" data-lang-content="zh">
+      <div>
+        <p class="studio-eyebrow">NOW / 现在</p>
+        <h2 class="home-now__title">最近在做什么</h2>
+      </div>
+      <div class="home-now__copy">
+        <p>我现在在北大前沿计算研究中心参与具身模型的 post-training。具体到日常，就是清机器人数据、做 SFT / CoT 样本、筛 RL 数据、跑评测，再回头看模型到底错在哪。</p>
+        <p>我越来越觉得，这类工作的重点不只是把分数做高，而是把一次失败说清楚：数据从哪里来，模型在哪一步偏了，下一轮实验为什么值得跑。</p>
+      </div>
+      <aside class="home-now__aside">
+        <p><strong>北京大学</strong><br>计算机科学与技术（拔尖班）</p>
+        <p><strong>2024 — 2028</strong><br>本科在读</p>
+        <p><strong>兴趣</strong><br>具身智能、后训练、可检查的 Agent 系统</p>
+      </aside>
+    </div>
 
-## Selected Work
-
-<div class="home-paths">
-  <a class="home-path" href="/portfolio/critpt-rl/">
-    <strong>CritPT-RL</strong>
-    <span>Qwen-style GRPO post-training lab for scientific Python-answer tasks. The most useful result is a diagnosis of reward/eval mismatch.</span>
-  </a>
-  <a class="home-path" href="/portfolio/texas-poker-agents/">
-    <strong>Texas-Poker-Agents</strong>
-    <span>A local no-limit Hold'em table for one human and multiple LLM seats, with logs, table talk, fallback actions, and replayable hands.</span>
-  </a>
-  <a class="home-path" href="/portfolio/lyuyuan-ai/">
-    <strong>Lyuyuan AI</strong>
-    <span>An LLM-driven narrative RPG prototype with character prompts, relationship state, event bus logging, and lightweight saves.</span>
-  </a>
-</div>
-
-## Research Snapshot
-
-<div class="home-list">
-  <div class="home-entry">
-    <h3>Post-training for embodied models</h3>
-    <p>I work on the experimental loop after a multimodal embodied model fails: cleaning multi-source robot data, constructing SFT/CoT samples, filtering RL candidates, maintaining evaluation scripts, and feeding error cases back into the next round.</p>
-    <div class="home-entry-meta">Center for Frontier Computing Research, Peking University</div>
-  </div>
-  <div class="home-entry">
-    <h3>Video spatio-temporal grounding</h3>
-    <p>In a research rotation, I studied a multi-agent debating framework for video grounding and helped with localization experiments, result logging, and error-case analysis.</p>
-    <div class="home-entry-meta">Wangxuan Institute of Computer Technology, Peking University</div>
-  </div>
-</div>
-
-## Working Notes
-
-For now, my most concrete notes live inside project READMEs and experiment logs. The notes I want to turn into public writeups are the failure analysis behind CritPT-RL, visible-information boundaries for poker agents, and small implementation notes from Mini-Lisp.
-
-## Contact
-
-- **Email**: [junyangwang@stu.pku.edu.cn](mailto:junyangwang@stu.pku.edu.cn)
-- **GitHub**: [jywang001](https://github.com/jywang001)
-
-</div>
-
-<div class="lang-content" data-lang-content="zh" markdown="1">
-
-<div class="home-hero">
-  <div>
-    <p class="home-kicker">北京大学计算机 · 具身智能与 Agent</p>
-    <h1 class="home-title">王俊阳 / Junyang Wang</h1>
-    <p class="home-lead">我是北京大学计算机本科生，主要关注具身/多模态模型的后训练与评测：怎么把模型失败案例变成数据、reward、评测脚本和下一轮训练信号。相比只看最终 benchmark 分数，我更关心中间过程是否可复现、可检查、可诊断。</p>
-    <p class="home-lead">我也喜欢把 agent 想法做成能运行的系统。最近的公开项目包括 <a href="/portfolio/critpt-rl/">CritPT-RL</a>，一个 scientific Python-answer 任务上的 post-training/eval 实验；以及 <a href="/portfolio/texas-poker-agents/">Texas-Poker-Agents</a>，一个真人与多个 LLM agent 同桌对局、记录日志并复盘行为的本地实验台。</p>
-    <div class="home-actions">
-      <a class="btn btn--primary" href="/projects/">代表项目</a>
-      <a class="btn" href="/cv/">经历</a>
-      <a class="btn" href="https://github.com/jywang001">GitHub</a>
-      <a class="btn" href="mailto:junyangwang@stu.pku.edu.cn">邮箱</a>
+    <div class="home-now lang-content" data-lang-content="en">
+      <div>
+        <p class="studio-eyebrow">NOW</p>
+        <h2 class="home-now__title">What I am working on</h2>
+      </div>
+      <div class="home-now__copy">
+        <p>I currently work on post-training for embodied models at PKU's Center for Frontier Computing Research. The day-to-day work is concrete: clean robot data, build SFT and CoT examples, filter RL data, run evaluations, then trace where the model went wrong.</p>
+        <p>I have come to care as much about explaining a failure as improving a score: where the data came from, where the model drifted, and why the next experiment is worth running.</p>
+      </div>
+      <aside class="home-now__aside">
+        <p><strong>Peking University</strong><br>Computer Science, Elite Program</p>
+        <p><strong>2024 — 2028</strong><br>Undergraduate</p>
+        <p><strong>Interests</strong><br>Embodied AI, post-training, inspectable agents</p>
+      </aside>
     </div>
   </div>
-  <img class="home-portrait" src="/images/avatar.jpg" alt="王俊阳头像">
-</div>
+</section>
 
-<div class="home-metrics">
-  <div class="home-metric">
-    <strong>当前主线</strong>
-    <span>具身/多模态后训练、reward 设计、benchmark-style evaluation，以及失败案例回流。</span>
+<section class="studio-band">
+  <div class="studio-container">
+    <div class="studio-section-heading">
+      <p class="studio-eyebrow">
+        <span class="lang-inline" data-lang-content="zh">SELECTED WORK / 项目</span>
+        <span class="lang-inline" data-lang-content="en">SELECTED WORK</span>
+      </p>
+      <h2 class="lang-content" data-lang-content="zh">三件我愿意拿出来细讲的东西。</h2>
+      <h2 class="lang-content" data-lang-content="en">Three things I would rather explain than pitch.</h2>
+    </div>
+
+    <article class="featured-project">
+      <div class="featured-project__visual">
+        <img class="featured-project__image featured-project__image--curve" src="/images/critpt-rl-curves.png" alt="CritPT-RL training curves">
+      </div>
+      <div class="featured-project__copy">
+        <p class="studio-eyebrow">01 · RL POST-TRAINING</p>
+        <h3>CritPT-RL</h3>
+        <div class="lang-content" data-lang-content="zh">
+          <p class="featured-project__hook">训练曲线很好看，官方分数没动。这比“又涨了几个点”更值得写清楚。</p>
+          <p class="featured-project__text">我搭了从数据生成、GRPO、reward 到 official-style eval 的完整流程。后来的模型确实更会写规整的 <code>answer()</code>，但 official70 没有提高。这个项目现在主要记录 reward 和真正评测目标是怎样错位的。</p>
+        </div>
+        <div class="lang-content" data-lang-content="en">
+          <p class="featured-project__hook">The training curves looked good. The official score did not move. That was the result worth writing down.</p>
+          <p class="featured-project__text">I built the loop from data generation and GRPO to rewards and official-style evaluation. Later checkpoints produced cleaner <code>answer()</code> functions, but official70 accuracy stayed flat. The project is now a record of how a reward can miss the thing it claims to measure.</p>
+        </div>
+        <div class="featured-project__links">
+          <a class="studio-text-link" href="/portfolio/critpt-rl/">
+            <span class="lang-inline" data-lang-content="zh">看实验记录</span>
+            <span class="lang-inline" data-lang-content="en">Read the experiment</span>
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
+          <a class="studio-text-link" href="https://github.com/jywang001/CritPT-RL">
+            <span>GitHub</span>
+            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <article class="featured-project featured-project--reverse">
+      <div class="featured-project__visual">
+        <div class="poker-visual" role="img" aria-label="A stylized four-player LLM poker table">
+          <div class="poker-table">
+            <div class="poker-board" aria-hidden="true">
+              <span class="playing-card">A♠</span>
+              <span class="playing-card playing-card--red">9♥</span>
+              <span class="playing-card">7♣</span>
+              <span class="playing-card playing-card--red">Q♦</span>
+            </div>
+            <span class="poker-pot">POT 240</span>
+            <span class="poker-seat poker-seat--top">Qwen · check</span>
+            <span class="poker-seat poker-seat--right">GPT · call</span>
+            <span class="poker-seat poker-seat--bottom">YOU · action</span>
+            <span class="poker-seat poker-seat--left">Claude · raise</span>
+          </div>
+          <div class="poker-log" aria-hidden="true">
+            <span>VISIBLE STATE ONLY</span>
+            <span>HAND #0042 · LOGGED</span>
+          </div>
+        </div>
+      </div>
+      <div class="featured-project__copy">
+        <p class="studio-eyebrow">02 · MULTI-AGENT GAME</p>
+        <h3>Texas-Poker-Agents</h3>
+        <div class="lang-content" data-lang-content="zh">
+          <p class="featured-project__hook">让几个 LLM 坐上同一张牌桌，最先要解决的不是策略，而是别让它们偷看牌。</p>
+          <p class="featured-project__text">Node 规则引擎负责发牌、下注、边池和结算；模型只能看到自己座位应当看到的信息。非法动作会被托管，整手牌会写进 JSONL，结束后还能开上帝视角复盘。</p>
+        </div>
+        <div class="lang-content" data-lang-content="en">
+          <p class="featured-project__hook">Put several LLMs at one poker table and the first problem is not strategy. It is stopping them from seeing the wrong cards.</p>
+          <p class="featured-project__text">A Node rules engine owns the deck, betting, side pots, and settlement. Each model sees only its seat's legal view. Bad actions fall back safely, every hand is logged to JSONL, and a host view makes the hand reviewable afterward.</p>
+        </div>
+        <div class="featured-project__links">
+          <a class="studio-text-link" href="/portfolio/texas-poker-agents/">
+            <span class="lang-inline" data-lang-content="zh">看牌桌怎么搭</span>
+            <span class="lang-inline" data-lang-content="en">See how the table works</span>
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
+          <a class="studio-text-link" href="https://github.com/jywang001/Texas-Poker-Agents">
+            <span>GitHub</span>
+            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <article class="featured-project">
+      <div class="featured-project__visual">
+        <img class="featured-project__image" src="/images/lyuyuan_ai_preview.png" alt="Green Garden High School Story interface">
+      </div>
+      <div class="featured-project__copy">
+        <p class="studio-eyebrow">03 · NARRATIVE AGENTS</p>
+        <h3>绿园中学物语</h3>
+        <div class="lang-content" data-lang-content="zh">
+          <p class="featured-project__hook">这是我比较早的 Agent 原型，也是一段很具体的“先做出来再说”。</p>
+          <p class="featured-project__text">五个角色、关系和情绪状态、双通道 LLM 输出、事件总线和存档都在一个 Flask 小游戏里。现在看它并不精致，但它让我第一次认真处理角色状态、日志和长期交互，而不是只做一轮聊天。</p>
+        </div>
+        <div class="lang-content" data-lang-content="en">
+          <p class="featured-project__hook">An early agent prototype, built before I knew exactly what I was trying to learn from it.</p>
+          <p class="featured-project__text">Five characters, relationship and mood state, two-channel LLM output, an event bus, and save files all live inside a small Flask game. It is rough, but it was the first time I treated character state and long-running interaction as a system instead of a single chat.</p>
+        </div>
+        <div class="featured-project__links">
+          <a class="studio-text-link" href="/portfolio/lyuyuan-ai/">
+            <span class="lang-inline" data-lang-content="zh">看这个旧原型</span>
+            <span class="lang-inline" data-lang-content="en">Open the old prototype</span>
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
+          <a class="studio-text-link" href="https://github.com/jywang001/Lyuyuan_AI">
+            <span>GitHub</span>
+            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </article>
   </div>
-  <div class="home-metric">
-    <strong>公开证据</strong>
-    <span>CritPT-RL 记录了一个跑通的训练评测流程，也记录了一个有价值的负结果：格式更干净不等于 official accuracy 更高。</span>
+</section>
+
+<section class="studio-band studio-band--ink">
+  <div class="studio-container home-more">
+    <div>
+      <p class="studio-eyebrow">
+        <span class="lang-inline" data-lang-content="zh">ELSEWHERE / 其他</span>
+        <span class="lang-inline" data-lang-content="en">ELSEWHERE</span>
+      </p>
+      <h2 class="lang-content" data-lang-content="zh">还有一些。</h2>
+      <h2 class="lang-content" data-lang-content="en">A few more.</h2>
+    </div>
+
+    <div class="home-more__list lang-content" data-lang-content="zh">
+      <a class="home-more__item" href="/portfolio/mini-lisp/">
+        <strong>Mini-Lisp</strong>
+        <span>C++ 写的解释器：parser、闭包、宏和一个能用的 REPL。</span>
+        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+      </a>
+      <a class="home-more__item" href="/portfolio/opengame/">
+        <strong>OpenGame</strong>
+        <span>多人校园世界模拟，角色有记忆、关系、位置和可回放事件。</span>
+        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+      </a>
+      <a class="home-more__item" href="/cv/">
+        <strong>经历</strong>
+        <span>科研轮转、现在的研究工作，以及我真正用过的工具。</span>
+        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+      </a>
+    </div>
+
+    <div class="home-more__list lang-content" data-lang-content="en">
+      <a class="home-more__item" href="/portfolio/mini-lisp/">
+        <strong>Mini-Lisp</strong>
+        <span>A C++ interpreter with a parser, closures, macros, and a usable REPL.</span>
+        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+      </a>
+      <a class="home-more__item" href="/portfolio/opengame/">
+        <strong>OpenGame</strong>
+        <span>A multi-agent school world with memory, relationships, locations, and replayable events.</span>
+        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+      </a>
+      <a class="home-more__item" href="/cv/">
+        <strong>Experience</strong>
+        <span>Research rotations, current work, and tools I have actually used.</span>
+        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+      </a>
+    </div>
   </div>
-  <div class="home-metric">
-    <strong>工程习惯</strong>
-    <span>Agent 系统应该能运行、能记录决策、能限制可见信息边界，也能留下可复盘的行为痕迹。</span>
-  </div>
-</div>
-
-## 代表项目
-
-<div class="home-paths">
-  <a class="home-path" href="/portfolio/critpt-rl/">
-    <strong>CritPT-RL</strong>
-    <span>面向 scientific Python-answer 任务的 Qwen-style GRPO 后训练实验。最重要的结论是 reward 与目标评测之间的语义错位。</span>
-  </a>
-  <a class="home-path" href="/portfolio/texas-poker-agents/">
-    <strong>Texas-Poker-Agents</strong>
-    <span>本地无限注德州扑克实验台：真人对战多个 LLM 座位，记录日志、牌桌话、fallback 行为和完整复盘。</span>
-  </a>
-  <a class="home-path" href="/portfolio/lyuyuan-ai/">
-    <strong>Lyuyuan AI</strong>
-    <span>LLM 叙事 RPG 原型，包含角色 prompt、关系状态、事件总线日志和轻量存档。</span>
-  </a>
-</div>
-
-## 科研切片
-
-<div class="home-list">
-  <div class="home-entry">
-    <h3>具身模型 post-training</h3>
-    <p>我参与模型失败之后的实验闭环：多源机器人数据清洗、SFT/CoT 样本构造、RL 候选样本筛选、评测脚本维护，以及错误案例回流。</p>
-    <div class="home-entry-meta">北京大学前沿计算研究中心</div>
-  </div>
-  <div class="home-entry">
-    <h3>视频时空定位</h3>
-    <p>在科研轮转中，我研究过 multi-agent debating 框架下的视频 grounding，并参与定位实验、结果记录和错误案例分析。</p>
-    <div class="home-entry-meta">北京大学王选计算机研究所</div>
-  </div>
-</div>
-
-## 技术笔记
-
-目前最具体的笔记还在项目 README 和实验记录里。接下来最值得公开整理的是 CritPT-RL 的失败诊断、poker agent 的可见信息边界，以及 Mini-Lisp 里的 macro / quasiquote 实现笔记。
-
-## 联系
-
-- **邮箱**：[junyangwang@stu.pku.edu.cn](mailto:junyangwang@stu.pku.edu.cn)
-- **GitHub**：[jywang001](https://github.com/jywang001)
-
-</div>
+</section>

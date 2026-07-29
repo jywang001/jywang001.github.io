@@ -1,132 +1,146 @@
 ---
-layout: archive
+layout: studio
 title: "Experience"
 title_en: "Experience"
 title_zh: "经历"
 permalink: /cv/
-author_profile: true
+page_class: experience
 redirect_from:
   - /resume
 ---
 
-{% include base_path %}
+<header class="studio-page-intro">
+  <div class="studio-container">
+    <p class="studio-eyebrow">
+      <span class="lang-inline" data-lang-content="zh">EXPERIENCE / 经历</span>
+      <span class="lang-inline" data-lang-content="en">EXPERIENCE</span>
+    </p>
+    <div class="lang-content" data-lang-content="zh">
+      <h1>我在哪里学过、做过。</h1>
+      <p>这不是完整版简历。比起把关键词铺满一页，我更想说明每段经历里我实际碰过什么问题。</p>
+    </div>
+    <div class="lang-content" data-lang-content="en">
+      <h1>Where I have learned and worked.</h1>
+      <p>This is not a full CV. I would rather say what I actually touched in each role than fill the page with keywords.</p>
+    </div>
+  </div>
+</header>
 
-<div class="lang-content" data-lang-content="en" markdown="1">
+<div class="experience-grid studio-container">
+  <aside class="experience-aside">
+    <div class="lang-content" data-lang-content="zh">
+      <p class="studio-eyebrow">ABOUT</p>
+      <h2>王俊阳</h2>
+      <p>北京大学计算机科学与技术专业本科生（拔尖班），预计 2028 年毕业。</p>
+      <p>目前的研究兴趣集中在具身/多模态模型后训练、评测和 Agent 系统。比起只看最终分数，我更习惯先把数据路径、错误案例和实验记录理顺。</p>
+      <div class="experience-links">
+        <a class="studio-text-link" href="mailto:junyangwang@stu.pku.edu.cn">
+          <span>邮箱</span><i class="fa-solid fa-envelope" aria-hidden="true"></i>
+        </a>
+        <a class="studio-text-link" href="https://github.com/jywang001">
+          <span>GitHub</span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
 
-This page is a web-native overview of my education, research, selected projects, and toolbox. It is intentionally more narrative than a full CV: the goal is to show what I worked on, what my role was, and what evidence is public.
+    <div class="lang-content" data-lang-content="en">
+      <p class="studio-eyebrow">ABOUT</p>
+      <h2>Junyang Wang</h2>
+      <p>Computer Science undergraduate in Peking University's Elite Program, expected to graduate in 2028.</p>
+      <p>My current interests are post-training and evaluation for embodied and multimodal models, plus agent systems. I tend to start by making the data path, failure cases, and experiment record legible.</p>
+      <div class="experience-links">
+        <a class="studio-text-link" href="mailto:junyangwang@stu.pku.edu.cn">
+          <span>Email</span><i class="fa-solid fa-envelope" aria-hidden="true"></i>
+        </a>
+        <a class="studio-text-link" href="https://github.com/jywang001">
+          <span>GitHub</span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+  </aside>
 
-Education
-======
+  <div>
+    <div class="timeline">
+      <article class="timeline-entry">
+        <p class="timeline-entry__date">2025.12 — NOW</p>
+        <div class="timeline-entry__body lang-content" data-lang-content="zh">
+          <h2>北京大学前沿计算研究中心</h2>
+          <h3>本科生科研助理 · 导师：董豪</h3>
+          <p>参与具身模型的 post-training 与评测。手上的工作比较具体：多源机器人数据清洗和对齐、SFT / CoT 样本构造、RL 候选筛选、评测脚本维护，以及错误案例回流。</p>
+          <p>这段工作让我真正意识到，模型“失败”本身并不自动成为有用数据。只有把输入、轨迹、判分和目标都记录清楚，失败才有可能进入下一轮训练。</p>
+        </div>
+        <div class="timeline-entry__body lang-content" data-lang-content="en">
+          <h2>Center for Frontier Computing Research, PKU</h2>
+          <h3>Undergraduate Research Assistant · Advisor: Hao Dong</h3>
+          <p>I work on post-training and evaluation for embodied models: cleaning and aligning robot data, building SFT and CoT samples, filtering RL candidates, maintaining evaluation scripts, and feeding failure cases into the next round.</p>
+          <p>The work made one thing clear: a model failure does not automatically become useful data. Inputs, trajectories, scoring, and targets all need to be recorded well enough for the failure to teach the next run anything.</p>
+        </div>
+      </article>
 
-* **Peking University**, B.S. in Computer Science and Technology (Elite Program), 2024.09 - 2028.07
+      <article class="timeline-entry">
+        <p class="timeline-entry__date">ROTATION</p>
+        <div class="timeline-entry__body lang-content" data-lang-content="zh">
+          <h2>北京大学王选计算机研究所</h2>
+          <h3>拔尖班科研轮转 · 导师：刘洋</h3>
+          <p>做过 multi-agent debating 框架下的视频时空定位实验，主要参与定位模块调试、模型评测、结果记录和 bad case 分析。</p>
+          <p>最有用的收获不是某个模型名字，而是学会把 temporal failure 和 spatial failure 分开看。两个问题混在一个总分里，很多错误其实解释不清。</p>
+        </div>
+        <div class="timeline-entry__body lang-content" data-lang-content="en">
+          <h2>Wangxuan Institute of Computer Technology, PKU</h2>
+          <h3>Research Rotation · Advisor: Yang Liu</h3>
+          <p>I worked on video spatio-temporal grounding in a multi-agent debating setup, helping debug localization modules, evaluate models, log results, and inspect bad cases.</p>
+          <p>The lasting lesson was simple: temporal and spatial failures need to be inspected separately. Once they are collapsed into one score, many errors become hard to explain.</p>
+        </div>
+      </article>
 
-Research Experience
-======
+      <article class="timeline-entry">
+        <p class="timeline-entry__date">2024 — 2028</p>
+        <div class="timeline-entry__body lang-content" data-lang-content="zh">
+          <h2>北京大学</h2>
+          <h3>计算机科学与技术 · 拔尖班</h3>
+          <p>本科在读。课程之外，我更愿意用项目把一个概念做实：写过 C++ Mini-Lisp 解释器，也做过叙事 Agent、多人世界模拟和本地 LLM 德州扑克桌。</p>
+        </div>
+        <div class="timeline-entry__body lang-content" data-lang-content="en">
+          <h2>Peking University</h2>
+          <h3>B.S. in Computer Science and Technology · Elite Program</h3>
+          <p>Undergraduate study. Outside coursework, I tend to make concepts concrete through projects: a C++ Mini-Lisp interpreter, narrative agents, a multi-agent world simulation, and a local LLM poker table.</p>
+        </div>
+      </article>
 
-### Center for Frontier Computing Research, Peking University
+      <article class="timeline-entry">
+        <p class="timeline-entry__date">COMMUNITY</p>
+        <div class="timeline-entry__body lang-content" data-lang-content="zh">
+          <h2>PLIB / PKUHub</h2>
+          <h3>学生 AI 社群与校内产品</h3>
+          <p>参与学生 AI 分享和产品工作。PKUHub 是面向校内的笔记共享平台，注册用户超过 5,000。它让我第一次直接面对“有人真的每天会用”的软件，而不只是自己能跑通的 demo。</p>
+        </div>
+        <div class="timeline-entry__body lang-content" data-lang-content="en">
+          <h2>PLIB / PKUHub</h2>
+          <h3>Student AI community and campus product</h3>
+          <p>I helped with student AI talks and product work. PKUHub is a campus note-sharing platform with more than 5,000 registered users. It was my first experience with software people actually returned to, not merely a demo that ran once.</p>
+        </div>
+      </article>
+    </div>
 
-**Advisor:** Hao Dong  
-**Role:** Undergraduate research assistant  
-**Time:** 2025.12 - Present
+    <section class="experience-tools">
+      <h2 class="lang-content" data-lang-content="zh">日常会用</h2>
+      <h2 class="lang-content" data-lang-content="en">What I use</h2>
 
-**Problem:** Multimodal embodied models often fail in ways that are hard to reuse. A useful training loop needs to turn those failures into cleaned data, training samples, reward signals, evaluation scripts, and the next round of diagnosis.
-
-**My role:** I participate in the post-training and evaluation loop: cleaning and aligning multi-source robot datasets, constructing SFT/CoT samples, filtering RL candidates, maintaining evaluation scripts, and analyzing error cases.
-
-**Methods:** SFT/CoT sample construction, GRPO/RL candidate filtering, benchmark-style evaluation, error-case feedback, and real-world navigation evaluation.
-
-**Artifacts / evidence:** Internal experiment records and evaluation scripts; public-facing related evidence is [CritPT-RL]({{ base_path }}/portfolio/critpt-rl/), where I made a smaller open post-training/eval loop to study reward/eval mismatch.
-
-**Status / lesson:** Ongoing. The strongest lesson so far is that failure cases are only useful when their data path and evaluation target are explicit enough to reproduce.
-
-### Wangxuan Institute of Computer Technology, Peking University
-
-**Advisor:** Yang Liu  
-**Role:** Research rotation  
-
-**Problem:** Video spatio-temporal grounding needs robust localization across language descriptions, video clips, temporal intervals, and candidate spatial regions.
-
-**My role:** I worked on experiments around a multi-agent debating framework for video grounding, including localization module debugging, model evaluation, result logging, and error-case analysis.
-
-**Methods:** Temporal grounding, spatial grounding, multi-agent debating, evaluation workflow construction, and localization result inspection.
-
-**Artifacts / evidence:** Research rotation work; public details are limited.
-
-**Status / lesson:** Completed rotation. The useful lesson was that grounding errors are easier to study when temporal and spatial failures are logged separately.
-
-Selected Projects
-======
-
-* **[CritPT-RL]({{ base_path }}/portfolio/critpt-rl/)**: a public Qwen-style GRPO post-training and evaluation lab for scientific Python-answer tasks. The key result is a negative finding: better format and cleaner `answer()` structure did not automatically improve official70 accuracy.
-* **[Texas-Poker-Agents]({{ base_path }}/portfolio/texas-poker-agents/)**: a public local Hold'em environment for one human and multiple LLM seats, with strict visible-state prompts, rules-engine validation, logs, fallback actions, and replay.
-* **PKUHub / PLIB**: campus AI community and product work, including student AI talks and PKUHub, a note-sharing platform with 5,000+ registered users.
-
-Toolbox
-======
-
-* **Post-training / eval:** SFT, GRPO/RL, CoT sample construction, reward design, failure mining, official-style evaluation, LLM-as-a-judge.
-* **Data pipelines:** robot data cleaning, filtering, synthesis, annotation alignment, quality checks, evaluation-set construction, automated processing.
-* **Systems / product:** Python, JavaScript, C++, Flask, Django, FastAPI, SQL/ORM, Git, browser UIs, JSON/JSONL logs.
-* **Interests:** embodied AI, multimodal agents, post-training, benchmark transfer, inspectable agent systems.
-
-</div>
-
-<div class="lang-content" data-lang-content="zh" markdown="1">
-
-这个页面是网页版经历概览，覆盖教育背景、科研经历、代表项目和工具箱。它不是完整 CV 的逐条搬运，而是更强调：我做过什么、我的角色是什么、哪些证据可以公开看到。
-
-教育背景
-======
-
-* **北京大学**，计算机科学与技术（拔尖班），本科，2024.09 - 2028.07
-
-科研经历
-======
-
-### 北京大学前沿计算研究中心
-
-**导师：**董豪  
-**角色：**本科生科研助理  
-**时间：**2025.12 - 至今
-
-**Problem：**多模态具身模型在真实任务中失败后，需要把失败案例转化为清洗后的数据、训练样本、reward 信号、评测脚本和下一轮诊断依据。
-
-**My role：**我参与 post-training 与评测闭环，包括多源机器人数据清洗与对齐、SFT/CoT 样本构造、RL 候选样本筛选、评测脚本维护和错误案例分析。
-
-**Methods：**SFT/CoT 样本构造、GRPO/RL 候选筛选、benchmark-style evaluation、错误案例回流和真实环境导航评测。
-
-**Artifacts / evidence：**内部实验记录和评测脚本；公开可看的相关证据是 [CritPT-RL]({{ base_path }}/portfolio/critpt-rl/)，我在其中做了一个更小的开放后训练/评测闭环，用来研究 reward/eval mismatch。
-
-**Status / lesson：**进行中。到目前为止最重要的体会是：失败案例只有在数据路径和评测目标都足够明确时，才真的能被复现和利用。
-
-### 北京大学王选计算机研究所
-
-**导师：**刘洋  
-**角色：**拔尖班科研轮转
-
-**Problem：**视频时空定位需要同时处理语言描述、视频片段、时间区间和候选空间区域，鲁棒性很容易被细粒度定位误差影响。
-
-**My role：**我参与 multi-agent debating 框架下的视频 grounding 实验，包括定位模块调试、模型评测、结果记录和错误案例分析。
-
-**Methods：**temporal grounding、spatial grounding、multi-agent debating、评测流程整理和定位结果检查。
-
-**Artifacts / evidence：**科研轮转工作；公开细节有限。
-
-**Status / lesson：**轮转已完成。比较有用的体会是：如果 temporal failure 和 spatial failure 能分开记录，grounding 错误会更容易分析。
-
-代表项目
-======
-
-* **[CritPT-RL]({{ base_path }}/portfolio/critpt-rl/)**：公开的 Qwen-style GRPO 后训练与评测实验，面向 scientific Python-answer 任务。关键结论是一个负结果：格式更干净、`answer()` 结构更像样，并不自动提升 official70 accuracy。
-* **[Texas-Poker-Agents]({{ base_path }}/portfolio/texas-poker-agents/)**：公开的本地德州扑克实验环境，真人对战多个 LLM 座位，包含严格可见状态 prompt、规则引擎校验、日志、fallback 行为和复盘。
-* **PKUHub / PLIB**：校内 AI 社群与产品工作，包括学生 AI 讲座，以及注册用户超过 5,000 的校内笔记共享平台 PKUHub。
-
-工具箱
-======
-
-* **Post-training / eval：**SFT、GRPO/RL、CoT 样本构造、reward 设计、failure mining、official-style evaluation、LLM-as-a-judge。
-* **数据管线：**机器人数据清洗、筛选、合成、标注对齐、质量检查、评测集构建和自动化处理。
-* **系统 / 产品：**Python、JavaScript、C++、Flask、Django、FastAPI、SQL/ORM、Git、浏览器 UI、JSON/JSONL 日志。
-* **兴趣方向：**具身智能、多模态 agent、后训练、benchmark transfer、可检查的 agent 系统。
-
+      <div class="experience-tools__line">
+        <strong class="lang-content" data-lang-content="zh">训练与评测</strong>
+        <strong class="lang-content" data-lang-content="en">Training & eval</strong>
+        <span>SFT · GRPO / RL · reward design · failure mining · LLM-as-a-judge</span>
+      </div>
+      <div class="experience-tools__line">
+        <strong class="lang-content" data-lang-content="zh">数据</strong>
+        <strong class="lang-content" data-lang-content="en">Data</strong>
+        <span>robot data cleaning · filtering · synthesis · annotation alignment · eval-set construction</span>
+      </div>
+      <div class="experience-tools__line">
+        <strong class="lang-content" data-lang-content="zh">工程</strong>
+        <strong class="lang-content" data-lang-content="en">Engineering</strong>
+        <span>Python · JavaScript · C++ · FastAPI · Flask · Django · SQL · Git</span>
+      </div>
+    </section>
+  </div>
 </div>

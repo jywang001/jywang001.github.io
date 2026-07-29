@@ -1,86 +1,79 @@
 ---
-title: "Lyuyuan AI"
-title_en: "Lyuyuan AI"
-title_zh: "Lyuyuan AI"
-excerpt: "A public historical prototype for an LLM-driven narrative RPG with multi-character dialogue, relationship state, event bus logging, APIs, tests, and lightweight saves<br/><img src='/images/lyuyuan_ai_preview.png' style='max-width: 500px;'>"
-excerpt_en: "A public historical prototype for an LLM-driven narrative RPG with multi-character dialogue, relationship state, event bus logging, APIs, tests, and lightweight saves<br/><img src='/images/lyuyuan_ai_preview.png' style='max-width: 500px;'>"
-excerpt_zh: "公开历史原型：LLM 驱动的轻叙事 RPG，包含多角色对话、关系状态、事件总线日志、API、测试和轻量存档<br/><img src='/images/lyuyuan_ai_preview.png' style='max-width: 500px;'>"
+layout: studio-project
+title: "绿园中学物语"
+title_en: "Green Garden High School Story"
+title_zh: "绿园中学物语"
+number: "03"
+label_en: "Narrative agents · early prototype"
+label_zh: "叙事 Agent · 早期原型"
+lead_en: "A small LLM-driven school story with five characters, relationship state, an event bus, and save files."
+lead_zh: "一个由 LLM 驱动的校园叙事小游戏：五个角色、关系和情绪状态、事件总线，以及真的能读写的存档。"
+status_en: "Public historical prototype · retired"
+status_zh: "公开历史原型 · 已停止迭代"
+stack: "Python · Flask · JavaScript · JSON"
+repository: "https://github.com/jywang001/Lyuyuan_AI"
+image: "/images/lyuyuan_ai_preview.png"
+image_alt: "Green Garden High School Story chat interface"
 collection: portfolio
 order: 3
 ---
 
-<div class="lang-content" data-lang-content="en" markdown="1">
+<div class="lang-content" data-lang-content="zh">
+  <section class="project-section">
+    <p class="project-section__label">当时</p>
+    <div class="project-section__content">
+      <h2>我想做的不是另一个聊天框</h2>
+      <p>玩家在学校社团招新的背景里遇到五个角色。每个人有独立 persona，也有好感度、无聊度和关系阶段。一次对话不只生成角色说出口的话，还会返回一份内部 JSON，用来更新这些状态。</p>
+      <p>现在回看，这个设定很青涩，但它迫使我第一次认真处理“聊完以后系统里留下什么”。</p>
+    </div>
+  </section>
 
-## Lyuyuan AI
+  <section class="project-section">
+    <p class="project-section__label">系统</p>
+    <div class="project-section__content">
+      <h2>角色之外，还有一些不浪漫的基础设施</h2>
+      <p><code>BaseCharacter</code> 统一处理角色对话和状态变化；EventBus 把好感度、关系、游戏生命周期等事件分发给日志、统计和成就监听器；GameStorage 把进度写进五个 JSON 存档槽。</p>
+      <p>前端是原生 HTML / Bootstrap / jQuery，后端是 Flask。仓库里也保留了角色配置、API 文档和基础测试。</p>
+      <div class="project-code">dialogue + analysis JSON → state update → event bus → logs / saves / UI</div>
+    </div>
+  </section>
 
-**Status:** public historical prototype.
-
-**One-line positioning:** an LLM-driven narrative RPG prototype where characters speak, remember relationship state, and trigger events that can be saved and inspected.
-
-![Lyuyuan AI preview](/images/lyuyuan_ai_preview.png)
-
-### Why
-
-I built this as a product-shaped agent prototype: instead of a one-off chat demo, I wanted characters, relationship state, events, saves, and a UI that could support repeated interaction.
-
-### What I Built
-
-- Multiple selectable AI characters with distinct persona prompts.
-- A two-channel response pattern: character-facing reply plus internal analysis JSON.
-- Relationship, emotion, and event-state updates across turns.
-- Event bus architecture for logs, statistics, achievements, and lifecycle events.
-- JSON save slots, API routes, tests, and a Flask-based web UI.
-
-### Hard Parts
-
-- Keeping character dialogue expressive while extracting structured internal state reliably.
-- Separating story events, relationship updates, logging, and UI actions so the prototype could grow without turning into one large callback chain.
-
-### Evidence
-
-- [GitHub repository](https://github.com/jywang001/Lyuyuan_AI)
-- Public repo includes API/design notes, tests, version history, character configuration, and save/load behavior.
-
-### Result / Lesson
-
-The project taught me that narrative agents need boring infrastructure: state schemas, events, logs, and save files. Without those, good dialogue is hard to debug or improve over time.
-
+  <section class="project-section">
+    <p class="project-section__label">后来</p>
+    <div class="project-section__content">
+      <h2>这个仓库已经完成了它的历史使命</h2>
+      <p>它不是我现在会选择的产品形态，UI 和 prompt 都有很强的阶段感。但事件、状态和存档这些“无聊部分”让我后来做多 Agent 系统时少走了不少弯路。</p>
+      <p class="project-quote">一段好看的角色回复很容易演示；真正难的是让第十轮对话还能接得上第一轮留下的状态。</p>
+    </div>
+  </section>
 </div>
 
-<div class="lang-content" data-lang-content="zh" markdown="1">
+<div class="lang-content" data-lang-content="en">
+  <section class="project-section">
+    <p class="project-section__label">BACK THEN</p>
+    <div class="project-section__content">
+      <h2>I wanted more than another chat box</h2>
+      <p>The player meets five characters during a school club fair. Each has a persona, closeness score, boredom score, and relationship stage. A turn produces both the line spoken to the player and an internal JSON object used to update state.</p>
+      <p>The premise now feels unmistakably early, but it forced me to ask what should remain in the system after a conversation ends.</p>
+    </div>
+  </section>
 
-## Lyuyuan AI
+  <section class="project-section">
+    <p class="project-section__label">THE SYSTEM</p>
+    <div class="project-section__content">
+      <h2>Characters need unromantic infrastructure</h2>
+      <p><code>BaseCharacter</code> handles dialogue and state changes. An EventBus routes closeness, relationship, and game-lifecycle events to logging, statistics, and achievement listeners. GameStorage writes progress into five JSON save slots.</p>
+      <p>The frontend uses plain HTML, Bootstrap, and jQuery; the backend is Flask. Character config, API notes, and basic tests remain in the repository.</p>
+      <div class="project-code">dialogue + analysis JSON → state update → event bus → logs / saves / UI</div>
+    </div>
+  </section>
 
-**状态：**公开历史原型。
-
-**一句话定位：**一个 LLM 驱动的叙事 RPG 原型，角色可以对话、维护关系状态，并触发可保存、可检查的事件。
-
-![Lyuyuan AI 预览](/images/lyuyuan_ai_preview.png)
-
-### Why
-
-我把它当成一个产品形态的 agent 原型来做：不只是一次性聊天 demo，而是希望有角色、关系状态、事件、存档和可以反复交互的 UI。
-
-### What I Built
-
-- 多个可选 AI 角色，每个角色有独立 persona prompt。
-- 双通道响应模式：面向玩家的角色回复，以及内部分析 JSON。
-- 跨回合维护关系、情绪和事件状态。
-- 事件总线架构支持日志、统计、成就和生命周期事件。
-- JSON 存档槽、API routes、测试和 Flask Web UI。
-
-### Hard Parts
-
-- 在保持角色回复自然的同时，稳定抽取结构化内部状态。
-- 把剧情事件、关系更新、日志和 UI 行为拆开，避免原型膨胀成一个巨大的回调链。
-
-### Evidence
-
-- [GitHub 仓库](https://github.com/jywang001/Lyuyuan_AI)
-- 公开仓库包含 API/设计说明、测试、版本历史、角色配置和存档逻辑。
-
-### Result / Lesson
-
-这个项目让我意识到 narrative agents 很需要“无聊但重要”的基础设施：状态 schema、事件、日志和存档。没有这些，再好的对话也很难调试或长期改进。
-
+  <section class="project-section">
+    <p class="project-section__label">AFTERWARD</p>
+    <div class="project-section__content">
+      <h2>The repository has finished its job</h2>
+      <p>It is not the product shape I would choose today, and both the interface and prompts show their age. The event, state, and save plumbing, however, made later multi-agent work much less mysterious.</p>
+      <p class="project-quote">A charming reply is easy to demo. The harder part is making turn ten remember what turn one changed.</p>
+    </div>
+  </section>
 </div>

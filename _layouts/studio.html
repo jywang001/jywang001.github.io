@@ -1,0 +1,122 @@
+---
+layout: compress
+---
+
+<!doctype html>
+<html lang="{{ site.locale | slice: 0,2 }}" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    {% include seo.html %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4f3ee">
+
+    <script>
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, "") + " js";
+      (function () {
+        var language = "en";
+        var theme = "light";
+        try {
+          language = localStorage.getItem("siteLanguage") || "";
+          theme = localStorage.getItem("theme") || "";
+        } catch (error) {
+          language = "";
+          theme = "";
+        }
+        if (language !== "zh" && language !== "en") {
+          language = (navigator.language || "").toLowerCase().indexOf("zh") === 0 ? "zh" : "en";
+        }
+        if (theme !== "dark" && theme !== "light") {
+          theme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        document.documentElement.setAttribute("data-site-lang", language);
+        document.documentElement.setAttribute("lang", language === "zh" ? "zh-CN" : "en");
+        if (theme === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      }());
+    </script>
+
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+    <link rel="manifest" href="/images/manifest.json">
+  </head>
+
+  {% assign body_page_class = page.page_class | default: layout.page_class | default: 'content' %}
+  {% if page.collection == 'portfolio' %}
+    {% assign body_page_class = 'project' %}
+  {% endif %}
+  <body
+    class="studio-site studio-site--{{ body_page_class }}"
+    data-title-en="{{ page.title_en | default: page.title | escape }}"
+    data-title-zh="{{ page.title_zh | default: page.title | escape }}"
+  >
+    <a class="studio-skip" href="#content">
+      <span class="lang-inline" data-lang-content="en">Skip to content</span>
+      <span class="lang-inline" data-lang-content="zh">跳到正文</span>
+    </a>
+
+    <header class="studio-header">
+      <div class="studio-header__inner">
+        <a class="studio-mark" href="/" aria-label="Junyang Wang home">
+          <span>JW</span><b>.</b>
+        </a>
+
+        <nav class="studio-nav" aria-label="Primary navigation">
+          {% for link in site.data.navigation.main %}
+            {% if link.url contains 'http' %}
+              {% assign domain = '' %}
+            {% else %}
+              {% assign domain = site.baseurl %}
+            {% endif %}
+            <a
+              class="studio-nav__link{% if page.url == link.url or page.collection == 'portfolio' and link.url == '/projects/' %} is-active{% endif %}"
+              href="{{ domain }}{{ link.url }}"
+            >
+              <span class="lang-inline" data-lang-content="en">{{ link.title_en | default: link.title }}</span>
+              <span class="lang-inline" data-lang-content="zh">{{ link.title_zh | default: link.title }}</span>
+            </a>
+          {% endfor %}
+        </nav>
+
+        <div class="studio-controls">
+          <div class="studio-language" role="group" aria-label="Language">
+            <button type="button" data-set-language="zh" aria-label="切换到中文">中</button>
+            <button type="button" data-set-language="en" aria-label="Switch to English">EN</button>
+          </div>
+          <button class="studio-icon-button" id="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle color theme">
+            <i id="theme-icon" class="fa-solid fa-moon" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="content" class="studio-main">
+      {{ content }}
+    </main>
+
+    <footer class="studio-footer">
+      <div class="studio-footer__inner">
+        <div>
+          <p class="studio-footer__name">Junyang Wang <span>/ 王俊阳</span></p>
+          <p class="studio-footer__place">
+            <span class="lang-inline" data-lang-content="en">Beijing · studying, building, testing</span>
+            <span class="lang-inline" data-lang-content="zh">北京 · 读书、做东西、跑实验</span>
+          </p>
+        </div>
+        <div class="studio-footer__links">
+          <a href="mailto:junyangwang@stu.pku.edu.cn">Email</a>
+          <a href="https://github.com/jywang001">GitHub</a>
+          <a href="/sitemap/">
+            <span class="lang-inline" data-lang-content="en">Index</span>
+            <span class="lang-inline" data-lang-content="zh">索引</span>
+          </a>
+        </div>
+        <p class="studio-footer__year">© {{ site.time | date: '%Y' }}</p>
+      </div>
+    </footer>
+
+    <script src="/assets/js/site.js"></script>
+  </body>
+</html>

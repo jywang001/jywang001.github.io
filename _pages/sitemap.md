@@ -1,50 +1,54 @@
 ---
-layout: archive
-title: "Sitemap"
-title_en: "Sitemap"
-title_zh: "站点地图"
+layout: studio
+title: "Index"
+title_en: "Index"
+title_zh: "站点索引"
 permalink: /sitemap/
-author_profile: true
+page_class: simple
 ---
 
-{% include base_path %}
+<div class="simple-page studio-container">
+  <div class="lang-content" data-lang-content="zh" markdown="1">
 
-<div class="lang-content" data-lang-content="en" markdown="1">
+# 站点索引
 
-This sitemap lists the maintained public pages on this site. The machine-readable XML sitemap is available at [sitemap.xml]({{ base_path }}/sitemap.xml).
+## 页面
 
-## Main Pages
+- [主页](/)
+- [项目](/projects/)
+- [经历](/cv/)
 
-- [Home]({{ base_path }}/)
-- [Projects]({{ base_path }}/projects/)
-- [Experience]({{ base_path }}/cv/)
+## 项目
 
-## Project Pages
+- [CritPT-RL](/portfolio/critpt-rl/)
+- [Texas-Poker-Agents](/portfolio/texas-poker-agents/)
+- [绿园中学物语](/portfolio/lyuyuan-ai/)
+- [Mini-Lisp](/portfolio/mini-lisp/)
+- [OpenGame](/portfolio/opengame/)
 
-- [CritPT-RL]({{ base_path }}/portfolio/critpt-rl/)
-- [Texas-Poker-Agents]({{ base_path }}/portfolio/texas-poker-agents/)
-- [Lyuyuan AI]({{ base_path }}/portfolio/lyuyuan-ai/)
-- [OpenGame]({{ base_path }}/portfolio/opengame/)
-- [Mini Lisp Interpreter]({{ base_path }}/portfolio/mini-lisp/)
+机器可读版本：[sitemap.xml](/sitemap.xml)
 
-</div>
+  </div>
 
-<div class="lang-content" data-lang-content="zh" markdown="1">
+  <div class="lang-content" data-lang-content="en" markdown="1">
 
-这里列出本站维护中的公开页面。机器可读的 XML 版本在 [sitemap.xml]({{ base_path }}/sitemap.xml)。
+# Site index
 
-## 主要页面
+## Pages
 
-- [主页]({{ base_path }}/)
-- [项目]({{ base_path }}/projects/)
-- [经历]({{ base_path }}/cv/)
+- [Home](/)
+- [Projects](/projects/)
+- [Experience](/cv/)
 
-## 项目页面
+## Projects
 
-- [CritPT-RL]({{ base_path }}/portfolio/critpt-rl/)
-- [Texas-Poker-Agents]({{ base_path }}/portfolio/texas-poker-agents/)
-- [Lyuyuan AI]({{ base_path }}/portfolio/lyuyuan-ai/)
-- [OpenGame]({{ base_path }}/portfolio/opengame/)
-- [Mini Lisp 解释器]({{ base_path }}/portfolio/mini-lisp/)
+- [CritPT-RL](/portfolio/critpt-rl/)
+- [Texas-Poker-Agents](/portfolio/texas-poker-agents/)
+- [Green Garden High School Story](/portfolio/lyuyuan-ai/)
+- [Mini-Lisp](/portfolio/mini-lisp/)
+- [OpenGame](/portfolio/opengame/)
 
+Machine-readable version: [sitemap.xml](/sitemap.xml)
+
+  </div>
 </div>

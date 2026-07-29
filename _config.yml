@@ -12,7 +12,7 @@ site_theme               : "default" # Currently available options are "default"
 title                    : "Junyang Wang / 王俊阳"
 title_separator          : "-"
 name                     : &name "Junyang Wang"
-description              : &description "Peking University CS undergraduate working on embodied AI, multimodal agents, and post-training."   # Update this with a general description of your site, this is the default if not overridden by a page
+description              : &description "Junyang Wang is a Peking University computer science student working on embodied-model post-training, evaluation, and agent systems."
 url                      : https://wjysite.com # The public hostname for canonical URLs, feeds, and Open Graph links.
                                                            # or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
@@ -26,7 +26,7 @@ author:
   avatar           : "avatar.jpg"
   name             : "Junyang Wang (王俊阳)"
   pronouns         : # example: "she/her"  
-  bio              : "Peking University CS undergraduate<br>Research: embodied AI, multimodal agents, post-training"
+  bio              : "Computer Science at Peking University. Building and evaluating embodied models and agent systems."
   location         : "Beijing, China"
   employer         : "Peking University"
   uri              : # URL
@@ -132,8 +132,8 @@ facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 :  # Social media default site image
-og_description           :  # Social media default site image description
+og_image                 : "og.png"
+og_description           : "Junyang Wang — research, systems, experiments."
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:

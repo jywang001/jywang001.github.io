@@ -1,27 +1,145 @@
 ---
-layout: archive
+layout: studio
 title: "Projects"
 title_en: "Projects"
 title_zh: "项目"
 permalink: /projects/
-author_profile: true
+page_class: work
 ---
 
-{% include base_path %}
+<header class="studio-page-intro">
+  <div class="studio-container">
+    <p class="studio-eyebrow">
+      <span class="lang-inline" data-lang-content="zh">SELECTED WORK / 项目</span>
+      <span class="lang-inline" data-lang-content="en">SELECTED WORK</span>
+    </p>
+    <div class="lang-content" data-lang-content="zh">
+      <h1>做过的东西。</h1>
+      <p>不是完整仓库列表，也不假装每个项目都“改变了什么”。这里只放几个我确实投入过时间、现在还能把取舍讲清楚的项目。</p>
+    </div>
+    <div class="lang-content" data-lang-content="en">
+      <h1>Things I have made.</h1>
+      <p>This is not a mirror of every repository, and not every project needs a grand claim. These are the ones I spent real time on and can still explain honestly.</p>
+    </div>
+  </div>
+</header>
 
-<div class="lang-content" data-lang-content="en" markdown="1">
+<section class="work-list">
+  <div class="studio-container">
+    <article class="work-row">
+      <div class="work-row__number">01</div>
+      <div class="work-row__copy">
+        <div class="work-row__tags">
+          <span>GRPO</span><span>REWARD</span><span>EVALUATION</span>
+        </div>
+        <h2>CritPT-RL</h2>
+        <p class="lang-content" data-lang-content="zh">从数据生成到 official-style eval 的一套 RL 后训练实验。流程跑通、格式变好，但 official70 没涨；真正留下来的是对 reward mismatch 的诊断。</p>
+        <p class="lang-content" data-lang-content="en">An RL post-training experiment spanning data generation through official-style evaluation. The pipeline worked and formatting improved, but official70 did not; the useful output was the reward-mismatch diagnosis.</p>
+        <a class="studio-text-link" href="/portfolio/critpt-rl/">
+          <span class="lang-inline" data-lang-content="zh">打开项目</span>
+          <span class="lang-inline" data-lang-content="en">Open project</span>
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+      </div>
+      <a class="work-row__visual" href="/portfolio/critpt-rl/" aria-label="Open CritPT-RL project">
+        <img class="featured-project__image--curve" src="/images/critpt-rl-curves.png" alt="CritPT-RL training curves">
+      </a>
+    </article>
 
-I use this page as a portfolio rather than a full repository mirror. The flagship projects come first because they best support my current thread: post-training/evaluation, agents, logs, and replayable systems. Public projects link to GitHub; private prototypes are marked as summaries only.
+    <article class="work-row">
+      <div class="work-row__number">02</div>
+      <div class="work-row__copy">
+        <div class="work-row__tags">
+          <span>LLM AGENTS</span><span>POKER</span><span>NODE.JS</span>
+        </div>
+        <h2>Texas-Poker-Agents</h2>
+        <p class="lang-content" data-lang-content="zh">一名真人和多个 LLM 同桌打无限注德州扑克。规则引擎掌管隐藏状态，模型只提议动作；每手牌都有日志，也能在牌后复盘。</p>
+        <p class="lang-content" data-lang-content="en">One human and several LLMs at a no-limit Hold'em table. The rules engine owns hidden state while models only propose actions; every hand is logged and reviewable.</p>
+        <a class="studio-text-link" href="/portfolio/texas-poker-agents/">
+          <span class="lang-inline" data-lang-content="zh">打开项目</span>
+          <span class="lang-inline" data-lang-content="en">Open project</span>
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+      </div>
+      <a class="work-row__visual" href="/portfolio/texas-poker-agents/" aria-label="Open Texas-Poker-Agents project">
+        <div class="poker-visual" role="img" aria-label="A stylized four-player LLM poker table">
+          <div class="poker-table">
+            <div class="poker-board" aria-hidden="true">
+              <span class="playing-card">A♠</span>
+              <span class="playing-card playing-card--red">9♥</span>
+              <span class="playing-card">7♣</span>
+              <span class="playing-card playing-card--red">Q♦</span>
+            </div>
+            <span class="poker-pot">POT 240</span>
+            <span class="poker-seat poker-seat--top">Qwen · check</span>
+            <span class="poker-seat poker-seat--right">GPT · call</span>
+            <span class="poker-seat poker-seat--bottom">YOU · action</span>
+            <span class="poker-seat poker-seat--left">Claude · raise</span>
+          </div>
+          <div class="poker-log" aria-hidden="true">
+            <span>VISIBLE STATE ONLY</span>
+            <span>HAND #0042 · LOGGED</span>
+          </div>
+        </div>
+      </a>
+    </article>
 
-</div>
+    <article class="work-row">
+      <div class="work-row__number">03</div>
+      <div class="work-row__copy">
+        <div class="work-row__tags">
+          <span>NARRATIVE AGENTS</span><span>FLASK</span><span>STATE</span>
+        </div>
+        <h2>绿园中学物语</h2>
+        <p class="lang-content" data-lang-content="zh">一个已经完成历史使命的 LLM 叙事 RPG 原型。五个角色会对话、改变关系和情绪，也会把关键状态写进事件和存档。</p>
+        <p class="lang-content" data-lang-content="en">A retired LLM narrative-RPG prototype. Five characters can talk, change relationship and mood state, and leave those changes in events and save files.</p>
+        <a class="studio-text-link" href="/portfolio/lyuyuan-ai/">
+          <span class="lang-inline" data-lang-content="zh">打开项目</span>
+          <span class="lang-inline" data-lang-content="en">Open project</span>
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+      </div>
+      <a class="work-row__visual" href="/portfolio/lyuyuan-ai/" aria-label="Open Green Garden High School Story project">
+        <img src="/images/lyuyuan_ai_preview.png" alt="Green Garden High School Story interface">
+      </a>
+    </article>
 
-<div class="lang-content" data-lang-content="zh" markdown="1">
+    <article class="work-row work-row--small">
+      <div class="work-row__number">04</div>
+      <div class="work-row__copy">
+        <div>
+          <div class="work-row__tags">
+            <span>C++</span><span>INTERPRETER</span>
+          </div>
+          <h2>Mini-Lisp</h2>
+        </div>
+        <p class="lang-content" data-lang-content="zh">课程项目，但不是只够交作业的版本：有 tokenizer、parser、链式作用域、闭包、quasiquote、简单宏、REPL 和脚本执行。</p>
+        <p class="lang-content" data-lang-content="en">A course project that grew past the minimum: tokenizer, parser, chained environments, closures, quasiquote, simple macros, a REPL, and script execution.</p>
+        <a class="studio-text-link" href="/portfolio/mini-lisp/">
+          <span class="lang-inline" data-lang-content="zh">查看</span>
+          <span class="lang-inline" data-lang-content="en">View</span>
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+      </div>
+    </article>
 
-这个页面更像作品集，而不是 GitHub 仓库的简单镜像。最靠前的项目最能支撑我当前的主线：后训练与评测、Agent、日志、复盘和可运行系统。公开项目会链接到 GitHub；私有原型会明确标注为高层总结。
-
-</div>
-
-{% assign portfolio_items = site.portfolio | sort: "order" %}
-{% for post in portfolio_items %}
-  {% include archive-single.html %}
-{% endfor %}
+    <article class="work-row work-row--small">
+      <div class="work-row__number">05</div>
+      <div class="work-row__copy">
+        <div>
+          <div class="work-row__tags">
+            <span>MULTI-AGENT</span><span>SIMULATION</span>
+          </div>
+          <h2>OpenGame</h2>
+        </div>
+        <p class="lang-content" data-lang-content="zh">私有的多人校园世界模拟。角色有记忆、关系、位置和行动计划；世界可以无头运行，事件以 JSONL 保存，方便回放。</p>
+        <p class="lang-content" data-lang-content="en">A private multi-agent school-world simulation. Characters have memory, relationships, locations, and plans; the world can run headlessly and persist replayable JSONL events.</p>
+        <a class="studio-text-link" href="/portfolio/opengame/">
+          <span class="lang-inline" data-lang-content="zh">查看摘要</span>
+          <span class="lang-inline" data-lang-content="en">Read summary</span>
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+      </div>
+    </article>
+  </div>
+</section>

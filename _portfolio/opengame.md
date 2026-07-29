@@ -1,82 +1,72 @@
 ---
+layout: studio-project
 title: "OpenGame"
 title_en: "OpenGame"
 title_zh: "OpenGame"
-excerpt: "Private prototype, public summary only: a multi-agent school-world simulation with personas, memory, relationships, dialogue, locations, and replayable JSONL events"
-excerpt_en: "Private prototype, public summary only: a multi-agent school-world simulation with personas, memory, relationships, dialogue, locations, and replayable JSONL events"
-excerpt_zh: "私有原型，仅公开高层总结：多智能体校园世界仿真，包含人设、记忆、关系、对话、位置和可回放 JSONL 事件"
+number: "05"
+label_en: "Multi-agent simulation · private prototype"
+label_zh: "多 Agent 仿真 · 私有原型"
+lead_en: "A persistent school-world simulation where characters carry memory, relationships, locations, plans, and replayable histories."
+lead_zh: "一个持续运行的校园世界模拟：角色有记忆、关系、位置和行动计划，发生过的事也可以回放。"
+status_en: "Private repository · public summary"
+status_zh: "私有仓库 · 仅公开摘要"
+stack: "Python · web UI · JSONL events"
 collection: portfolio
-order: 4
+order: 5
 ---
 
-<div class="lang-content" data-lang-content="en" markdown="1">
+<div class="lang-content" data-lang-content="zh">
+  <section class="project-section">
+    <p class="project-section__label">问题</p>
+    <div class="project-section__content">
+      <h2>如果角色不只在聊天框里存在，会发生什么</h2>
+      <p>OpenGame 是我从单角色叙事继续往前做的私有原型。多个角色共享同一个校园世界，各自有 persona、记忆、关系、位置和行动计划。玩家对话也会回到仿真里，影响角色之后的行为。</p>
+    </div>
+  </section>
 
-## OpenGame
+  <section class="project-section">
+    <p class="project-section__label">实现</p>
+    <div class="project-section__content">
+      <h2>世界可以自己跑，也要能被人看懂</h2>
+      <p>项目有角色总览、关系图、校园地图、状态和记忆页面；也有不依赖前端的 headless runner，可以单独推进世界。</p>
+      <p>状态变化和行为事件会写进 JSONL。选择这种格式不是因为它漂亮，而是因为追加写入、逐行检查和回放都很直接。</p>
+      <div class="project-code">world tick → agent plans → actions → memory / relationship updates → JSONL</div>
+    </div>
+  </section>
 
-**Status:** private prototype; public summary only.
-
-**One-line positioning:** a multi-agent school-world simulation where AI characters have personas, memory, social relationships, locations, dialogue, and event histories.
-
-### Why
-
-I wanted to push beyond isolated character chat and test what happens when many agents share a persistent world: conversations should affect memory, relationship state, and later behavior.
-
-### What I Built
-
-- Character personas, memory records, social relationships, planned actions, and location state.
-- Player dialogue that bridges back into the simulation so conversations can change future behavior.
-- Visual pages for character overview, relationship graph, school map, character state, and memory panels.
-- A headless simulation runner that can advance the world without the frontend.
-- JSONL event persistence for replay and inspection.
-
-### Hard Parts
-
-- Keeping simulation state inspectable while many agents update memory, relationships, and planned actions.
-- Designing event logs that are useful for replay instead of only useful for debugging crashes.
-
-### Evidence
-
-- Private repository.
-- Publicly shareable artifact is this summary; implementation details and screenshots are kept private for now.
-
-### Result / Lesson
-
-OpenGame is the broader systems version of the same interest behind Lyuyuan AI: agents become more useful when their actions are persistent, inspectable, and replayable.
-
+  <section class="project-section">
+    <p class="project-section__label">公开边界</p>
+    <div class="project-section__content">
+      <h2>目前只公开高层摘要</h2>
+      <p>仓库和截图暂时不公开，因此这个页面不展示无法验证的性能数字。它在我的项目线里更像一个承上启下的系统实验：把绿园中学物语里的角色状态，扩展到多个 Agent 共享的持久世界。</p>
+    </div>
+  </section>
 </div>
 
-<div class="lang-content" data-lang-content="zh" markdown="1">
+<div class="lang-content" data-lang-content="en">
+  <section class="project-section">
+    <p class="project-section__label">THE QUESTION</p>
+    <div class="project-section__content">
+      <h2>What if characters existed outside the chat box?</h2>
+      <p>OpenGame is a private prototype that extends my earlier single-character narrative work. Several characters share one school world, each with a persona, memory, relationships, location, and plans. Player conversations feed back into the simulation and can change later behavior.</p>
+    </div>
+  </section>
 
-## OpenGame
+  <section class="project-section">
+    <p class="project-section__label">THE BUILD</p>
+    <div class="project-section__content">
+      <h2>The world should run alone and remain understandable</h2>
+      <p>The project includes character overviews, a relationship graph, a school map, and state and memory views. A headless runner can also advance the world without the frontend.</p>
+      <p>State changes and actions append to JSONL. It is not a glamorous format, but it makes incremental writes, line-by-line inspection, and replay straightforward.</p>
+      <div class="project-code">world tick → agent plans → actions → memory / relationship updates → JSONL</div>
+    </div>
+  </section>
 
-**状态：**私有原型；仅公开高层总结。
-
-**一句话定位：**一个多智能体校园世界仿真，AI 角色拥有人设、记忆、社交关系、位置、对话和事件历史。
-
-### Why
-
-我想从单个角色聊天往前走一步，测试多个 agent 共享持久世界时会发生什么：对话应该影响记忆、关系状态和后续行为。
-
-### What I Built
-
-- 角色人设、记忆记录、社交关系、行动计划和位置状态。
-- 玩家对话会桥接回仿真系统，影响角色之后的行为。
-- 可视化页面包括角色总览、关系图、校园地图、角色状态和记忆面板。
-- 无头仿真运行器可以不依赖前端推进世界。
-- 使用 JSONL 持久化事件，便于回放和检查。
-
-### Hard Parts
-
-- 在多个 agent 同时更新记忆、关系和行动计划时，保持仿真状态可检查。
-- 设计真正能用于复盘的事件日志，而不只是崩溃时的 debug 日志。
-
-### Evidence
-
-- 私有仓库。
-- 目前可公开的材料是这份总结；实现细节和截图暂不公开。
-
-### Result / Lesson
-
-OpenGame 是 Lyuyuan AI 背后同一兴趣的更系统版本：agent 的行动如果能持久化、可检查、可复盘，就会更接近可研究的对象。
-
+  <section class="project-section">
+    <p class="project-section__label">PUBLIC BOUNDARY</p>
+    <div class="project-section__content">
+      <h2>Only a high-level summary for now</h2>
+      <p>The repository and screenshots are private, so this page avoids unverifiable performance claims. In my project history, it is a bridge: taking character state from Green Garden High School Story and extending it into a persistent world shared by several agents.</p>
+    </div>
+  </section>
 </div>

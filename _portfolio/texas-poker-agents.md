@@ -1,104 +1,102 @@
 ---
+layout: studio-project
 title: "Texas-Poker-Agents"
 title_en: "Texas-Poker-Agents"
 title_zh: "Texas-Poker-Agents"
-excerpt: "A local imperfect-information game lab where one human plays no-limit Texas Hold'em against multiple LLM agents, with visible-state prompts, logs, table talk, fallback actions, and replay"
-excerpt_en: "A local imperfect-information game lab where one human plays no-limit Texas Hold'em against multiple LLM agents, with visible-state prompts, logs, table talk, fallback actions, and replay"
-excerpt_zh: "本地不完美信息博弈实验台：真人与多个 LLM agent 对战无限注德州扑克，包含可见状态 prompt、日志、牌桌话、fallback 行为和复盘"
+number: "02"
+label_en: "Multi-agent game · local experiment"
+label_zh: "多 Agent 博弈 · 本地实验"
+lead_en: "A no-limit Hold'em table where one human and several LLM seats play under strict information boundaries."
+lead_zh: "一名真人和多个 LLM 座位同桌打无限注德州扑克，每个模型都只能看到自己应当看到的信息。"
+status_en: "Public repository · actively evolving"
+status_zh: "公开仓库 · 仍在迭代"
+stack: "Node.js · SSE · JSONL · OpenAI-compatible APIs"
+repository: "https://github.com/jywang001/Texas-Poker-Agents"
+visual: "poker"
 collection: portfolio
 order: 2
 ---
 
-<div class="lang-content" data-lang-content="en" markdown="1">
+<div class="lang-content" data-lang-content="zh">
+  <section class="project-section">
+    <p class="project-section__label">起点</p>
+    <div class="project-section__content">
+      <h2>这不是一个“让 LLM 打扑克”的单点 demo</h2>
+      <p>真正让我感兴趣的是不完美信息：一个座位不应该看到别人的手牌、未来公共牌或服务端调试信息。只要这条边界没守住，后面的策略分析都没有意义。</p>
+      <p>所以模型不负责发牌和计分。它只收到该座位的可见状态，返回一次动作建议。</p>
+    </div>
+  </section>
 
-## Texas-Poker-Agents
+  <section class="project-section">
+    <p class="project-section__label">牌桌</p>
+    <div class="project-section__content">
+      <h2>规则引擎说了算，模型不能改牌局</h2>
+      <p>Node 服务端负责洗牌、发牌、合法动作、盲注、边池、all-in、摊牌和比赛推进。页面支持一名真人和多个 LLM 座位，每个座位可以单独设置模型和牌风 prompt。</p>
+      <p>模型返回非法 JSON、超出筹码的下注或不可用动作时，服务端会标出 fallback，并选择 check / fold 托管，不让整桌卡死。</p>
+      <div class="project-code">rules engine → seat-visible state → LLM proposal → legality check → game state</div>
+    </div>
+  </section>
 
-**Status:** public repository; imported from local development and still evolving.
+  <section class="project-section">
+    <p class="project-section__label">复盘</p>
+    <div class="project-section__content">
+      <h2>每手牌都要留下能看的记录</h2>
+      <p>所有事件会追加写入 <code>data/sessions/*.jsonl</code>，也能从页面导出 JSON。房主可以在牌后打开 god view，看暗牌、简短 reasoning summary、fallback 和 hand reflection。</p>
+      <p>引擎测试覆盖牌型、边池、run-it 多次结算、heads-up 行动顺序、盲注翻倍、table-talk 暗牌过滤和筹码守恒。</p>
+      <p class="project-quote">对 Agent 行为的信任，应该从信息边界、合法性检查和日志开始，而不是从一段看起来聪明的推理开始。</p>
+    </div>
+  </section>
 
-**One-line positioning:** a local no-limit Texas Hold'em table for studying how LLM agents act under imperfect information and strict visibility constraints.
-
-### Why
-
-Poker is useful because it punishes hidden-state leakage. An LLM seat should not see private cards, future community cards, or host-only debug information. That makes the project a practical testbed for prompts, action constraints, logs, and post-hand review.
-
-### What I Built
-
-- A browser table where one human can play against multiple LLM seats.
-- A Node.js rules engine that owns shuffling, dealing, legal actions, side pots, all-in settlement, showdown, and match flow.
-- Per-seat model/style configuration, table talk, fallback decisions, and persistent hand histories.
-- Host-only god view for card inspection, reasoning summaries, and post-hand review.
-- Engine tests for hand evaluation, side pots, run-it-multiple-times settlement, blinds, fallback behavior, and table-talk filtering.
-
-### Hard Parts
-
-- Keeping each LLM prompt limited to the seat's visible state while still allowing useful reasoning and table talk.
-- Making failures inspectable: when a model returns an illegal or malformed action, the system needs fallback behavior and a log trail rather than silent breakage.
-
-### Evidence
-
-- [GitHub repository](https://github.com/jywang001/Texas-Poker-Agents)
-- README documents local setup, engine behavior, agent prompts, logs, and test coverage.
-- The design separates the authoritative rules engine from model decisions, so the model proposes actions but cannot mutate hidden game state.
-
-```mermaid
-flowchart LR
-  A["Rules engine"] --> B["Seat-visible state"]
-  B --> C["LLM seat"]
-  C --> D["Proposed action"]
-  D --> A
-  A --> E["Hand logs"]
-  E --> F["Replay and review"]
-```
-
-### Result / Lesson
-
-The project is less about building a poker bot and more about building a controlled agent environment. The strongest lesson is that imperfect-information agents need explicit information boundaries, legality checks, and durable logs before their behavior can be trusted or studied.
-
+  <section class="project-section">
+    <p class="project-section__label">运行</p>
+    <div class="project-section__content">
+      <h2>本地开桌</h2>
+      <p>项目只依赖 Node.js 20+ 和内置模块，不需要数据库。没有 API key 时 LLM 座位仍可参与流程，但会使用服务端 fallback。</p>
+      <div class="project-code">npm start
+# open http://127.0.0.1:3000
+npm run check</div>
+    </div>
+  </section>
 </div>
 
-<div class="lang-content" data-lang-content="zh" markdown="1">
+<div class="lang-content" data-lang-content="en">
+  <section class="project-section">
+    <p class="project-section__label">THE START</p>
+    <div class="project-section__content">
+      <h2>More than a one-shot “LLM plays poker” demo</h2>
+      <p>The interesting part is imperfect information. A seat must not see another player's cards, future community cards, or server-only debug state. If that boundary fails, any strategy analysis afterward is meaningless.</p>
+      <p>The model therefore owns neither the deck nor the score. It receives a seat-visible state and returns one proposed action.</p>
+    </div>
+  </section>
 
-## Texas-Poker-Agents
+  <section class="project-section">
+    <p class="project-section__label">THE TABLE</p>
+    <div class="project-section__content">
+      <h2>The rules engine is authoritative</h2>
+      <p>The Node server owns shuffling, dealing, legal actions, blinds, side pots, all-ins, showdown, and match flow. One human can share the table with several LLM seats, each with its own model and style prompt.</p>
+      <p>If a model returns broken JSON, an impossible bet, or an illegal action, the server marks the fallback and chooses check or fold instead of freezing the table.</p>
+      <div class="project-code">rules engine → seat-visible state → LLM proposal → legality check → game state</div>
+    </div>
+  </section>
 
-**状态：**公开仓库；从本地开发导入，仍在迭代。
+  <section class="project-section">
+    <p class="project-section__label">THE REVIEW</p>
+    <div class="project-section__content">
+      <h2>Every hand leaves a useful trail</h2>
+      <p>Events append to <code>data/sessions/*.jsonl</code> and can also be exported from the page. After a hand, the host can open a god view for hole cards, short reasoning summaries, fallbacks, and hand reflections.</p>
+      <p>Engine tests cover hand ranking, side pots, run-it-multiple-times settlement, heads-up action order, blind increases, table-talk filtering, and chip conservation.</p>
+      <p class="project-quote">Trust in an agent should begin with information boundaries, legality checks, and logs, not with a convincing paragraph of reasoning.</p>
+    </div>
+  </section>
 
-**一句话定位：**一个本地无限注德州扑克桌，用来观察 LLM agent 在不完美信息和严格可见性约束下如何行动。
-
-### Why
-
-德州扑克适合做这个实验，因为它天然惩罚隐藏信息泄露。LLM 座位不应该看到其他人的手牌、未来公共牌或房主调试信息。这个项目因此变成了 prompt、行动约束、日志和牌后复盘的测试台。
-
-### What I Built
-
-- 支持一名真人玩家对战多个 LLM 座位的浏览器牌桌。
-- Node.js 规则引擎负责洗牌、发牌、合法行动、边池、全下结算、摊牌和比赛流程。
-- 每个 LLM 座位可配置模型和牌风，系统记录 table talk、fallback 决策和完整手牌历史。
-- 房主专用 god view，用于查看暗牌、reasoning summary 和牌后复盘。
-- 引擎测试覆盖牌型评估、边池、多次发牌、盲注、fallback 行为和 table-talk filtering。
-
-### Hard Parts
-
-- 让每个 LLM prompt 只包含该座位可见的信息，同时保留足够的推理和牌桌话空间。
-- 让失败可检查：模型返回非法或格式错误行动时，系统需要 fallback 行为和日志，而不是静默崩掉。
-
-### Evidence
-
-- [GitHub 仓库](https://github.com/jywang001/Texas-Poker-Agents)
-- README 记录了本地启动、规则引擎、agent prompt、日志和测试覆盖。
-- 设计上把权威规则引擎和模型决策分开：模型只提出行动，不能修改隐藏牌局状态。
-
-```mermaid
-flowchart LR
-  A["Rules engine"] --> B["Seat-visible state"]
-  B --> C["LLM seat"]
-  C --> D["Proposed action"]
-  D --> A
-  A --> E["Hand logs"]
-  E --> F["Replay and review"]
-```
-
-### Result / Lesson
-
-这个项目的重点不是做一个 poker bot，而是搭一个受控 agent 环境。最大的教训是：不完美信息 agent 在被研究或信任之前，必须先有明确的信息边界、合法性检查和可持久化日志。
-
+  <section class="project-section">
+    <p class="project-section__label">RUN IT</p>
+    <div class="project-section__content">
+      <h2>Start a local table</h2>
+      <p>The project needs Node.js 20+ and uses only built-in modules, with no database. Without an API key, LLM seats still participate through the server fallback.</p>
+      <div class="project-code">npm start
+# open http://127.0.0.1:3000
+npm run check</div>
+    </div>
+  </section>
 </div>
