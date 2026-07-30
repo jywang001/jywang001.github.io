@@ -14,95 +14,65 @@ redirect_from:
 <section class="home-stage">
   <div class="home-stage__inner">
     <div class="home-stage__copy lang-content" data-lang-content="zh">
-      <p class="studio-eyebrow">王俊阳 · 北京大学计算机本科</p>
+      <p class="studio-eyebrow">北京大学 · 计算机科学与技术 · 2024—2028</p>
       <h1 id="home-title">王俊阳</h1>
-      <p class="home-stage__lead">在北大读计算机。最近主要做具身模型的后训练与评测，也会自己搭 Agent、小工具和游戏原型。</p>
-      <p class="home-stage__note">这个网站只放我真正做过、还愿意继续讲的东西。</p>
-      <div class="home-stage__links">
-        <a class="studio-text-link" href="/projects/">
-          <span>看项目</span>
-          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+      <p class="home-stage__lead">目前主要做 RL for LLM / VLA Systems，也关注 Coding Agent、AI Self-Training 和 AI Infrastructure。</p>
+      <div class="home-stage__contacts" aria-label="联系方式与社交账号">
+        <a class="home-contact" href="https://github.com/jywang001" rel="me">
+          <i class="fa-brands fa-github" aria-hidden="true"></i>
+          <span>GitHub · jywang001</span>
         </a>
-        <a class="studio-text-link" href="https://github.com/jywang001">
-          <span>GitHub</span>
-          <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+        <a class="home-contact" href="https://www.xiaohongshu.com/user/profile/68f1e9250000000037007360" rel="me">
+          <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+          <span>小红书 · JY君</span>
         </a>
-        <a class="studio-text-link" href="mailto:junyangwang@stu.pku.edu.cn">
-          <span>给我写信</span>
+        <span class="home-contact">
+          <i class="fa-brands fa-weixin" aria-hidden="true"></i>
+          <span>微信 · jywang_1</span>
+        </span>
+        <span class="home-contact home-contact--email">
           <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-        </a>
+          <span>junyangwang [at] stu [dot] pku [dot] edu [dot] cn</span>
+        </span>
       </div>
     </div>
 
     <div class="home-stage__copy lang-content" data-lang-content="en">
-      <p class="studio-eyebrow">Junyang Wang · PKU Computer Science</p>
+      <p class="studio-eyebrow">Peking University · Computer Science · 2024—2028</p>
       <h1 id="home-title-en">Junyang Wang</h1>
-      <p class="home-stage__lead">I study computer science at Peking University. Lately I have been working on post-training and evaluation for embodied models, alongside agent systems, small tools, and game prototypes.</p>
-      <p class="home-stage__note">This site is a small record of things I actually built and still want to talk about.</p>
-      <div class="home-stage__links">
-        <a class="studio-text-link" href="/projects/">
-          <span>See my work</span>
-          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+      <p class="home-stage__lead">I work mainly on RL for LLM and VLA systems, with broader interests in coding agents, AI self-training, and AI infrastructure.</p>
+      <div class="home-stage__contacts" aria-label="Contact and social accounts">
+        <a class="home-contact" href="https://github.com/jywang001" rel="me">
+          <i class="fa-brands fa-github" aria-hidden="true"></i>
+          <span>GitHub · jywang001</span>
         </a>
-        <a class="studio-text-link" href="https://github.com/jywang001">
-          <span>GitHub</span>
-          <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+        <a class="home-contact" href="https://www.xiaohongshu.com/user/profile/68f1e9250000000037007360" rel="me">
+          <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+          <span>Xiaohongshu · JY君</span>
         </a>
-        <a class="studio-text-link" href="mailto:junyangwang@stu.pku.edu.cn">
-          <span>Email me</span>
+        <span class="home-contact">
+          <i class="fa-brands fa-weixin" aria-hidden="true"></i>
+          <span>WeChat · jywang_1</span>
+        </span>
+        <span class="home-contact home-contact--email">
           <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-        </a>
+          <span>junyangwang [at] stu [dot] pku [dot] edu [dot] cn</span>
+        </span>
       </div>
     </div>
   </div>
   <p class="home-stage__caption">Beijing, 2026</p>
 </section>
 
-<section class="studio-band studio-band--surface">
-  <div class="studio-container">
-    <div class="home-now lang-content" data-lang-content="zh">
-      <div>
-        <p class="studio-eyebrow">NOW / 现在</p>
-        <h2 class="home-now__title">最近在做什么</h2>
-      </div>
-      <div class="home-now__copy">
-        <p>我现在在北大前沿计算研究中心参与具身模型的 post-training。具体到日常，就是清机器人数据、做 SFT / CoT 样本、筛 RL 数据、跑评测，再回头看模型到底错在哪。</p>
-        <p>我越来越觉得，这类工作的重点不只是把分数做高，而是把一次失败说清楚：数据从哪里来，模型在哪一步偏了，下一轮实验为什么值得跑。</p>
-      </div>
-      <aside class="home-now__aside">
-        <p><strong>北京大学</strong><br>计算机科学与技术（拔尖班）</p>
-        <p><strong>2024 — 2028</strong><br>本科在读</p>
-        <p><strong>兴趣</strong><br>具身智能、后训练、可检查的 Agent 系统</p>
-      </aside>
-    </div>
-
-    <div class="home-now lang-content" data-lang-content="en">
-      <div>
-        <p class="studio-eyebrow">NOW</p>
-        <h2 class="home-now__title">What I am working on</h2>
-      </div>
-      <div class="home-now__copy">
-        <p>I currently work on post-training for embodied models at PKU's Center for Frontier Computing Research. The day-to-day work is concrete: clean robot data, build SFT and CoT examples, filter RL data, run evaluations, then trace where the model went wrong.</p>
-        <p>I have come to care as much about explaining a failure as improving a score: where the data came from, where the model drifted, and why the next experiment is worth running.</p>
-      </div>
-      <aside class="home-now__aside">
-        <p><strong>Peking University</strong><br>Computer Science, Elite Program</p>
-        <p><strong>2024 — 2028</strong><br>Undergraduate</p>
-        <p><strong>Interests</strong><br>Embodied AI, post-training, inspectable agents</p>
-      </aside>
-    </div>
-  </div>
-</section>
-
 <section class="studio-band">
   <div class="studio-container">
     <div class="studio-section-heading">
       <p class="studio-eyebrow">
-        <span class="lang-inline" data-lang-content="zh">SELECTED WORK / 项目</span>
-        <span class="lang-inline" data-lang-content="en">SELECTED WORK</span>
+        <span class="lang-inline" data-lang-content="zh">SELECTED PROJECTS / 项目</span>
+        <span class="lang-inline" data-lang-content="en">SELECTED PROJECTS</span>
       </p>
-      <h2 class="lang-content" data-lang-content="zh">三件我愿意拿出来细讲的东西。</h2>
-      <h2 class="lang-content" data-lang-content="en">Three things I would rather explain than pitch.</h2>
+      <h2 class="lang-content" data-lang-content="zh">我做过的几个项目。</h2>
+      <h2 class="lang-content" data-lang-content="en">A few projects I have worked on.</h2>
     </div>
 
     <article class="featured-project">
@@ -113,17 +83,17 @@ redirect_from:
         <p class="studio-eyebrow">01 · RL POST-TRAINING</p>
         <h3>CritPT-RL</h3>
         <div class="lang-content" data-lang-content="zh">
-          <p class="featured-project__hook">训练曲线很好看，官方分数没动。这比“又涨了几个点”更值得写清楚。</p>
-          <p class="featured-project__text">我搭了从数据生成、GRPO、reward 到 official-style eval 的完整流程。后来的模型确实更会写规整的 <code>answer()</code>，但 official70 没有提高。这个项目现在主要记录 reward 和真正评测目标是怎样错位的。</p>
+          <p class="featured-project__hook">一套完整的 RL post-training 流程。</p>
+          <p class="featured-project__text">面向 scientific coding tasks，覆盖数据生成、reward 设计、GRPO 训练、checkpoint evaluation 和 official-style evaluation。</p>
         </div>
         <div class="lang-content" data-lang-content="en">
-          <p class="featured-project__hook">The training curves looked good. The official score did not move. That was the result worth writing down.</p>
-          <p class="featured-project__text">I built the loop from data generation and GRPO to rewards and official-style evaluation. Later checkpoints produced cleaner <code>answer()</code> functions, but official70 accuracy stayed flat. The project is now a record of how a reward can miss the thing it claims to measure.</p>
+          <p class="featured-project__hook">A complete RL post-training pipeline.</p>
+          <p class="featured-project__text">Built for scientific coding tasks, covering data generation, reward design, GRPO training, checkpoint evaluation, and official-style evaluation.</p>
         </div>
         <div class="featured-project__links">
           <a class="studio-text-link" href="/portfolio/critpt-rl/">
-            <span class="lang-inline" data-lang-content="zh">看实验记录</span>
-            <span class="lang-inline" data-lang-content="en">Read the experiment</span>
+            <span class="lang-inline" data-lang-content="zh">查看项目</span>
+            <span class="lang-inline" data-lang-content="en">View project</span>
             <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
           </a>
           <a class="studio-text-link" href="https://github.com/jywang001/CritPT-RL">
@@ -160,17 +130,17 @@ redirect_from:
         <p class="studio-eyebrow">02 · MULTI-AGENT GAME</p>
         <h3>Texas-Poker-Agents</h3>
         <div class="lang-content" data-lang-content="zh">
-          <p class="featured-project__hook">让几个 LLM 坐上同一张牌桌，最先要解决的不是策略，而是别让它们偷看牌。</p>
-          <p class="featured-project__text">Node 规则引擎负责发牌、下注、边池和结算；模型只能看到自己座位应当看到的信息。非法动作会被托管，整手牌会写进 JSONL，结束后还能开上帝视角复盘。</p>
+          <p class="featured-project__hook">一个完整、可本地运行的多人 LLM 德州扑克系统。</p>
+          <p class="featured-project__text">支持真人与多个 LLM 同桌对局，包含独立规则引擎、合法动作校验、牌局日志和复盘功能；也可以用来研究 LLM 在不完美信息博弈中的行为。</p>
         </div>
         <div class="lang-content" data-lang-content="en">
-          <p class="featured-project__hook">Put several LLMs at one poker table and the first problem is not strategy. It is stopping them from seeing the wrong cards.</p>
-          <p class="featured-project__text">A Node rules engine owns the deck, betting, side pots, and settlement. Each model sees only its seat's legal view. Bad actions fall back safely, every hand is logged to JSONL, and a host view makes the hand reviewable afterward.</p>
+          <p class="featured-project__hook">A complete, locally runnable multiplayer LLM poker system.</p>
+          <p class="featured-project__text">It supports one human and several LLM players, with a dedicated rules engine, legal-action validation, hand histories, and post-game review. It can also serve as a testbed for LLM behavior in imperfect-information games.</p>
         </div>
         <div class="featured-project__links">
           <a class="studio-text-link" href="/portfolio/texas-poker-agents/">
-            <span class="lang-inline" data-lang-content="zh">看牌桌怎么搭</span>
-            <span class="lang-inline" data-lang-content="en">See how the table works</span>
+            <span class="lang-inline" data-lang-content="zh">查看项目</span>
+            <span class="lang-inline" data-lang-content="en">View project</span>
             <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
           </a>
           <a class="studio-text-link" href="https://github.com/jywang001/Texas-Poker-Agents">
@@ -183,26 +153,55 @@ redirect_from:
 
     <article class="featured-project">
       <div class="featured-project__visual">
-        <img class="featured-project__image" src="/images/lyuyuan_ai_preview.png" alt="Green Garden High School Story interface">
+        <div class="social-copilot-visual">
+          <img src="/images/social-copilot-home.png" alt="Social Copilot home screen">
+          <img src="/images/social-copilot-result.png" alt="Social Copilot reply suggestions">
+        </div>
       </div>
       <div class="featured-project__copy">
-        <p class="studio-eyebrow">03 · NARRATIVE AGENTS</p>
-        <h3>绿园中学物语</h3>
+        <p class="studio-eyebrow">03 · IOS PRODUCT</p>
+        <h3>Social Copilot</h3>
         <div class="lang-content" data-lang-content="zh">
-          <p class="featured-project__hook">这是我比较早的 Agent 原型，也是一段很具体的“先做出来再说”。</p>
-          <p class="featured-project__text">五个角色、关系和情绪状态、双通道 LLM 输出、事件总线和存档都在一个 Flask 小游戏里。现在看它并不精致，但它让我第一次认真处理角色状态、日志和长期交互，而不是只做一轮聊天。</p>
+          <p class="featured-project__hook">一个可运行的完整 MVP，正在准备上架。</p>
+          <p class="featured-project__text">面向具体关系和具体对话的 iOS 沟通辅助工具。用户可以输入、口述或从聊天截图中提取消息，App 会结合联系人关系、个人表达习惯和可编辑记忆，给出三种回复建议；AI 只提供建议，不读取、也不代发消息。</p>
         </div>
         <div class="lang-content" data-lang-content="en">
-          <p class="featured-project__hook">An early agent prototype, built before I knew exactly what I was trying to learn from it.</p>
-          <p class="featured-project__text">Five characters, relationship and mood state, two-channel LLM output, an event bus, and save files all live inside a small Flask game. It is rough, but it was the first time I treated character state and long-running interaction as a system instead of a single chat.</p>
+          <p class="featured-project__hook">A complete, working MVP currently being prepared for release.</p>
+          <p class="featured-project__text">An iOS communication assistant built around a specific relationship and conversation. Users can type, dictate, or extract a message from a screenshot; the app uses contact context, personal preferences, and editable memories to generate three reply suggestions. It never reads or sends messages on the user's behalf.</p>
         </div>
         <div class="featured-project__links">
-          <a class="studio-text-link" href="/portfolio/lyuyuan-ai/">
-            <span class="lang-inline" data-lang-content="zh">看这个旧原型</span>
-            <span class="lang-inline" data-lang-content="en">Open the old prototype</span>
+          <a class="studio-text-link" href="/portfolio/social-copilot/">
+            <span class="lang-inline" data-lang-content="zh">查看项目</span>
+            <span class="lang-inline" data-lang-content="en">View project</span>
             <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
           </a>
-          <a class="studio-text-link" href="https://github.com/jywang001/Lyuyuan_AI">
+          <span class="featured-project__status">SwiftUI · Vision OCR · Speech · Node.js</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="featured-project featured-project--reverse">
+      <div class="featured-project__visual">
+        <img class="featured-project__image" src="/images/mini_lisp_preview.png" alt="Mini-Lisp interpreter REPL">
+      </div>
+      <div class="featured-project__copy">
+        <p class="studio-eyebrow">04 · COURSE PROJECT</p>
+        <h3>Mini-Lisp</h3>
+        <div class="lang-content" data-lang-content="zh">
+          <p class="featured-project__hook">一门课的大作业，做完觉得还挺酷。</p>
+          <p class="featured-project__text">北京大学《软件设计实践》课程项目：使用 C++ 实现的 Mini-Lisp 解释器，支持 tokenizer / parser、词法作用域、闭包、宏、REPL 和脚本执行。</p>
+        </div>
+        <div class="lang-content" data-lang-content="en">
+          <p class="featured-project__hook">A course final project that turned out pretty cool.</p>
+          <p class="featured-project__text">Built for PKU's Software Design Practice course: a Mini-Lisp interpreter in C++ with a tokenizer and parser, lexical scoping, closures, macros, a REPL, and script execution.</p>
+        </div>
+        <div class="featured-project__links">
+          <a class="studio-text-link" href="/portfolio/mini-lisp/">
+            <span class="lang-inline" data-lang-content="zh">查看项目</span>
+            <span class="lang-inline" data-lang-content="en">View project</span>
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
+          <a class="studio-text-link" href="https://github.com/jywang001/Mini-Lisp">
             <span>GitHub</span>
             <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
           </a>
@@ -216,45 +215,35 @@ redirect_from:
   <div class="studio-container home-more">
     <div>
       <p class="studio-eyebrow">
-        <span class="lang-inline" data-lang-content="zh">ELSEWHERE / 其他</span>
-        <span class="lang-inline" data-lang-content="en">ELSEWHERE</span>
+        <span class="lang-inline" data-lang-content="zh">MORE / 其他</span>
+        <span class="lang-inline" data-lang-content="en">MORE</span>
       </p>
-      <h2 class="lang-content" data-lang-content="zh">还有一些。</h2>
-      <h2 class="lang-content" data-lang-content="en">A few more.</h2>
+      <h2 class="lang-content" data-lang-content="zh">更多。</h2>
+      <h2 class="lang-content" data-lang-content="en">More.</h2>
     </div>
 
     <div class="home-more__list lang-content" data-lang-content="zh">
-      <a class="home-more__item" href="/portfolio/mini-lisp/">
-        <strong>Mini-Lisp</strong>
-        <span>C++ 写的解释器：parser、闭包、宏和一个能用的 REPL。</span>
-        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-      </a>
-      <a class="home-more__item" href="/portfolio/opengame/">
-        <strong>OpenGame</strong>
-        <span>多人校园世界模拟，角色有记忆、关系、位置和可回放事件。</span>
+      <a class="home-more__item" href="/projects/">
+        <strong>项目</strong>
+        <span>项目页面和更完整的介绍。</span>
         <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
       </a>
       <a class="home-more__item" href="/cv/">
-        <strong>经历</strong>
-        <span>科研轮转、现在的研究工作，以及我真正用过的工具。</span>
+        <strong>个人经历</strong>
+        <span>教育、研究和实习经历。</span>
         <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
       </a>
     </div>
 
     <div class="home-more__list lang-content" data-lang-content="en">
-      <a class="home-more__item" href="/portfolio/mini-lisp/">
-        <strong>Mini-Lisp</strong>
-        <span>A C++ interpreter with a parser, closures, macros, and a usable REPL.</span>
-        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-      </a>
-      <a class="home-more__item" href="/portfolio/opengame/">
-        <strong>OpenGame</strong>
-        <span>A multi-agent school world with memory, relationships, locations, and replayable events.</span>
+      <a class="home-more__item" href="/projects/">
+        <strong>Projects</strong>
+        <span>Project pages with a little more detail.</span>
         <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
       </a>
       <a class="home-more__item" href="/cv/">
         <strong>Experience</strong>
-        <span>Research rotations, current work, and tools I have actually used.</span>
+        <span>Education, research, and internships.</span>
         <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
       </a>
     </div>

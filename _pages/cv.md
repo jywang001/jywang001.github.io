@@ -34,9 +34,9 @@ redirect_from:
       <p>北京大学计算机科学与技术专业本科生（拔尖班），预计 2028 年毕业。</p>
       <p>目前的研究兴趣集中在具身/多模态模型后训练、评测和 Agent 系统。比起只看最终分数，我更习惯先把数据路径、错误案例和实验记录理顺。</p>
       <div class="experience-links">
-        <a class="studio-text-link" href="mailto:junyangwang@stu.pku.edu.cn">
-          <span>邮箱</span><i class="fa-solid fa-envelope" aria-hidden="true"></i>
-        </a>
+        <span class="studio-text-link">
+          <span>junyangwang [at] stu [dot] pku [dot] edu [dot] cn</span><i class="fa-solid fa-envelope" aria-hidden="true"></i>
+        </span>
         <a class="studio-text-link" href="https://github.com/jywang001">
           <span>GitHub</span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
         </a>
@@ -49,9 +49,9 @@ redirect_from:
       <p>Computer Science undergraduate in Peking University's Elite Program, expected to graduate in 2028.</p>
       <p>My current interests are post-training and evaluation for embodied and multimodal models, plus agent systems. I tend to start by making the data path, failure cases, and experiment record legible.</p>
       <div class="experience-links">
-        <a class="studio-text-link" href="mailto:junyangwang@stu.pku.edu.cn">
-          <span>Email</span><i class="fa-solid fa-envelope" aria-hidden="true"></i>
-        </a>
+        <span class="studio-text-link">
+          <span>junyangwang [at] stu [dot] pku [dot] edu [dot] cn</span><i class="fa-solid fa-envelope" aria-hidden="true"></i>
+        </span>
         <a class="studio-text-link" href="https://github.com/jywang001">
           <span>GitHub</span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
         </a>

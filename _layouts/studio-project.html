@@ -52,6 +52,13 @@ page_class: project
     <figure class="project-cover studio-container">
       <img src="{{ page.image }}" alt="{{ page.image_alt }}">
     </figure>
+  {% elsif page.visual == "social-copilot" %}
+    <figure class="project-cover studio-container">
+      <div class="social-copilot-visual" role="img" aria-label="Social Copilot iOS interface">
+        <img src="/images/social-copilot-home.png" alt="">
+        <img src="/images/social-copilot-result.png" alt="">
+      </div>
+    </figure>
   {% elsif page.visual == "poker" %}
     <div class="project-cover studio-container">
       <div class="poker-visual" role="img" aria-label="A stylized four-player LLM poker table">

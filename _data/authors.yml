@@ -2,7 +2,8 @@
 
 junyang:
   name        : "Junyang Wang"
-  email       : "junyangwang@stu.pku.edu.cn"
-  bio         : "Peking University CS undergraduate working on embodied AI, multimodal agents, and post-training."
+  email       :
+  bio         : "Peking University CS undergraduate working on RL for LLM and VLA systems."
   avatar      : "avatar.jpg"
   github      : "jywang001"
+  wechat      : "jywang_1"

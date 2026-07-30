@@ -22,6 +22,7 @@ page_class: simple
 
 - [CritPT-RL](/portfolio/critpt-rl/)
 - [Texas-Poker-Agents](/portfolio/texas-poker-agents/)
+- [Social Copilot](/portfolio/social-copilot/)
 - [绿园中学物语](/portfolio/lyuyuan-ai/)
 - [Mini-Lisp](/portfolio/mini-lisp/)
 - [OpenGame](/portfolio/opengame/)
@@ -44,6 +45,7 @@ page_class: simple
 
 - [CritPT-RL](/portfolio/critpt-rl/)
 - [Texas-Poker-Agents](/portfolio/texas-poker-agents/)
+- [Social Copilot](/portfolio/social-copilot/)
 - [Green Garden High School Story](/portfolio/lyuyuan-ai/)
 - [Mini-Lisp](/portfolio/mini-lisp/)
 - [OpenGame](/portfolio/opengame/)

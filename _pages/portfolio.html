@@ -10,16 +10,16 @@ page_class: work
 <header class="studio-page-intro">
   <div class="studio-container">
     <p class="studio-eyebrow">
-      <span class="lang-inline" data-lang-content="zh">SELECTED WORK / 项目</span>
-      <span class="lang-inline" data-lang-content="en">SELECTED WORK</span>
+      <span class="lang-inline" data-lang-content="zh">PROJECTS / 项目</span>
+      <span class="lang-inline" data-lang-content="en">PROJECTS</span>
     </p>
     <div class="lang-content" data-lang-content="zh">
-      <h1>做过的东西。</h1>
-      <p>不是完整仓库列表，也不假装每个项目都“改变了什么”。这里只放几个我确实投入过时间、现在还能把取舍讲清楚的项目。</p>
+      <h1>项目。</h1>
+      <p>目前放在这里的是 CritPT-RL、Texas-Poker-Agents、Social Copilot 和 Mini-Lisp。</p>
     </div>
     <div class="lang-content" data-lang-content="en">
-      <h1>Things I have made.</h1>
-      <p>This is not a mirror of every repository, and not every project needs a grand claim. These are the ones I spent real time on and can still explain honestly.</p>
+      <h1>Projects.</h1>
+      <p>Currently featuring CritPT-RL, Texas-Poker-Agents, Social Copilot, and Mini-Lisp.</p>
     </div>
   </div>
 </header>
@@ -30,14 +30,14 @@ page_class: work
       <div class="work-row__number">01</div>
       <div class="work-row__copy">
         <div class="work-row__tags">
-          <span>GRPO</span><span>REWARD</span><span>EVALUATION</span>
+          <span>RL POST-TRAINING</span><span>GRPO</span><span>EVALUATION</span>
         </div>
         <h2>CritPT-RL</h2>
-        <p class="lang-content" data-lang-content="zh">从数据生成到 official-style eval 的一套 RL 后训练实验。流程跑通、格式变好，但 official70 没涨；真正留下来的是对 reward mismatch 的诊断。</p>
-        <p class="lang-content" data-lang-content="en">An RL post-training experiment spanning data generation through official-style evaluation. The pipeline worked and formatting improved, but official70 did not; the useful output was the reward-mismatch diagnosis.</p>
+        <p class="lang-content" data-lang-content="zh">面向 scientific coding tasks 的完整 RL post-training 流程，覆盖数据生成、reward 设计、GRPO 训练、checkpoint evaluation 和 official-style evaluation。</p>
+        <p class="lang-content" data-lang-content="en">A complete RL post-training pipeline for scientific coding tasks, covering data generation, reward design, GRPO training, checkpoint evaluation, and official-style evaluation.</p>
         <a class="studio-text-link" href="/portfolio/critpt-rl/">
-          <span class="lang-inline" data-lang-content="zh">打开项目</span>
-          <span class="lang-inline" data-lang-content="en">Open project</span>
+          <span class="lang-inline" data-lang-content="zh">查看项目</span>
+          <span class="lang-inline" data-lang-content="en">View project</span>
           <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
         </a>
       </div>
@@ -53,11 +53,11 @@ page_class: work
           <span>LLM AGENTS</span><span>POKER</span><span>NODE.JS</span>
         </div>
         <h2>Texas-Poker-Agents</h2>
-        <p class="lang-content" data-lang-content="zh">一名真人和多个 LLM 同桌打无限注德州扑克。规则引擎掌管隐藏状态，模型只提议动作；每手牌都有日志，也能在牌后复盘。</p>
-        <p class="lang-content" data-lang-content="en">One human and several LLMs at a no-limit Hold'em table. The rules engine owns hidden state while models only propose actions; every hand is logged and reviewable.</p>
+        <p class="lang-content" data-lang-content="zh">一个完整、可本地运行的多人 LLM 德州扑克系统，支持真人与多个 LLM 同桌对局；也可作为研究 LLM 在不完美信息博弈中行为的实验环境。</p>
+        <p class="lang-content" data-lang-content="en">A complete, locally runnable multiplayer LLM poker system for one human and several LLM players. It can also serve as a testbed for LLM behavior in imperfect-information games.</p>
         <a class="studio-text-link" href="/portfolio/texas-poker-agents/">
-          <span class="lang-inline" data-lang-content="zh">打开项目</span>
-          <span class="lang-inline" data-lang-content="en">Open project</span>
+          <span class="lang-inline" data-lang-content="zh">查看项目</span>
+          <span class="lang-inline" data-lang-content="en">View project</span>
           <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
         </a>
       </div>
@@ -88,58 +88,43 @@ page_class: work
       <div class="work-row__number">03</div>
       <div class="work-row__copy">
         <div class="work-row__tags">
-          <span>NARRATIVE AGENTS</span><span>FLASK</span><span>STATE</span>
+          <span>IOS</span><span>SWIFTUI</span><span>LOCAL-FIRST</span>
         </div>
-        <h2>绿园中学物语</h2>
-        <p class="lang-content" data-lang-content="zh">一个已经完成历史使命的 LLM 叙事 RPG 原型。五个角色会对话、改变关系和情绪，也会把关键状态写进事件和存档。</p>
-        <p class="lang-content" data-lang-content="en">A retired LLM narrative-RPG prototype. Five characters can talk, change relationship and mood state, and leave those changes in events and save files.</p>
-        <a class="studio-text-link" href="/portfolio/lyuyuan-ai/">
-          <span class="lang-inline" data-lang-content="zh">打开项目</span>
-          <span class="lang-inline" data-lang-content="en">Open project</span>
+        <h2>Social Copilot</h2>
+        <p class="lang-content" data-lang-content="zh">一个面向具体关系和具体对话的 iOS 沟通辅助工具。完整 MVP 已经可以运行，目前正在准备上架。</p>
+        <p class="lang-content" data-lang-content="en">An iOS communication assistant built around a specific relationship and conversation. The complete MVP is working and currently being prepared for release.</p>
+        <a class="studio-text-link" href="/portfolio/social-copilot/">
+          <span class="lang-inline" data-lang-content="zh">查看项目</span>
+          <span class="lang-inline" data-lang-content="en">View project</span>
           <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
         </a>
       </div>
-      <a class="work-row__visual" href="/portfolio/lyuyuan-ai/" aria-label="Open Green Garden High School Story project">
-        <img src="/images/lyuyuan_ai_preview.png" alt="Green Garden High School Story interface">
+      <a class="work-row__visual" href="/portfolio/social-copilot/" aria-label="Open Social Copilot project">
+        <div class="social-copilot-visual">
+          <img src="/images/social-copilot-home.png" alt="Social Copilot home screen">
+          <img src="/images/social-copilot-result.png" alt="Social Copilot reply suggestions">
+        </div>
       </a>
     </article>
 
-    <article class="work-row work-row--small">
+    <article class="work-row">
       <div class="work-row__number">04</div>
       <div class="work-row__copy">
-        <div>
-          <div class="work-row__tags">
-            <span>C++</span><span>INTERPRETER</span>
-          </div>
-          <h2>Mini-Lisp</h2>
+        <div class="work-row__tags">
+          <span>C++</span><span>INTERPRETER</span><span>COURSE PROJECT</span>
         </div>
-        <p class="lang-content" data-lang-content="zh">课程项目，但不是只够交作业的版本：有 tokenizer、parser、链式作用域、闭包、quasiquote、简单宏、REPL 和脚本执行。</p>
-        <p class="lang-content" data-lang-content="en">A course project that grew past the minimum: tokenizer, parser, chained environments, closures, quasiquote, simple macros, a REPL, and script execution.</p>
+        <h2>Mini-Lisp</h2>
+        <p class="lang-content" data-lang-content="zh">北京大学《软件设计实践》课程大作业：使用 C++ 实现的 Mini-Lisp 解释器，支持 tokenizer / parser、词法作用域、闭包、宏、REPL 和脚本执行。</p>
+        <p class="lang-content" data-lang-content="en">A final project for PKU's Software Design Practice course: a Mini-Lisp interpreter in C++ with a tokenizer and parser, lexical scoping, closures, macros, a REPL, and script execution.</p>
         <a class="studio-text-link" href="/portfolio/mini-lisp/">
-          <span class="lang-inline" data-lang-content="zh">查看</span>
-          <span class="lang-inline" data-lang-content="en">View</span>
+          <span class="lang-inline" data-lang-content="zh">查看项目</span>
+          <span class="lang-inline" data-lang-content="en">View project</span>
           <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
         </a>
       </div>
-    </article>
-
-    <article class="work-row work-row--small">
-      <div class="work-row__number">05</div>
-      <div class="work-row__copy">
-        <div>
-          <div class="work-row__tags">
-            <span>MULTI-AGENT</span><span>SIMULATION</span>
-          </div>
-          <h2>OpenGame</h2>
-        </div>
-        <p class="lang-content" data-lang-content="zh">私有的多人校园世界模拟。角色有记忆、关系、位置和行动计划；世界可以无头运行，事件以 JSONL 保存，方便回放。</p>
-        <p class="lang-content" data-lang-content="en">A private multi-agent school-world simulation. Characters have memory, relationships, locations, and plans; the world can run headlessly and persist replayable JSONL events.</p>
-        <a class="studio-text-link" href="/portfolio/opengame/">
-          <span class="lang-inline" data-lang-content="zh">查看摘要</span>
-          <span class="lang-inline" data-lang-content="en">Read summary</span>
-          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-        </a>
-      </div>
+      <a class="work-row__visual" href="/portfolio/mini-lisp/" aria-label="Open Mini-Lisp project">
+        <img src="/images/mini_lisp_preview.png" alt="Mini-Lisp interpreter REPL">
+      </a>
     </article>
   </div>
 </section>

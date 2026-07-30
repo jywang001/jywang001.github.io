@@ -1,10 +1,10 @@
 {
   "basics": {
     "name": "Junyang Wang",
-    "email": "junyangwang@stu.pku.edu.cn",
+    "email": "",
     "phone": "",
     "website": "https://wjysite.com",
-    "summary": "Peking University CS undergraduate working on embodied AI, multimodal agents, post-training, and evaluation loops.",
+    "summary": "Peking University CS undergraduate working on RL for LLM and VLA systems.",
     "location": {
       "address": "",
       "postalCode": "",
@@ -17,6 +17,11 @@
         "network": "GitHub",
         "username": "jywang001",
         "url": "https://github.com/jywang001"
+      },
+      {
+        "network": "Xiaohongshu",
+        "username": "JY君",
+        "url": "https://www.xiaohongshu.com/user/profile/68f1e9250000000037007360"
       }
     ]
   },

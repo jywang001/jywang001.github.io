@@ -12,7 +12,7 @@ site_theme               : "default" # Currently available options are "default"
 title                    : "Junyang Wang / 王俊阳"
 title_separator          : "-"
 name                     : &name "Junyang Wang"
-description              : &description "Junyang Wang is a Peking University computer science student working on embodied-model post-training, evaluation, and agent systems."
+description              : &description "Junyang Wang is a Peking University computer science undergraduate working on RL for LLM and VLA systems."
 url                      : https://wjysite.com # The public hostname for canonical URLs, feeds, and Open Graph links.
                                                            # or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
@@ -26,11 +26,11 @@ author:
   avatar           : "avatar.jpg"
   name             : "Junyang Wang (王俊阳)"
   pronouns         : # example: "she/her"  
-  bio              : "Computer Science at Peking University. Building and evaluating embodied models and agent systems."
+  bio              : "Computer Science at Peking University. Working on RL for LLM and VLA systems."
   location         : "Beijing, China"
   employer         : "Peking University"
   uri              : # URL
-  email            : "junyangwang@stu.pku.edu.cn" 
+  email            :
 
   # Academic websites
   academia         : # URL
@@ -78,7 +78,7 @@ author:
   xing             : # Username
   youtube          : # Username
   zhihu            : # Username
-  wechat           : # WeChat ID
+  wechat           : "jywang_1"
 
 # Site Settings
 teaser                   :  # filename of teaser fallback teaser image placed in /images/ for social media previews
@@ -133,13 +133,15 @@ facebook:
   app_id                 :
   publisher              :
 og_image                 : "og.png"
-og_description           : "Junyang Wang — research, systems, experiments."
+og_description           : "Junyang Wang · Peking University Computer Science · RL for LLM and VLA systems."
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
   type                   : # Person or Organization (defaults to Person)
   name                   : # If the user or organization name differs from the site's name
-  links: # An array of links to social media profiles
+  links:
+    - https://github.com/jywang001
+    - https://www.xiaohongshu.com/user/profile/68f1e9250000000037007360
 
 
 # Analytics
