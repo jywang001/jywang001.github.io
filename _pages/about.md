@@ -208,6 +208,35 @@ redirect_from:
         </div>
       </div>
     </article>
+
+    <article class="featured-project">
+      <div class="featured-project__visual">
+        <img class="featured-project__image featured-project__image--wide" src="/images/opengame-preview.jpg" alt="OpenGame opening-day story event">
+      </div>
+      <div class="featured-project__copy">
+        <p class="studio-eyebrow">05 · CAMPUS RPG</p>
+        <h3>OpenGame</h3>
+        <div class="lang-content" data-lang-content="zh">
+          <p class="featured-project__hook">一个完整可通关的七日校园生活微 RPG。</p>
+          <p class="featured-project__text">玩家在有限时段里选择去哪里、见谁以及是否兑现承诺；关系、记忆、成长和结局由游戏规则结算。无需 API Key 也能完整游玩，接入模型后会扩展自由对话。</p>
+        </div>
+        <div class="lang-content" data-lang-content="en">
+          <p class="featured-project__hook">A complete seven-day campus-life micro-RPG.</p>
+          <p class="featured-project__text">The player chooses where to go, whom to meet, and which promises to keep. Game rules own relationships, memories, progression, and endings. It is fully playable without an API key; an optional model expands free-form dialogue.</p>
+        </div>
+        <div class="featured-project__links">
+          <a class="studio-text-link" href="/portfolio/opengame/">
+            <span class="lang-inline" data-lang-content="zh">查看项目</span>
+            <span class="lang-inline" data-lang-content="en">View project</span>
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
+          <a class="studio-text-link" href="https://github.com/jywang001/OpenGame">
+            <span>GitHub</span>
+            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </article>
   </div>
 </section>
 
