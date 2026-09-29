@@ -1,0 +1,17 @@
+<div class="experience-columns">
+{% assign categories = 'research,industry' | split: ',' %}
+{% for category in categories %}
+  <div>
+    <h3 class="column-heading">{{ category | capitalize }}</h3>
+    {% for entry in site.data.experience[category] %}
+    <article class="experience-entry">
+      <p class="entry-period">{{ entry.period }}</p>
+      <h4>{{ entry.organization }}</h4>
+      <p class="entry-role">{{ entry.role }}</p>
+      {% if entry.advisor %}<p class="entry-advisor">Advisor: {{ entry.advisor }}</p>{% endif %}
+      <p class="entry-description">{{ entry.description }}</p>
+    </article>
+    {% endfor %}
+  </div>
+{% endfor %}
+</div>

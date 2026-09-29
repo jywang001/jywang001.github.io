@@ -9,10 +9,10 @@
 # Basic Site Settings
 locale                   : "en-US"
 site_theme               : "default" # Currently available options are "default", "air"
-title                    : "Junyang Wang / 王俊阳"
+title                    : "Junyang Wang"
 title_separator          : "-"
 name                     : &name "Junyang Wang"
-description              : &description "Junyang Wang is a Peking University computer science undergraduate working on RL for LLM and VLA systems."
+description              : &description "Junyang Wang is a Computer Science undergraduate at Peking University interested in recursive self-improvement (RSI), with experience in multimodal models, embodied AI, and agent systems."
 url                      : https://wjysite.com # The public hostname for canonical URLs, feeds, and Open Graph links.
                                                            # or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
@@ -24,9 +24,9 @@ repository               : "jywang001/jywang001.github.io"
 author:
   # Biographic information
   avatar           : "avatar.jpg"
-  name             : "Junyang Wang (王俊阳)"
+  name             : "Junyang Wang"
   pronouns         : # example: "she/her"  
-  bio              : "Computer Science at Peking University. Working on RL for LLM and VLA systems."
+  bio              : "Computer Science at Peking University. Exploring recursive self-improvement (RSI)."
   location         : "Beijing, China"
   employer         : "Peking University"
   uri              : # URL
@@ -132,8 +132,8 @@ facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 : "og.png"
-og_description           : "Junyang Wang · Peking University Computer Science · RL for LLM and VLA systems."
+og_image                 : "avatar.jpg"
+og_description           : "Junyang Wang · Peking University · Recursive Self-Improvement."
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:

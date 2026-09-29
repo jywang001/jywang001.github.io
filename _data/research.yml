@@ -1,0 +1,74 @@
+- id: ascribe
+  short_name: ASCRIBE
+  title: "ASCRIBE: Retrospective Responsibility Routing Post-Training for Hierarchical VLA System"
+  authors:
+    - "Yuxing Long*"
+    - "Junyang Wang*"
+    - Bin Cheng
+    - Lei Kang
+    - Xionghao Wu
+    - Ziyan Yu
+    - Enjin Zhou
+    - Junhan Wang
+    - Jiyao Zhang
+    - Hao Dong
+  corresponding_author: Hao Dong
+  venue: AAAI 2027
+  status: Under review
+  area: Vision-language-action
+  year: 2026
+  equal_contribution: true
+  links: []
+
+- id: one-scan-is-enough
+  short_name: One Scan is Enough
+  title: "One Scan is Enough: Demonstration-Free Adaptation for Language-Guided Navigation"
+  authors:
+    - "Zhuoyuan Yu*"
+    - "Yuxing Long*"
+    - "Du Wang*"
+    - Junyang Wang
+    - Hongwei Fan
+    - Hao Dong
+  corresponding_author: Hao Dong
+  venue: NeurIPS 2026
+  area: Vision-language navigation
+  year: 2026
+  equal_contribution: true
+  links: []
+
+- id: dualfuture
+  short_name: DualFuture
+  title: "DualFuture: Event-Triggered Dual-Future Residual Correction for Vision-Language-Action Policy"
+  authors:
+    - "Yuxing Long*"
+    - "Ziyan Yu*"
+    - "Bin Cheng*"
+    - Junyang Wang
+    - Lei Kang
+    - Hao Dong
+  corresponding_author: Hao Dong
+  venue: ICLR 2027
+  status: Under review
+  area: Vision-language-action
+  year: 2026
+  equal_contribution: true
+  links: []
+
+- id: verdict
+  short_name: VERDICT
+  title: "VERDICT: Unleashing Cross-Method Complementarity for Spatio-Temporal Video Grounding through Debate"
+  authors:
+    - Tao Shen
+    - Minghang Zheng
+    - Junyang Wang
+    - Jingli Wei
+    - Hong-Yi Yang
+    - Yang Liu
+  corresponding_author: Yang Liu
+  venue: AAAI 2027
+  status: Under review
+  area: Video grounding
+  year: 2026
+  equal_contribution: false
+  links: []

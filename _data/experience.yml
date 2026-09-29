@@ -1,0 +1,35 @@
+research:
+  - organization: Center on Frontiers of Computing Studies, Peking University
+    role: Undergraduate Research Assistant
+    period: Dec 2025 — Sep 2026
+    advisor: Hao Dong
+    description: Research on post-training for vision-language-action systems and language-guided navigation.
+
+  - organization: Wangxuan Institute of Computer Technology, Peking University
+    role: Research Rotation
+    period: Mar 2026 — Jun 2026
+    advisor: Yang Liu
+    description: Research on spatio-temporal video grounding through multi-agent debate.
+
+industry:
+  - organization: JD Technology
+    role: Embodied AI Algorithm Engineering Intern
+    period: Jun 2026 — Sep 2026
+    description: Worked on long-horizon task data, chain-of-thought synthesis, distributed SFT/RL post-training with Qwen-VL models, evaluation, and failure analysis.
+
+  - organization: Ubiquant Innovation
+    role: AI Agent Engineering Intern
+    period: Nov 2025 — Mar 2026
+    description: Contributed to Framía and One, building capabilities for content understanding, page generation, visual layout, research, and complex office tasks.
+
+community:
+  organization: PLib
+  role: Core Organizer
+  period: Aug 2025 — Present
+  description: Help organize P-Talk events and develop P-Lib, a course notes and resources platform with more than 5,000 registered users.
+
+education:
+  organization: Peking University
+  role: B.S. in Computer Science and Technology · Elite Program
+  period: Sep 2024 — Jul 2028 (expected)
+  description: Undergraduate study in the Computer Science Elite Program, with expected graduation in July 2028.
