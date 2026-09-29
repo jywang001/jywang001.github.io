@@ -8,6 +8,7 @@ stack: "Python · Django · JavaScript · JSON"
 repository: "https://github.com/jywang001/OpenGame"
 image: "/images/opengame-preview.jpg"
 image_alt: "OpenGame opening-day story event"
+visual_style: game
 collection: portfolio
 order: 6
 featured: false

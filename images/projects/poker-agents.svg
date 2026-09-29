@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600" fill="none">
+  <title>Texas-Poker-Agents — a schematic of a shared table</title>
+  <desc>Agents receive seat-visible state and propose actions which the server validates against the game rules.</desc>
+  <rect width="960" height="600" fill="#EDF3F0"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="52" y="60" fill="#597266" font-size="17" letter-spacing="3">A SHARED TABLE. SEPARATE PERSPECTIVES.</text>
+    <rect x="212" y="157" width="536" height="280" rx="140" fill="#D8E4DE"/>
+    <rect x="225" y="170" width="510" height="254" rx="127" fill="#406858"/>
+    <rect x="245" y="190" width="470" height="214" rx="107" stroke="#B8D0C3" stroke-opacity=".45"/>
+    <g fill="#F6F6EF" stroke="#CCDED2" stroke-width="2">
+      <rect x="385" y="250" width="54" height="76" rx="6"/>
+      <rect x="453" y="250" width="54" height="76" rx="6"/>
+      <rect x="521" y="250" width="54" height="76" rx="6"/>
+    </g>
+    <g stroke="#ADC1B4" stroke-width="2">
+      <path d="m397 264 30 48m0-48-30 48m-5-36h40m-40 20h40"/>
+      <path d="m465 264 30 48m0-48-30 48m-5-36h40m-40 20h40"/>
+      <path d="m533 264 30 48m0-48-30 48m-5-36h40m-40 20h40"/>
+    </g>
+    <text x="480" y="361" text-anchor="middle" fill="#D6E5DB" font-size="17" letter-spacing="2">PUBLIC GAME STATE</text>
+    <g fill="#FFFFFF" stroke="#C8D7CE" stroke-width="2">
+      <rect x="373" y="106" width="214" height="66" rx="14"/>
+      <rect x="93" y="261" width="172" height="66" rx="14"/>
+      <rect x="695" y="261" width="172" height="66" rx="14"/>
+      <rect x="373" y="409" width="214" height="66" rx="14"/>
+    </g>
+    <g fill="#365446" font-size="23" text-anchor="middle">
+      <text x="480" y="148">Agent A</text><text x="179" y="303">Agent B</text>
+      <text x="781" y="303">Agent C</text><text x="480" y="451">Human player</text>
+    </g>
+    <g fill="#647C6F" font-size="18"><text x="93" y="350">private view</text><text x="767" y="350" text-anchor="middle">private view</text></g>
+    <path d="M233 537h76m-9-7 9 7-9 7m235-7h76m-9-7 9 7-9 7" stroke="#76978A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <g fill="#365446" font-size="23" text-anchor="middle">
+      <text x="158" y="545">Observe</text><text x="428" y="545">Propose action</text><text x="736" y="545">Validate rules</text>
+    </g>
+  </g>
+</svg>

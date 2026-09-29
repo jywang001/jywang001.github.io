@@ -3,7 +3,7 @@
 <article class="project-card">
   <a class="project-art{% unless project.image %} project-art--type{% endunless %}" href="{{ project.url | relative_url }}" aria-label="Read about {{ project.title | escape }}">
     {% if project.image %}
-    <img src="{{ project.image | relative_url }}" alt="{{ project.image_alt | escape }}" loading="lazy" width="640" height="360">
+    {% include project-visual.html project=project %}
     {% else %}
     <span class="project-art-label" aria-hidden="true">{{ project.category }}</span>
     <span class="project-art-title" aria-hidden="true">{% if project.title == 'README-AI' %}Read.<br>Understand.<br>Explore.{% else %}{{ project.title }}{% endif %}</span>

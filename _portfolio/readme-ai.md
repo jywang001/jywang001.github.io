@@ -4,6 +4,9 @@ title: "README-AI"
 permalink: /portfolio/readme-ai/
 category: "Research tools"
 period: "February–May 2026"
+image: "/images/projects/readme-source.png"
+image_alt: "README paper reader with highlighting and notes, cropped from the product preview."
+visual_style: reader
 summary: "An AI paper reader for translating, discussing, and annotating research papers, with contextual figure explanations and related-work search."
 collection: portfolio
 order: 2

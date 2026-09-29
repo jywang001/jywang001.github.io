@@ -7,8 +7,8 @@ period: "July 2026"
 summary: "An end-to-end GRPO post-training and evaluation pipeline for scientific coding tasks, with synthetic data, reward functions, and executable verifiers."
 stack: "Python · verl · vLLM · GRPO"
 repository: "https://github.com/jywang001/CritPT-RL"
-image: "/images/critpt-rl-curves.png"
-image_alt: "Training curves from a CritPT-RL experiment"
+image: "/images/projects/critpt-workflow.svg"
+image_alt: "An illustrated overview of the CritPT-RL task generation, verification, training, and evaluation pipeline."
 collection: portfolio
 order: 1
 featured: true

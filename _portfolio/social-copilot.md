@@ -4,7 +4,11 @@ title: "Social Copilot"
 permalink: /portfolio/social-copilot/
 category: "AI applications"
 summary: "An iOS communication assistant that combines a message, relationship context, and writing preferences to suggest three replies for the user to review and copy."
-stack: "SwiftUI · Vision OCR · Speech · Node.js"
+stack: "SwiftUI · Multimodal AI · Speech · Node.js"
+image: "/images/projects/social-replies.png"
+image_secondary: "/images/projects/social-contact.png"
+image_alt: "Social Copilot's reply suggestions and contact context, shown with fictional demo content."
+visual_style: phones
 collection: portfolio
 order: 4
 featured: false
@@ -14,11 +18,11 @@ featured: false
 
 Social Copilot is a working MVP for drafting replies. The user provides a message, chooses a contact and a communication goal, and receives three suggestions. The app does not access WeChat or SMS conversations or send replies automatically.
 
-Messages can be typed, pasted, dictated, or extracted from a screenshot with on-device OCR. Contact records hold relationship details, notes, and memories maintained by the user. Writing preferences are visible and editable.
+Messages can be typed, pasted, or dictated. Users can also attach a screenshot as visual input to the model. Contact records hold relationship details, notes, and memories maintained by the user. Writing preferences are visible and editable.
 
 ## Implementation
 
-The iOS client uses SwiftUI, Vision OCR, Speech, and AVFoundation. Local data is stored in protected atomic JSON snapshots, with data migration and failure recovery.
+The iOS client uses SwiftUI, Speech, and AVFoundation. Local data is stored in protected atomic JSON snapshots, with data migration and failure recovery.
 
 Model requests pass through a Node.js proxy that keeps API keys on the server. The proxy applies request-size limits, timeouts, and rate limits without logging prompts or request bodies. Verification includes iOS unit tests, UI tests, and backend tests.
 

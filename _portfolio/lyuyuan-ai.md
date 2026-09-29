@@ -8,6 +8,7 @@ stack: "Python · Flask · JavaScript · JSON"
 repository: "https://github.com/jywang001/Lyuyuan_AI"
 image: "/images/lyuyuan_ai_preview.png"
 image_alt: "Green Garden High School Story chat interface"
+visual_style: conversation
 collection: portfolio
 order: 7
 featured: false
