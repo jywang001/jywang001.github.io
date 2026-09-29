@@ -1,13 +1,11 @@
 {% assign visual = include.project %}
-<div class="project-visual project-visual--{{ visual.visual_style | default: 'diagram' }}" role="img" aria-label="{{ visual.image_alt | escape }}">
+<div class="project-visual project-visual--{{ visual.visual_style | default: 'figure' }}" role="img" aria-label="{{ visual.image_alt | escape }}">
   {% if visual.visual_style == 'reader' %}
-  <div class="visual-window"><div class="visual-window-bar" aria-hidden="true"><i></i><i></i><i></i><span>README</span></div><div class="visual-reader-crop"><img src="{{ visual.image | relative_url }}" alt="" loading="lazy" width="2940" height="1452"></div></div>
+  <div class="visual-reader-crop"><img src="{{ visual.image | relative_url }}" alt="" loading="lazy" width="2940" height="1452"></div>
   {% elsif visual.visual_style == 'phones' %}
-  <div class="visual-phone visual-phone--secondary"><img src="{{ visual.image_secondary | relative_url }}" alt="" loading="lazy" width="1320" height="2868"></div>
-  <div class="visual-phone visual-phone--primary"><img src="{{ visual.image | relative_url }}" alt="" loading="lazy" width="1320" height="2868"></div>
-  {% elsif visual.visual_style == 'game' or visual.visual_style == 'conversation' %}
-  <div class="visual-window"><div class="visual-window-bar" aria-hidden="true"><i></i><i></i><i></i></div><div class="visual-screen"><img src="{{ visual.image | relative_url }}" alt="" loading="lazy"></div></div>
+  <img src="{{ visual.image_secondary | relative_url }}" alt="" loading="lazy" width="1320" height="2868">
+  <img src="{{ visual.image | relative_url }}" alt="" loading="lazy" width="1320" height="2868">
   {% else %}
-  <img src="{{ visual.image | relative_url }}" alt="" loading="lazy" width="960" height="600">
+  <img src="{{ visual.image | relative_url }}" alt="" loading="lazy">
   {% endif %}
 </div>

@@ -83,31 +83,21 @@ h2 { font-size: 24px; line-height: 1.4; font-weight: 600; letter-spacing: -.4px;
 .entry-description { font-size: 12.5px; color: var(--muted); margin-top: 8px; line-height: 1.8; }
 .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; margin-top: 23px; }
 .project-card { min-width: 0; }
-.project-art { display: block; aspect-ratio: 8 / 5; overflow: hidden; background: var(--tint); border: 1px solid var(--line); border-radius: 7px; }
-.project-art:hover { border-color: #b5c7d3; }
-.project-visual { position: relative; width: 100%; aspect-ratio: 8 / 5; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #f3f6f8; container-type: inline-size; }
+.project-art { display: block; aspect-ratio: 8 / 5; overflow: hidden; background: #fff; border: 1px solid var(--line); border-radius: 2px; }
+.project-art:hover { border-color: #a8b6c0; }
+.project-visual { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #fff; }
 .project-visual > img { width: 100%; height: 100%; object-fit: contain; }
-.visual-window { width: 90%; overflow: hidden; border: 1px solid #dce2e8; border-radius: 1.1cqw; box-shadow: 0 2cqw 5cqw #243c5217; background: #fff; }
-.visual-window-bar { height: 4cqw; display: flex; align-items: center; gap: .8cqw; padding: 0 1.6cqw; background: #fff; border-bottom: 1px solid #e7ebef; }
-.visual-window-bar i { width: 1cqw; height: 1cqw; border-radius: 50%; background: #cad3dc; }
-.visual-window-bar span { font-size: 1.7cqw; font-weight: 600; color: #5b6c7d; margin-left: 1cqw; letter-spacing: .1cqw; }
-.visual-reader-crop { position: relative; aspect-ratio: 1004 / 610; overflow: hidden; background: #f8f9fd; }
+.project-visual--terminal { background: #000; }
+.visual-reader-crop { position: relative; width: 100%; aspect-ratio: 1004 / 610; overflow: hidden; background: #f8f9fd; }
 .visual-reader-crop img { position: absolute; width: 292.829%; max-width: none; height: auto; left: -152.39%; top: -95.41%; }
-.project-visual--reader { background: #edf3fb; }
-.project-visual--phones { background: #e8f2ef; }
-.visual-phone { position: absolute; overflow: hidden; border: .8cqw solid #fff; border-radius: 3cqw; background: #f5f5f8; box-shadow: 0 2cqw 5cqw #28574920; }
-.visual-phone img { width: 100%; height: auto; }
-.visual-phone--secondary { width: 31%; height: 85%; left: 15%; top: 6%; }
-.visual-phone--primary { width: 34%; height: 92%; left: 51%; top: 15%; }
-.project-visual--game { background: #eeeae3; }
-.project-visual--game .visual-window { width: 88%; }
-.visual-screen img { width: 100%; height: auto; }
-.project-visual--conversation { background: #e9f1f5; }
-.project-visual--conversation .visual-screen { aspect-ratio: 1.7; overflow: hidden; }
-.project-cover .project-visual { border: 1px solid var(--line); border-radius: 7px; }
-.project-cover .project-visual--conversation { aspect-ratio: auto; padding: 5%; }
-.project-cover .project-visual--conversation .visual-window { width: 75%; }
-.project-cover .project-visual--conversation .visual-screen { aspect-ratio: auto; }
+.project-visual--phones { gap: 3%; padding: 2%; align-items: flex-start; background: #f3f3f7; }
+.project-visual--phones > img { width: 48.5%; height: auto; object-fit: contain; }
+.project-cover .project-visual { height: auto; border: 1px solid var(--line); }
+.project-cover .project-visual > img { height: auto; }
+.project-cover .project-visual--terminal > img { width: auto; max-width: 100%; }
+.project-cover .project-visual--figure { border: 0; }
+.project-cover .project-visual--phones { gap: 16px; padding: 0; background: #fff; border: 0; }
+.project-cover .project-visual--phones > img { width: min(42%, 290px); border: 1px solid var(--line); }
 .project-art--type { position: relative; display: flex; flex-direction: column; justify-content: space-between; padding: 18px 23px; background: #edf2f5; color: var(--accent); }
 .project-art--type:hover { text-decoration: none; background: #e5edf3; }
 .project-art-label { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; }
@@ -134,7 +124,8 @@ h2 { font-size: 24px; line-height: 1.4; font-weight: 600; letter-spacing: -.4px;
 .project-intro h1 { overflow-wrap: anywhere; }
 .project-intro .text-link { margin-top: 16px; }
 .project-cover { margin: 5px 0 30px; }
-.project-cover figcaption { font-size: 11px; color: var(--muted); margin-top: 7px; }
+.project-cover figcaption { font: 13px/1.65 Georgia, "Times New Roman", serif; color: var(--muted); margin-top: 12px; }
+.figure-label { font-weight: 700; color: var(--ink); }
 .prose { font-size: 15px; line-height: 1.85; }
 .prose h2 { font-size: 23px; margin: 27px 0 13px; }
 .prose h3 { font-size: 18px; margin: 22px 0 10px; }

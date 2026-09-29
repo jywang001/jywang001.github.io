@@ -9,7 +9,12 @@ layout: academic
     <p class="project-summary">{{ page.summary }}</p>
     {% if page.repository %}<a class="text-link" href="{{ page.repository }}">View source on GitHub <span aria-hidden="true">↗</span></a>{% endif %}
   </header>
-  {% if page.image %}<figure class="project-cover">{% include project-visual.html project=page %}<figcaption>{{ page.image_alt }}</figcaption></figure>{% endif %}
+  {% if page.image %}
+  <figure class="project-cover">
+    {% include project-visual.html project=page %}
+    <figcaption><span class="figure-label">Figure 1.</span> {{ page.image_caption | default: page.image_alt }}{% if page.image_source %} <a href="{{ page.image_source }}">Source</a>.{% endif %}{% if page.image_pdf %} <a href="{{ page.image_pdf | relative_url }}">Vector PDF</a>.{% endif %}</figcaption>
+  </figure>
+  {% endif %}
   <div class="prose">{{ content }}</div>
   {% if page.stack %}<div class="project-stack"><span class="eyebrow">Built with</span><p>{{ page.stack }}</p></div>{% endif %}
   <a class="text-link project-back" href="{{ '/projects/' | relative_url }}"><span aria-hidden="true">←</span> Back to all projects</a>

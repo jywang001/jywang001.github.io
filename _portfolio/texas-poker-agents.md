@@ -6,8 +6,10 @@ category: "Multi-agent systems"
 summary: "A locally runnable multiplayer LLM poker system for exploring agent behavior in imperfect-information games."
 stack: "Node.js · SSE · JSONL · OpenAI-compatible APIs"
 repository: "https://github.com/jywang001/Texas-Poker-Agents"
-image: "/images/projects/poker-agents.svg"
-image_alt: "A schematic of a shared poker table: each agent sees its own state, proposes an action, and follows server-validated rules."
+image: "/images/projects/poker-runtime.png"
+image_alt: "Texas-Poker-Agents running locally, with the live table, legal actions, and event record."
+image_caption: "A local runtime capture with fictional seats. Agents use the built-in offline fallback; this demo does not show live model inference."
+visual_style: screenshot
 collection: portfolio
 order: 3
 featured: false

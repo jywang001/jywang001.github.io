@@ -1,0 +1,22 @@
+{
+  "source_repository": "https://github.com/jywang001/CritPT-RL",
+  "source_revision": "8f518c81dc78cb52d93dd7d3e3dfa37d6880160d",
+  "raw_log_relative_path": ".private_archive/artifacts_full_2026_06_15/e3_final_answer_judge/qwen3_8b_grpo_e3_yunwu_final_answer_judge_from_e2_base.metrics.jsonl",
+  "raw_log_sha256": "d6300130a636bbd3904afec807ad9d6500d1d7c494ce3e041ce7a59c27f2e196",
+  "public_summary_relative_path": "artifacts/curated/e3_realtime_summary.json",
+  "public_summary_sha256": "f8a88a65b1488f59f3d2522642a4061d906ddd2aea277f83cb0c1bd7ec621cd7",
+  "public_plot_relative_path": "artifacts/curated/e3_realtime_curves.svg",
+  "public_plot_sha256": "d235f5359a6acc6d214cb8eae0e054cb272ca4daf892cc7f221c95867baf4b84",
+  "selected_csv": "critpt-e3-timeseries.csv",
+  "selected_csv_sha256": "768eda0038398a8e83774f70e034fe181981eb0441105b5d33f5427b4a5c5ff2",
+  "selected_fields": {
+    "step": "step",
+    "training_reward": "data[critic/score/mean]",
+    "response_length_tokens": "data[response_length/mean]"
+  },
+  "rows": 120,
+  "rendered_with": "Matplotlib 3.11.2",
+  "transformations": "Select three numeric fields only. Preserve logged values and step order. No smoothing, inferred points, resampling, or curve-coordinate extraction.",
+  "validation": "Row count, final step, and min/max/mean/final of both metrics match the committed public summary to 1e-12.",
+  "interpretation": "Single-run training diagnostics. Training reward is not accuracy. No confidence interval or benchmark-gain claim."
+}

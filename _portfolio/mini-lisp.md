@@ -6,8 +6,9 @@ category: "Programming languages"
 summary: "A Lisp interpreter in C++ with lexical scope, closures, macros, an interactive REPL, and script execution."
 stack: "C++ · CMake"
 repository: "https://github.com/jywang001/Mini-Lisp"
-image: "/images/projects/mini-lisp-repl.svg"
-image_alt: "Typeset Mini-Lisp REPL examples: mapping a square function and reducing a list."
+image: "/images/mini_lisp_preview.png"
+image_alt: "Original Mini-Lisp terminal capture, showing append, let, map, filter, reduce, and quasiquote."
+visual_style: terminal
 collection: portfolio
 order: 5
 featured: false
