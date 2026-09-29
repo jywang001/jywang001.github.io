@@ -11,7 +11,7 @@ redirect_from:
 <div class="container">
   <section class="about-section" id="about" aria-labelledby="home-title">
     <h1 id="home-title">About me</h1>
-    <p>I am a Computer Science undergraduate in the Elite Program at <a href="https://www.pku.edu.cn/">Peking University</a>, expected to graduate in 2028.</p>
+    <p>I am a Computer Science undergraduate at <a href="https://www.pku.edu.cn/">Peking University</a>, expected to graduate in 2028.</p>
     <p>My current research interests center on <strong>recursive self-improvement (RSI)</strong>. I am exploring this direction with an open focus across agents and models.</p>
     <p>Previously, I worked on multimodal models and embodied intelligence, particularly vision-language-action systems and navigation. My experience spans model post-training, data construction, evaluation, and AI agent development.</p>
   </section>

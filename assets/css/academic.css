@@ -42,7 +42,6 @@ sup { font-size: .72em; line-height: 0; }
 .profile-photo img { width: 176px; height: 176px; object-fit: cover; object-position: 62% center; border-radius: 5px; }
 .profile-name { font-size: 23px; font-weight: 650; line-height: 1.35; letter-spacing: -.5px; }
 .profile-role { margin-top: 9px; font-size: 13px; line-height: 1.65; color: var(--muted); max-width: 185px; }
-.profile-focus { margin-top: 10px; font-size: 13px; line-height: 1.6; color: var(--accent); }
 .profile-details, .profile-links { list-style: none; padding: 0; margin: 22px 0 0; font-size: 13px; }
 .profile-details li, .profile-links a { display: flex; align-items: center; gap: 10px; min-height: 33px; }
 .profile-details { color: var(--muted); }
@@ -176,7 +175,6 @@ h2 { font-size: 24px; line-height: 1.4; font-weight: 600; letter-spacing: -.4px;
   .profile-intro { grid-column: 2; grid-row: 1; }
   .profile-name { font-size: 23px; }
   .profile-role { max-width: none; margin-top: 4px; font-size: 12px; }
-  .profile-focus { margin-top: 3px; font-size: 12px; }
   .profile-details { grid-column: 2; grid-row: 2; display: flex; flex-wrap: wrap; column-gap: 15px; margin: 7px 0 0; font-size: 11px; }
   .profile-details li { min-height: 24px; gap: 5px; }
   .profile-details svg { width: 13px; height: 13px; flex-basis: 13px; }
@@ -201,7 +199,6 @@ h2 { font-size: 24px; line-height: 1.4; font-weight: 600; letter-spacing: -.4px;
   .profile-photo img { height: 104px; }
   .profile-name { font-size: 21px; }
   .profile-role { font-size: 11px; }
-  .profile-focus { font-size: 11px; }
   .profile-details { gap: 0; flex-direction: column; margin-top: 6px; }
   .profile-details li { min-height: 22px; }
   .profile-links { gap: 21px; font-size: 11px; }
