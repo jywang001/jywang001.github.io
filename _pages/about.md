@@ -16,7 +16,7 @@ redirect_from:
     <p>Previously, I worked on multimodal models and embodied intelligence, particularly vision-language-action systems and navigation. My experience spans model post-training, data construction, evaluation, and AI agent development.</p>
   </section>
   <section class="home-section" id="research" aria-labelledby="research-title">
-    <div class="section-heading"><h2 id="research-title">Selected publications</h2></div>
+    <div class="section-heading"><h2 id="research-title">Papers</h2></div>
     {% include research-list.html %}
   </section>
   <section class="home-section" id="experience" aria-labelledby="experience-title">
