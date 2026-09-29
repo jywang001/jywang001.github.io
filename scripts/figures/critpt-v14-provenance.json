@@ -1,0 +1,64 @@
+{
+  "source_repository": "https://github.com/jywang001/CritPT-RL",
+  "source_revision": "8f518c81dc78cb52d93dd7d3e3dfa37d6880160d",
+  "sources": {
+    "raw_log": {
+      "path": ".private_archive/artifacts_full_2026_06_15/experiments/qwen3_8b_grpo_v14_compact_exec_n4_step80/metrics.jsonl",
+      "sha256": "9fc257ed383113676348d8e4318efcb2e607bc0c8b747a522a5b49d7649347fa"
+    },
+    "metrics_csv": {
+      "path": ".private_archive/artifacts_full_2026_06_15/experiments/qwen3_8b_grpo_v14_compact_exec_n4_step80/metrics_key.csv",
+      "sha256": "b20729731b91deeb7bb0b51927882cd8d236c3aefaa26031be48cba609521f2c"
+    },
+    "run_summary": {
+      "path": ".private_archive/artifacts_full_2026_06_15/experiments/qwen3_8b_grpo_v14_compact_exec_n4_step80/summary.json",
+      "sha256": "456db16c9c4135cfe86aca63c9864a863f4c4594ccaa2ee0e97e2e8a2b8b01fd"
+    },
+    "public_full_run_svg": {
+      "path": "artifacts/curated/generated_metric_plots/experiments__qwen3_8b_grpo_v14_compact_exec_n4_step80__metrics_key.svg",
+      "sha256": "c2e39402f66732bf4dde32ac1d6a56d84ca29f1624b026b1333e16287faab891"
+    },
+    "training_config": {
+      "path": "configs/experiments/qwen3_8b_grpo_v14_compact_exec_n4.env",
+      "sha256": "26183376cbb90c7c1262ebfbfcae59e362f62e4b0701a0f3218424aa253721de"
+    },
+    "reward_implementation": {
+      "path": "src/rl_posttrain/critpt_synth/verl_reward_v14_compact.py",
+      "sha256": "6f3a653dabc6a73356b7c54c35c47499ce0bcad75280b5f2905b45ef2afa565b"
+    }
+  },
+  "selected_csv": "critpt-v14-reward.csv",
+  "selected_csv_sha256": "326ce44eae6ea74b688e8ebf31aa24bc0cb8c9f3dbbf83adba4ad8cbe6e13ecf",
+  "selected_fields": [
+    "step",
+    "data[critic/score/mean]"
+  ],
+  "observations": 80,
+  "step_range": [
+    1,
+    80
+  ],
+  "validated_statistics": {
+    "mean": 0.8484542857855558,
+    "first5_mean": 0.6483057320117951,
+    "last5_mean": 0.920509421825409,
+    "first16_mean": 0.7456422653049231,
+    "last16_mean": 0.8988740257918835,
+    "min": 0.4379980266094208,
+    "max": 0.970000147819519
+  },
+  "source_validation": "Exact numeric equality with JSONL and CSV; first/last-five and overall mean match original run summary; forward rendering matches all 80 public SVG curve coordinates at its recorded precision.",
+  "smoothing": {
+    "method": "trailing arithmetic mean",
+    "window_observations": 8,
+    "plotted_steps": [
+      8,
+      80
+    ],
+    "outputs": 73,
+    "padding": "none",
+    "interpolation": "none"
+  },
+  "interpretation": "Within-run training objective on synthetic code tasks, with executable checks and format/compactness shaping. Not benchmark accuracy.",
+  "rendered_with": "Matplotlib 3.11.2"
+}
