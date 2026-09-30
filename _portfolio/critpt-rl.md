@@ -7,11 +7,11 @@ period: "July 2026"
 summary: "An end-to-end GRPO post-training and evaluation pipeline for scientific coding tasks, with synthetic data, reward functions, and executable verifiers."
 stack: "Python · verl · vLLM · GRPO"
 repository: "https://github.com/jywang001/CritPT-RL"
-image: "/images/projects/critpt-v14-reward.svg"
-image_alt: "V14 training reward over 80 steps, showing the logged batch means and an eight-step trailing mean."
-image_caption: "Qwen3-8B GRPO training on synthetic coding tasks, using execution-based answer checks with format and compactness shaping. Light points show logged batch-mean rewards; the blue line shows an eight-step trailing mean, starting at step 8."
+image: "/images/projects/critpt-v14-reward.svg?v=40"
+image_alt: "V14 training reward at steps 1–40 of an 80-step run, showing logged batch means and an eight-step trailing mean at steps 8–40."
+image_caption: "Steps 1–40 of an 80-step Qwen3-8B GRPO run on synthetic coding tasks, using execution-based answer checks with format and compactness shaping. Light points show logged batch-mean rewards; the blue line shows an eight-step trailing mean at steps 8–40."
 image_source: "https://github.com/jywang001/CritPT-RL/blob/8f518c81dc78cb52d93dd7d3e3dfa37d6880160d/artifacts/curated/generated_metric_plots/experiments__qwen3_8b_grpo_v14_compact_exec_n4_step80__metrics_key.svg"
-image_pdf: "/images/projects/critpt-v14-reward.pdf"
+image_pdf: "/images/projects/critpt-v14-reward.pdf?v=40"
 collection: portfolio
 order: 1
 featured: true
@@ -33,7 +33,7 @@ I compared reward designs using execution checks, semantic code judging, length 
 
 Repeated training comparisons and error analysis exposed two practical problems: incorrect answers receiving high rewards, and training examples that did not match the kinds of questions used in evaluation. I revised training samples and reward rules in response, treating evaluation failures as evidence for the next experiment.
 
-The figure shows the full 80-step V14 run. Mean training reward rises from 0.746 over the first 16 steps to 0.899 over the last 16 steps. This measures the training objective on synthetic coding tasks. The [plotting script and numeric inputs](https://github.com/jywang001/jywang001.github.io/tree/main/scripts/figures) reproduce the figure from the retained run logs.
+The figure shows steps 1–40 of the 80-step V14 run, with an eight-step trailing mean at steps 8–40. It measures the training objective on synthetic coding tasks. The [plotting script and numeric inputs](https://github.com/jywang001/jywang001.github.io/tree/main/scripts/figures) retain all 80 observations for validation and reproduce this displayed interval from the run logs.
 
 ## Public materials
 

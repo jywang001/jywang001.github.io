@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Plot all V14 observations and an explicitly labeled eight-step trailing mean.
+"""Plot V14 steps 1–40 and an explicitly labeled eight-step trailing mean.
 
 Requires Matplotlib (rendered with 3.11.2). Optional --source-repo PATH verifies
-the extracted values against the original log, CSV, and public full-run plot.
+all 80 retained values against the original log, CSV, and public full-run plot.
 """
 from __future__ import annotations
 
@@ -87,18 +87,18 @@ def render(steps: list[int], values: list[float]) -> None:
         "axes.linewidth": 0.7, "axes.spines.top": False, "axes.spines.right": False,
         "axes.grid": False, "xtick.direction": "out", "ytick.direction": "out",
         "figure.facecolor": "white", "axes.facecolor": "white", "pdf.fonttype": 42,
-        "svg.fonttype": "path", "svg.hashsalt": "critpt-v14-reward-80-steps", "savefig.dpi": 300,
+        "svg.fonttype": "path", "svg.hashsalt": "critpt-v14-reward-40-steps", "savefig.dpi": 300,
     })
     trailing = [statistics.mean(values[end - 8:end]) for end in range(8, len(values) + 1)]
-    assert len(trailing) == 73 and steps[7] == 8 and steps[-1] == 80
+    assert steps == list(range(1, 41)) and len(trailing) == 33
     fig, ax = plt.subplots(figsize=(8, 5))
     fig.subplots_adjust(left=0.12, right=0.975, bottom=0.14, top=0.95)
     ax.plot(steps, values, color="#a5b8c9", linewidth=1.15, marker="o", markersize=3.2,
             markeredgewidth=0, label="Logged batch mean", zorder=2)
     ax.plot(steps[7:], trailing, color="#0072B2", linewidth=2.1,
             label="8-step trailing mean", zorder=3)
-    ax.set_xlim(0, 81)
-    ax.set_xticks([0, 20, 40, 60, 80])
+    ax.set_xlim(0, 40.5)
+    ax.set_xticks([0, 10, 20, 30, 40])
     ax.set_ylim(0, 1)
     ax.set_yticks([0, 0.2, 0.4, 0.6, 0.8, 1.0])
     ax.yaxis.set_major_formatter(FormatStrFormatter("%.1f"))
@@ -116,7 +116,7 @@ def render(steps: list[int], values: list[float]) -> None:
         if extension == "svg":
             path.write_text("\n".join(line.rstrip() for line in path.read_text().splitlines()) + "\n")
     plt.close(fig)
-    print("Plotted 80 logged rewards and 73 trailing means at steps 8–80; no edge padding.")
+    print("Plotted the first 40 logged rewards and 33 trailing means at steps 8–40; no edge padding.")
 
 
 def main() -> None:
@@ -127,7 +127,10 @@ def main() -> None:
     steps, values = load(provenance)
     if args.source_repo:
         verify_sources(args.source_repo, provenance, steps, values)
-    render(steps, values)
+    assert provenance["displayed_step_range"] == [1, 40]
+    assert provenance["smoothing"]["plotted_steps"] == [8, 40]
+    assert provenance["smoothing"]["outputs"] == 33
+    render(steps[:40], values[:40])
 
 
 if __name__ == "__main__":

@@ -1,11 +1,10 @@
 # V14 compact executable-answer training
 
-**Caption:** Mean training reward across the full 80-step V14 GRPO run on
-synthetic coding tasks. Light points and lines show every logged batch mean;
-the blue line is an eight-step trailing arithmetic mean, shown only at steps
-8–80. The first and last 16-step mean rewards are 0.7456 and 0.8989. This is a
-single-run training-objective diagnostic, not benchmark accuracy or evidence
-of improved official70 performance.
+**Caption:** Mean training reward at steps 1–40 of the 80-step V14 GRPO run on
+synthetic coding tasks. Light points and lines show the logged batch means
+within this interval; the blue line is an eight-step trailing arithmetic
+mean at steps 8–40. This is a single-run training-objective diagnostic, not
+benchmark accuracy or evidence of improved official70 performance.
 
 The reward uses executable checks plus partial credit for formatting and
 compactness, with repetition and length penalties. It is clipped to [0, 1].
@@ -32,15 +31,19 @@ python scripts/figures/plot_critpt_v14_reward.py --source-repo PATH
 Requires Matplotlib; rendered with version 3.11.2. The CSV copies only `step`
 and `data["critic/score/mean"]` from the original JSONL. No raw log, prompts,
 outputs, credentials, host details, or other training fields are published.
-Hashes and source-relative paths are in `critpt-v14-provenance.json`.
+The CSV retains all 80 observations for audit. Hashes, source-relative paths,
+and the displayed step range are in `critpt-v14-provenance.json`.
 
-All selected values match both the original JSONL and its CSV export exactly.
+All 80 stored values match both the original JSONL and its CSV export exactly.
 Forward-transforming those known data values into the public full-run SVG's
 axes reproduces its 80 curve coordinates at the artifact's recorded precision.
 The public SVG is used only for validation, never to infer the input data.
-Mean and first/last-five values also match the original run summary.
+The full-run mean and first/last-five values also match the original run summary.
+The script validates the complete 80-step source before selecting steps 1–40
+for display.
 
 The trailing mean at step t is the arithmetic mean of observations t−7 through
-t. It uses no future values, padding, interpolation, or fitted trend. The raw
-points remain visible. Both axis limits and all 80 observations are retained.
+t, displayed at steps 8–40. It uses no future values, padding, interpolation,
+or fitted trend. All raw observations at steps 1–40 remain visible; steps 41–80
+remain in the CSV and source validation but are outside the displayed interval.
 Outputs are an 8 × 5 inch SVG, vector PDF, and 300-dpi PNG in `images/projects/`.

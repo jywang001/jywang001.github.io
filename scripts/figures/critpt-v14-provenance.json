@@ -34,6 +34,7 @@
     "data[critic/score/mean]"
   ],
   "observations": 80,
+  "displayed_step_range": [1, 40],
   "step_range": [
     1,
     80
@@ -53,9 +54,9 @@
     "window_observations": 8,
     "plotted_steps": [
       8,
-      80
+      40
     ],
-    "outputs": 73,
+    "outputs": 33,
     "padding": "none",
     "interpolation": "none"
   },
