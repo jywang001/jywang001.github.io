@@ -1,3 +1,50 @@
+- id: discoveryrsi
+  short_name: DiscoveryRSI
+  title: "DiscoveryRSI: Recursively Learning to Discover Valuable Hypotheses"
+  # Author order and contribution markers follow the arXiv v2 manuscript.
+  authors:
+    - "Jianyuan Zhong*"
+    - "Chenwei Wu*"
+    - "Zhaochen Yu*"
+    - Xixian Jiang
+    - Jiajun Fan
+    - Xuewei Li
+    - Hao Xiao
+    - Xilin Dai
+    - Junyang Wang
+    - Jiaru Zou
+    - Zhiqing Cui
+    - Boyuan Zheng
+    - Jing Xiong
+    - Zhen Zhang
+    - Qiang Gao
+    - Michael Morley
+    - Luis Nakayama
+    - Qiang Xu
+    - Liyue Shen
+    - Tao Gui
+    - Leo Anthony Celi
+    - Zhenfei Yin
+    - Yingcheng Wu
+    - Ling Yang
+  corresponding_authors:
+    - Leo Anthony Celi
+    - Zhenfei Yin
+    - Yingcheng Wu
+    - Ling Yang
+  venue: arXiv 2026
+  status: Preprint
+  area: Recursive self-improvement
+  year: 2026
+  equal_contribution: true
+  links:
+    - label: arXiv
+      url: https://arxiv.org/abs/2610.23839
+    - label: PDF
+      url: https://arxiv.org/pdf/2610.23839
+    - label: Code
+      url: https://github.com/Gen-Verse/DiscoveryRSI
+
 - id: ascribe
   short_name: ASCRIBE
   title: "ASCRIBE: Retrospective Responsibility Routing Post-Training for Hierarchical VLA System"
