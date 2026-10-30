@@ -82,7 +82,19 @@
   area: Vision-language navigation
   year: 2026
   equal_contribution: true
-  links: []
+  links:
+    - label: arXiv
+      url: https://arxiv.org/abs/2610.33794
+    - label: PDF
+      url: https://arxiv.org/pdf/2610.33794
+    - label: Code
+      url: https://github.com/DynamicCast03/one-scan-is-enough
+    - label: Website
+      url: https://one-scan-is-enough.github.io/
+    - label: Data
+      url: https://huggingface.co/datasets/dynamica/one-scan-is-enough-demo-apartment
+    - label: Model
+      url: https://huggingface.co/dynamica/RealNav-Base
 
 - id: dualfuture
   short_name: DualFuture
