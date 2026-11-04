@@ -294,8 +294,8 @@
     const add = (title, text) => { const d = el('div', { class: 'takeaway' }); d.append(el('h4', {}, title), el('p', { style: 'margin:0' }, text)); box.append(d); };
     const nat = studies.filter((s) => s.bench !== 'mle-bench');
     const mean = (a) => nat.reduce((t, s) => t + s.runs.find((r) => r.arm === a).final.value, 0) / nat.length;
-    add('MLE-bench：人介入在 2/3 任务上测试分更好',
-      'Spooky（log loss）与 Tabular（AUC）上，B、C 的官方测试分都明显好于 A；NOMAD 上三臂差距很小，A 测试分反而最好（银牌线），而验证集上 B 最好——验证集排名在测试集上翻转了。');
+    add('MLE-bench：人介入在 4/5 任务上测试分更好',
+      'Spooky、Tabular、Leaf（log loss 0.040/0.047 vs A 0.071）与 Pizza（AUC 0.682/0.661 vs A 0.644）上，B、C 的官方测试分都好于 A，其中 Leaf 与 Pizza 都是 B 最好；NOMAD 上三臂差距很小，A 测试分反而最好（银牌线），而验证集上 B 最好——验证集排名在测试集上翻转了。');
     add('Nature：逐重复结果不一致',
       `三个重复里，赢家分别是 A、C、B。按均值是 C (${mean('C').toFixed(3)}) > B (${mean('B').toFixed(3)}) > A (${mean('A').toFixed(3)})，但 C 的均值几乎全靠第 2 个重复的 0.224；B 在 3 个重复中有 2 个高于 A。不能据此下结论。`);
     add('读结果时请记住',

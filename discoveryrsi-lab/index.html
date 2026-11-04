@@ -34,8 +34,8 @@
   <div class="facts">
     <div><b>20</b><span>轮 / 臂</span></div>
     <div><b>3</b><span>候选假设 / 轮</span></div>
-    <div><b>4</b><span>个任务（1 Nature + 3 MLE-bench）</span></div>
-    <div><b>360</b><span>轮对照实验</span></div>
+    <div><b>6</b><span>个任务（1 Nature + 5 MLE-bench）</span></div>
+    <div><b>480</b><span>轮对照实验</span></div>
   </div>
   <p class="prose">每一轮都是一次<em>对照实验</em>：控制组 = 当前最优方案（incumbent），干预组 = 在其上实施所选假设的改动，两者在同一环境下运行并打分。AI 随后写反思，把证据标为 <span class="ev" data-ev="preliminary_support"></span>、<span class="ev" data-ev="not_supported"></span>、<span class="ev" data-ev="inconclusive"></span> 或 <span class="ev" data-ev="implementation_mismatch"></span>。三臂共享同一个初始候选池，第 1 轮起点相同。</p>
   <p class="prose"><b>MLE-bench</b>：迭代时只看从公开训练集切出的验证集分数；官方私有测试集只在最后对"验证集最优"方案评一次，并对照 Kaggle 排行榜奖牌线。<b>Nature 任务</b>（两模态单细胞聚类，s43588-024-00689-2）：用原题官方指标 mean_g 在线反馈，<em>没有</em>独立的未见测试集，跑了 3 个重复（replicate）。</p>
@@ -77,6 +77,9 @@
         <li>Spooky C 第 13 轮被标记为"实现与假设不符"，原因是 Claude 的批评与假设原文相冲突。</li>
         <li>NOMAD：C 臂批评建议的"每原子体积"特征，B 臂此前已用过。</li>
         <li>Tabular：C 臂推动 num_leaves 调参时已知 B 臂在 num_leaves 上的收益；C 臂降低 feature_fraction 优先级时已知 B 臂 colsample 0.6 失败；对"频次特征"曾写"再失败就放弃"，之后又给了一次机会。</li>
+        <li>Leaf：B、C 两臂在正则强度 C=10、温度校准（B 选 T=1.1 / p^0.9 时已知 C 臂校准有效）、margin 列 log1p 等处互相参照；B 臂第 18 轮收紧收敛容差时，已在 C 臂候选描述中看到收紧迭代带来的大幅提升；B 臂最后一轮的 texture 压缩选择知道 C 臂用了 log1p。</li>
+        <li>Pizza：B 臂选择周期时间编码、标题/正文分块、标题 min_df=1 时，均已知 C 臂对应方向的结果；C 臂批评中"帖子越详细越容易成功"来自 Claude 对该题的先验知识。</li>
+        <li>Claude 的 C 臂批评经常是错的：Leaf 上连续多次推荐的改动（LDA、行归一化、分块加权、逐类尺度、5 折 bagging）全部变差，最严重一次 log loss 从 0.054 变为 0.359；Pizza 上推荐的标题 min_df=2、秩平均、追加长度列也都变差。每次失败都在下一轮批评中明确承认。</li>
       </ul>
     </li>
     <li>Claude 在决策中使用了自身的领域知识（例如各 Kaggle 题的常见做法），这相当于一位有经验的人类，但不代表普通参与者。</li>
