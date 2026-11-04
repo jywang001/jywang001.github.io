@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DiscoveryRSI Lab · 人在环路的 AI 科研迭代实验</title>
+<meta name="description" content="三臂对照实验：AI 自主 / 人类选择 / 人类批评后 AI 选择，在 NatureBench 与 MLE-bench 任务上的逐轮记录。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow"><a href="/">wjysite.com</a> / discoveryrsi-lab</p>
+    <h1>DiscoveryRSI Lab</h1>
+    <p class="lede">同一个模型、同一套任务、同一个起始假设池：让 AI 自己迭代 20 轮，和"人类挑选假设"、"人类先批评、AI 再挑"两种人在环路方式对比，看人的介入到底改变了什么。</p>
+    <div class="notice" role="note">
+      <strong>请先读这条：</strong>本页 B、C 两臂中的"人类"决策，实际上全部由 Claude Opus 代为完成（作者授权），不是真人实验。Claude 在决策时能看到同一任务其他臂的进展，存在信息污染，详见<a href="#disclosure">披露</a>。这是一项工程试跑（pilot），每个 MLE 任务只有 1 个重复，结论只能当作线索。
+    </div>
+  </div>
+</header>
+
+<nav class="toc wrap" aria-label="目录">
+  <a href="#design">实验设计</a><a href="#results">最终结果</a><a href="#curves">迭代曲线</a><a href="#explorer">逐轮浏览</a><a href="#disclosure">披露与局限</a>
+</nav>
+
+<main class="wrap">
+<section id="design">
+  <h2>实验设计</h2>
+  <div class="arms">
+    <div class="arm-card"><span class="key" data-arm="A"></span><h3>A · AI 自主</h3><p>每轮 AI 生成 3 个候选假设，自己选 1 个，写实验代码，跑对照/干预，读结果，进入下一轮。</p></div>
+    <div class="arm-card"><span class="key" data-arm="B"></span><h3>B · 人类选择</h3><p>流程同 A，但每轮由"人类"在 3 个候选中挑选要执行的一个（可附理由）。本试跑中由 Claude 代选。</p></div>
+    <div class="arm-card"><span class="key" data-arm="C"></span><h3>C · 人类批评 → AI 选择</h3><p>"人类"先对 3 个候选写批评意见，AI 读完批评后自己做选择，并在下一轮生成时参考。本试跑中由 Claude 代写批评。</p></div>
+  </div>
+  <div class="facts">
+    <div><b>20</b><span>轮 / 臂</span></div>
+    <div><b>3</b><span>候选假设 / 轮</span></div>
+    <div><b>4</b><span>个任务（1 Nature + 3 MLE-bench）</span></div>
+    <div><b>360</b><span>轮对照实验</span></div>
+  </div>
+  <p class="prose">每一轮都是一次<em>对照实验</em>：控制组 = 当前最优方案（incumbent），干预组 = 在其上实施所选假设的改动，两者在同一环境下运行并打分。AI 随后写反思，把证据标为 <span class="ev" data-ev="preliminary_support"></span>、<span class="ev" data-ev="not_supported"></span>、<span class="ev" data-ev="inconclusive"></span> 或 <span class="ev" data-ev="implementation_mismatch"></span>。三臂共享同一个初始候选池，第 1 轮起点相同。</p>
+  <p class="prose"><b>MLE-bench</b>：迭代时只看从公开训练集切出的验证集分数；官方私有测试集只在最后对"验证集最优"方案评一次，并对照 Kaggle 排行榜奖牌线。<b>Nature 任务</b>（两模态单细胞聚类，s43588-024-00689-2）：用原题官方指标 mean_g 在线反馈，<em>没有</em>独立的未见测试集，跑了 3 个重复（replicate）。</p>
+</section>
+
+<section id="results">
+  <h2>最终结果</h2>
+  <div id="takeaways" class="takeaways"></div>
+  <div class="legend" id="legend-results"></div>
+  <div id="final-charts" class="grid"></div>
+  <details class="table-view"><summary>数据表</summary><div id="final-table"></div></details>
+</section>
+
+<section id="curves">
+  <h2>迭代曲线</h2>
+  <p class="prose">每条线是该臂截至第 n 轮"见过的最好分数"（MLE 为验证集，Nature 为 mean_g）。悬停查看每轮数值。</p>
+  <div class="legend" id="legend-curves"></div>
+  <div id="curve-charts" class="grid"></div>
+</section>
+
+<section id="explorer">
+  <h2>逐轮浏览</h2>
+  <div class="filters">
+    <label>任务 <select id="study-select"></select></label>
+    <div class="seg" id="arm-seg" role="tablist" aria-label="臂"></div>
+  </div>
+  <div id="strips"></div>
+  <div id="rounds"></div>
+</section>
+
+<section id="disclosure">
+  <h2>披露与局限</h2>
+  <h3>决策者与信息污染</h3>
+  <ul class="prose-list">
+    <li>B、C 两臂的全部选择与批评由 Claude Opus 代为完成，没有真人参与；"人类耗时"只是 Claude 的处理延迟。</li>
+    <li>Claude 在为某一臂做决定时，能看到同一任务其他臂的进展，因此 B/C 之间、以及 B/C 与 A 之间并非独立。已知的具体情形：
+      <ul>
+        <li>Spooky：B 臂选用 C=4.0 正则化时，已经知道 C 臂对应的结果；B 臂的温度校准出现在 C 臂建议温度校准之后；C 臂"字符特征权重 0.5"呼应了 B 臂。</li>
+        <li>Spooky C 第 13 轮被标记为"实现与假设不符"，原因是 Claude 的批评与假设原文相冲突。</li>
+        <li>NOMAD：C 臂批评建议的"每原子体积"特征，B 臂此前已用过。</li>
+        <li>Tabular：C 臂推动 num_leaves 调参时已知 B 臂在 num_leaves 上的收益；C 臂降低 feature_fraction 优先级时已知 B 臂 colsample 0.6 失败；对"频次特征"曾写"再失败就放弃"，之后又给了一次机会。</li>
+      </ul>
+    </li>
+    <li>Claude 在决策中使用了自身的领域知识（例如各 Kaggle 题的常见做法），这相当于一位有经验的人类，但不代表普通参与者。</li>
+    <li>每轮决策只依据本次重复内的信息，未使用其他重复（replicate）的结果。</li>
+  </ul>
+  <h3>执行与评测</h3>
+  <ul class="prose-list">
+    <li>NOMAD C 第 16、17 轮的实现读取了验证集标签，已被反思标为"实现与假设不符"；这两轮的分数不可信。</li>
+    <li>Nature 第 2 个重复中，B 臂在同一基线上反复出现"实现与假设不符"。</li>
+    <li>Nature 共有 7 次基础设施故障（非模型原因），这些轮次在隔离失败记录后重跑。</li>
+    <li>MLE-bench 只跑在 8 CPU / 16 GiB / 每次 600 秒的沙箱里，不是官方 24 小时 agent 协议；奖牌线仅作参照，不是官方成绩。</li>
+    <li>Nature 任务没有独立测试集，最终分数就是迭代时看到的最好分数，存在对在线反馈过拟合的可能；官方有效性评审未运行。</li>
+    <li>每个 MLE 任务只有 1 个重复；Nature 只有 3 个重复，且 C 臂均值主要由第 2 个重复（0.224）拉动。</li>
+  </ul>
+  <h3>系统自带的局限声明</h3>
+  <ul class="prose-list" id="limitations"></ul>
+  <p class="muted small">本页只公开摘要级信息：候选假设标题与主张、选择理由与批评、对照/干预分数、证据判定与截断后的反思。完整提示词、模型原始输出与代码未公开。数据生成于 <span id="generated"></span>。</p>
+</section>
+</main>
+
+<footer class="wrap muted small">
+  <p>DiscoveryRSI Lab · Junyang Wang · <a href="/">返回主页</a></p>
+</footer>
+
+<div id="tooltip" class="tooltip" role="status" hidden></div>
+<script src="app.js"></script>
+</body>
+</html>
