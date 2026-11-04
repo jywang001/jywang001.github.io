@@ -44,6 +44,8 @@
       url: https://arxiv.org/pdf/2610.23839
     - label: Code
       url: https://github.com/Gen-Verse/DiscoveryRSI
+    - label: Lab
+      url: /discoveryrsi-lab/
 
 - id: ascribe
   short_name: ASCRIBE

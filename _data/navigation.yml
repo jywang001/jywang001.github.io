@@ -22,11 +22,6 @@ main:
     title_zh: "项目"
     url: /projects/
         
-  - title: "DiscoveryRSI Lab"
-    title_en: "DiscoveryRSI Lab"
-    title_zh: "DiscoveryRSI 实验"
-    url: /discoveryrsi-lab/
-
   - title: "Experience"
     title_en: "Experience"
     title_zh: "经历"
