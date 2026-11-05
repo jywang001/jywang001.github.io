@@ -3,100 +3,123 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DiscoveryRSI Lab · 人在环路的 AI 科研迭代实验</title>
-<meta name="description" content="三臂对照实验：AI 自主 / 人类选择 / 人类批评后 AI 选择，在 NatureBench 与 MLE-bench 任务上的逐轮记录。">
+<title>DiscoveryRSI++ 三臂实验 · 人该在 AI 科研迭代的哪里插手？</title>
+<meta name="description" content="三臂对照实验：AI 自主 / 人类点选 / 人类批评后 AI 选择，在 1 个 Nature 论文任务与 16 个 MLE-bench 任务上的逐轮记录。">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="hero">
   <div class="wrap">
     <p class="eyebrow"><a href="/">wjysite.com</a> / discoveryrsi-lab</p>
-    <h1>DiscoveryRSI Lab</h1>
-    <p class="lede">同一个模型、同一套任务、同一个起始假设池：让 AI 自己迭代 20 轮，和"人类挑选假设"、"人类先批评、AI 再挑"两种人在环路方式对比，看人的介入到底改变了什么。</p>
+    <h1>DiscoveryRSI++ 三臂实验</h1>
+    <p class="lede">让 AI 像研究员一样，围绕一道固定的机器学习/科学题目反复“提出假设 → 做对照实验 → 读结果 → 再提假设”，每个任务迭代 20 轮。我们比较三种决策方式：AI 自己选方向、“人”从 AI 的候选里点选、“人”先写批评再由 AI 选。想知道的是：人在这个循环里插手，到底有没有用，用在哪里。</p>
     <div class="notice" role="note">
-      <strong>请先读这条：</strong>本页 B、C 两臂中的"人类"决策，实际上全部由 Claude Opus 代为完成（作者授权），不是真人实验。Claude 在决策时能看到同一任务其他臂的进展，存在信息污染，详见<a href="#disclosure">披露</a>。这是一项工程试跑（pilot），每个 MLE 任务只有 1 个重复，结论只能当作线索。
+      <strong>请先读这条：</strong>本次运行中，B、C 两臂的“人类”决策全部由 <b>Claude（Anthropic 的 Opus 模型）代人类完成</b>（经作者授权），不是真人实验。Claude 在同一任务里同时为 B、C 两臂做决定，能看到各臂进展，存在跨臂信息污染；Claude 给出的不少建议也被实验证明是错的。详见<a href="#disclosure">披露与局限</a>。这是一项工程试跑（pilot），每个 MLE 任务只有 1 个重复，结论只能当作线索。
+    </div>
+    <div class="tldr">
+      <h2 class="tldr-h">一段话版本</h2>
+      <p>同一个基座语言模型、同一份冻结的起始代码、同一批第 1 轮候选假设：A 臂 AI 全程自主；B 臂每轮由 Claude 代人类从 3 个候选里点一个；C 臂每轮由 Claude 代人类写一段批评，AI 读后自己选。每轮被选中的假设都会被 AI 写成代码，在隔离沙箱里与“当前最好代码”做一次对照实验，只看冻结验证集分数；20 轮结束后，才用官方测试集给验证集最好的那份代码评一次分，并对照 Kaggle 奖牌线。下面先从 0 到 1 讲清楚做法，再给出全部任务的结果和每一轮的原始轨迹。<span id="tldr-status"></span></p>
+      <div class="facts" id="facts"></div>
     </div>
   </div>
 </header>
 
-<nav class="toc wrap" aria-label="目录">
-  <a href="#design">实验设计</a><a href="#results">最终结果</a><a href="#curves">迭代曲线</a><a href="#explorer">逐轮浏览</a><a href="#disclosure">披露与局限</a>
+<nav class="toc" aria-label="目录">
+  <div class="wrap toc-in">
+    <a href="#zero">从 0 到 1</a><a href="#overview">结果总览</a><a href="#tasks">任务与轨迹</a><a href="#takeaways">宏观总结与建议</a><a href="#disclosure">披露与局限</a>
+  </div>
 </nav>
 
 <main class="wrap">
-<section id="design">
-  <h2>实验设计</h2>
+
+<!-- ============================== 从 0 到 1 ============================== -->
+<section id="zero">
+  <h2>从 0 到 1：这个项目在做什么</h2>
+
+  <h3>1. 动机：自主迭代的 AI 研究员会不会“越走越偏”？</h3>
+  <p class="prose">DiscoveryRSI 这类 AI 科研系统把研究表示成一个循环：提出若干竞争假设，挑一个去做实验，根据真实结果修正，再提下一批。循环跑得越久，早期的误判越可能累积：反复选择表述漂亮但证据薄弱的方向、偏爱熟悉的方法、或者一味追逐看得见的验证分数。</p>
+  <p class="prose">一个自然的想法是在关键节点让人插手。专家也许只需一句话（“这两列可能来自同一测量，先排除泄漏”）就能把搜索拉回正轨；但人也可能锚定在自己熟悉的方向上，压制 AI 本来有效的探索。所以我们要回答的问题是：</p>
+  <blockquote class="question">在题目、模型、可见信息和每轮实验预算都固定的前提下，人在检查点上的轻量介入（点选一个候选，或写一段批评），能否让“假设驱动”的迭代更有效？如果有效，是因为选对了分支，还是因为带来了新知识、纠正了错误？</blockquote>
+  <p class="prose">研究边界：原题目标、允许的数据、数据划分和官方评分器全部固定；三种方式只改变“提出什么假设、选哪一个去做”。模型权重全程不更新，人的意见只作为上下文进入后续推理。</p>
+
+  <h3>2. 三臂设计：只有“谁来选”不同</h3>
   <div class="arms">
-    <div class="arm-card"><span class="key" data-arm="A"></span><h3>A · AI 自主</h3><p>每轮 AI 生成 3 个候选假设，自己选 1 个，写实验代码，跑对照/干预，读结果，进入下一轮。</p></div>
-    <div class="arm-card"><span class="key" data-arm="B"></span><h3>B · 人类选择</h3><p>流程同 A，但每轮由"人类"在 3 个候选中挑选要执行的一个（可附理由）。本试跑中由 Claude 代选。</p></div>
-    <div class="arm-card"><span class="key" data-arm="C"></span><h3>C · 人类批评 → AI 选择</h3><p>"人类"先对 3 个候选写批评意见，AI 读完批评后自己做选择，并在下一轮生成时参考。本试跑中由 Claude 代写批评。</p></div>
+    <div class="arm-card"><h4><span class="key" data-arm="A"></span>A · AI 自主</h4><p>AI 每轮生成 3 个候选假设，自己选 1 个，写代码、跑实验、读结果，进入下一轮。没有任何中途意见。</p></div>
+    <div class="arm-card"><h4><span class="key" data-arm="B"></span>B · 人类点选 <small>（本次由 Claude 代人类）</small></h4><p>流程同 A，但每轮由“人”在 3 个候选里点一个。接口只接受候选编号，不接受任何文字建议。</p></div>
+    <div class="arm-card"><h4><span class="key" data-arm="C"></span>C · 人类批评 → AI 选择 <small>（本次由 Claude 代人类）</small></h4><p>“人”不能点选，只能写一段批评/建议；AI 必须逐条回应后自己选，批评同时进入下一轮的候选生成。所以 C 是“影响选择 + 影响生成”的组合干预。</p></div>
   </div>
-  <div class="facts">
-    <div><b>20</b><span>轮 / 臂</span></div>
-    <div><b>3</b><span>候选假设 / 轮</span></div>
-    <div><b>6</b><span>个任务（1 Nature + 5 MLE-bench）</span></div>
-    <div><b>480</b><span>轮对照实验</span></div>
+  <p class="prose">三臂保持一致的东西：同一任务、同一份冻结的起始代码（基线）、同一个基座模型和提示词、第 1 轮共享同一批 3 个候选（每臂展示顺序随机打乱）、每轮恰好一次对照 + 一次干预执行、都跑 20 轮。</p>
+
+  <h3>3. 一轮里发生了什么</h3>
+  <ol class="flow" aria-label="一轮的流程">
+    <li class="step"><b>起点</b><span>当前最好代码（incumbent）+ 本臂此前所有轮的实验证据</span></li>
+    <li class="step"><b>① 生成</b><span>AI 提出 3 个互相竞争、可检验的假设：每个都写明预测、只改一处的对照实验、成功判据、证伪条件和其他解释</span></li>
+    <li class="step"><b>② 批评修订</b><span>AI 换成“审稿人”角色，按原题目标、已测证据和资源限制修订这 3 个候选（不打主观分）</span></li>
+    <li class="step step-split"><b>③ 选择：三臂唯一不同之处</b>
+      <span class="armrow"><i data-arm="A"></i>A：AI 自己选</span>
+      <span class="armrow"><i data-arm="B"></i>B：Claude 代人类点选一个</span>
+      <span class="armrow"><i data-arm="C"></i>C：Claude 写批评 → AI 回应后选</span>
+    </li>
+    <li class="step"><b>④ 实现</b><span>AI 只在当前最好代码上实施被选中的那一处改动，输出完整 Python 程序</span></li>
+    <li class="step"><b>⑤ 对照实验</b><span>隔离沙箱里分别运行“对照”（当前最好代码原样）和“干预”（改动后），8 CPU / 16 GiB / 600 秒，无网络，单种子</span></li>
+    <li class="step"><b>⑥ 打分</b><span>官方评分器在冻结验证集上给两边打分（Nature 任务为在线 mean_g），算出 Δ = 干预 − 对照</span></li>
+    <li class="step"><b>⑦ 反思</b><span>AI 读真实回执和两份源码，先查实现是否忠于假设，再给出证据判定和下一步建议</span></li>
+    <li class="step step-loop"><b>↻ 下一轮</b><span>验证分更好的代码成为新的 incumbent；失败的尝试作为证据保留，但不会成为起点</span></li>
+  </ol>
+  <p class="prose">证据判定共四种：<span class="ev" data-ev="preliminary_support">初步支持</span> <span class="ev" data-ev="not_supported">不支持</span> <span class="ev" data-ev="inconclusive">不确定</span> <span class="ev" data-ev="implementation_mismatch">实现与假设不符</span>。“初步”是因为每轮只有一次单种子对照，不能当作因果证明。20 轮结束后：<b>MLE 任务</b>从全部已执行的代码里挑验证分最好的一份，用官方私有测试集只评一次分，再对照该比赛 Kaggle 排行榜的奖牌线；<b>Nature 任务</b>没有独立测试集，最终分就是 20 轮中见过的最好在线分数。</p>
+
+  <h3>4. 具体实现</h3>
+  <div class="impl">
+    <div class="impl-item"><h4>研究引擎</h4><p>一个固定版本的基座语言模型，用 5 种提示词角色串起一轮：生成、批评修订、选择（A、C 臂）、实现、反思。所有角色都只能看到公开的任务说明、当前最好代码和本臂的执行历史。这是 DiscoveryRSI 研究流程的精简实现，还不是完整的多智能体运行时（没有文献检索和文件工具）。</p></div>
+    <div class="impl-item"><h4>沙箱执行器</h4><p>代码交给独立的控制器在无网络的容器中运行，每次 8 CPU、16 GiB 内存，MLE 每次限时 600 秒（Nature 300 秒），只能用 numpy、scipy、pandas、scikit-learn、LightGBM、XGBoost 等库，没有 GPU。模型拿不到服务器 shell；控制器检查代码大小和输出文件格式，并给源码与回执记哈希。</p></div>
+    <div class="impl-item"><h4>验证集与测试集分离</h4><p>MLE 任务：把官方公开训练集按固定随机种子一次性切出冻结验证集（呼吸、分子、句子这类成组数据整组切分，防止相邻样本泄漏）。每轮反馈只有验证分；官方私有测试答案只在控制器内部，运行期间 AI 和 Claude 都看不到，20 轮后只对验证集选出的那份代码读一次。</p></div>
+    <div class="impl-item"><h4>当前最好代码（incumbent）</h4><p>控制器在本臂全部已完成的执行（对照与干预）中，取验证分最好的那份源码作为下一轮的对照。被选中的假设即使失败，也会作为证据留在上下文里，但不会成为下一轮的起点。</p></div>
+    <div class="impl-item"><h4>重试与归档</h4><p>模型输出不合规（JSON 解析失败、候选格式错误、代码无法解析）时，同一阶段最多重新请求 3 次，每次尝试单独存档。对照执行失败视为基础设施问题，本轮停止，不算作假设被否定；这类轮次先把失败记录隔离归档，再从同一检查点重跑。干预代码自己崩溃或超时，则如实记为“实现与假设不符”。</p></div>
+    <div class="impl-item"><h4>Claude 如何代人类决策</h4><p>通过运营者的待办收件箱：每个待决检查点显示该臂此前每轮的选择、对照/干预分数、AI 反思，以及本轮 3 个候选的标题、主张、实验和证伪条件。B 臂只提交一个候选编号；C 臂只提交一段批评文字。每条决策带时间戳记入日志。Claude 的原则是只用同一重复内的信息、力求提升原题分数、做可证伪的选择；但它同时为同一任务的 B、C 两臂做决定，也用了自己对这些 Kaggle 题的先验知识。</p></div>
   </div>
-  <p class="prose">每一轮都是一次<em>对照实验</em>：控制组 = 当前最优方案（incumbent），干预组 = 在其上实施所选假设的改动，两者在同一环境下运行并打分。AI 随后写反思，把证据标为 <span class="ev" data-ev="preliminary_support"></span>、<span class="ev" data-ev="not_supported"></span>、<span class="ev" data-ev="inconclusive"></span> 或 <span class="ev" data-ev="implementation_mismatch"></span>。三臂共享同一个初始候选池，第 1 轮起点相同。</p>
-  <p class="prose"><b>MLE-bench</b>：迭代时只看从公开训练集切出的验证集分数；官方私有测试集只在最后对"验证集最优"方案评一次，并对照 Kaggle 排行榜奖牌线。<b>Nature 任务</b>（两模态单细胞聚类，s43588-024-00689-2）：用原题官方指标 mean_g 在线反馈，<em>没有</em>独立的未见测试集，跑了 3 个重复（replicate）。</p>
+  <p class="prose small muted">本页只公开摘要级信息：候选假设的标题、主张与实验概要，选择理由与批评，对照/干预分数，证据判定，截断后的反思。完整提示词、模型原始输出、源代码和运行配置不公开。</p>
+
+  <h3>5. 主要局限（完整版见<a href="#disclosure">披露</a>）</h3>
+  <ul class="prose-list">
+    <li>B、C 的“人”是 Claude，不是真人；Claude 能看到同一任务各臂进展，三臂并不独立。</li>
+    <li>每个 MLE 任务只有 1 个重复，Nature 任务 3 个重复；每轮对照/干预都是单种子，很多 Δ 落在噪声范围内。个别基线本身不是逐位可复现的（同一代码重复运行分数不同），详见对应任务页。</li>
+    <li>“验证集最优”是约 40 次带噪评估中的最大值，天然偏乐观；这正是需要独立测试集的原因。</li>
+    <li>CPU 沙箱、600 秒限时，不是 MLE-bench 官方的 24 小时 GPU 智能体协议；奖牌线仅作参照，不是官方成绩。Nature 任务没有运行官方有效性审查。</li>
+  </ul>
 </section>
 
-<section id="results">
-  <h2>最终结果</h2>
-  <div id="takeaways" class="takeaways"></div>
-  <div class="legend" id="legend-results"></div>
-  <div id="final-charts" class="grid"></div>
-  <details class="table-view"><summary>数据表</summary><div id="final-table"></div></details>
+<!-- ============================== 结果总览 ============================== -->
+<section id="overview">
+  <h2>结果总览</h2>
+  <p class="prose">每一行是一个任务（Nature 任务按重复分行）。横轴是<b>差距关闭比例</b>：把“冻结基线”到“满分”之间的距离记为 100%，看各臂 20 轮里在验证集上走完了多少。对 AUC、准确率、QWK 这类满分为 1 的指标，它等于（最优 − 基线）/（1 − 基线）；对 log loss、RMSE、MAE 这类越低越好、满分为 0 的指标，它就是误差降低的百分比；CHAMPS 的 log MAE 可为负数，换算成几何平均 MAE 的降低比例；Nature 的 mean_g 用论文参照 ARI 推出“全部聚对”时的满分。基线取同一份基线代码所有运行的平均。这样不同指标的任务可以放在一把尺子上，但它仍是<b>验证集</b>上的最好值，偏乐观；测试集结果见下表。点击任一行查看该任务的逐轮轨迹。</p>
+  <div class="legend" id="legend-overview"></div>
+  <div class="card chart-card"><div id="overview-chart" class="chart"></div></div>
+
+  <h3>全部任务 × 三臂</h3>
+  <p class="prose small muted">测试集分数只对每臂“验证集最优”的那份代码评一次；奖牌按该比赛 Kaggle 排行榜阈值判定（CPU 沙箱、非官方协议，仅作参照）。模型调用与 token 为本臂实际记录；第 1 轮共享候选的生成成本只记在一个臂上。进行中的任务没有测试分。点击任一行打开该任务。</p>
+  <div class="table-wrap"><table id="overview-table" class="ov-table"></table></div>
 </section>
 
-<section id="curves">
-  <h2>迭代曲线</h2>
-  <p class="prose">每条线是该臂截至第 n 轮"见过的最好分数"（MLE 为验证集，Nature 为 mean_g）。悬停查看每轮数值。</p>
-  <div class="legend" id="legend-curves"></div>
-  <div id="curve-charts" class="grid"></div>
+<!-- ============================== 任务与轨迹 ============================== -->
+<section id="tasks">
+  <h2>任务与轨迹</h2>
+  <p class="prose">先选一个任务。每个任务给出白话说明、冻结基线、最终结果，以及三臂 20 轮的验证分轨迹；点轨迹上的点或下方表格里的任一格，可以看那一轮的 3 个候选假设、谁选了哪个、Claude 的批评、对照与干预分数和 AI 的解读。</p>
+  <div id="task-grid" class="task-grid"></div>
+  <div id="task-detail" class="task-detail" hidden></div>
 </section>
 
-<section id="explorer">
-  <h2>逐轮浏览</h2>
-  <div class="filters">
-    <label>任务 <select id="study-select"></select></label>
-    <div class="seg" id="arm-seg" role="tablist" aria-label="臂"></div>
-  </div>
-  <div id="strips"></div>
-  <div id="rounds"></div>
+<!-- ============================== 宏观总结 ============================== -->
+<section id="takeaways">
+  <h2>宏观总结与建议</h2>
+  <div id="takeaways-body" class="doc"><p class="muted">加载中…</p></div>
 </section>
 
+<!-- ============================== 披露 ============================== -->
 <section id="disclosure">
   <h2>披露与局限</h2>
-  <h3>决策者与信息污染</h3>
-  <ul class="prose-list">
-    <li>B、C 两臂的全部选择与批评由 Claude Opus 代为完成，没有真人参与；"人类耗时"只是 Claude 的处理延迟。</li>
-    <li>Claude 在为某一臂做决定时，能看到同一任务其他臂的进展，因此 B/C 之间、以及 B/C 与 A 之间并非独立。已知的具体情形：
-      <ul>
-        <li>Spooky：B 臂选用 C=4.0 正则化时，已经知道 C 臂对应的结果；B 臂的温度校准出现在 C 臂建议温度校准之后；C 臂"字符特征权重 0.5"呼应了 B 臂。</li>
-        <li>Spooky C 第 13 轮被标记为"实现与假设不符"，原因是 Claude 的批评与假设原文相冲突。</li>
-        <li>NOMAD：C 臂批评建议的"每原子体积"特征，B 臂此前已用过。</li>
-        <li>Tabular：C 臂推动 num_leaves 调参时已知 B 臂在 num_leaves 上的收益；C 臂降低 feature_fraction 优先级时已知 B 臂 colsample 0.6 失败；对"频次特征"曾写"再失败就放弃"，之后又给了一次机会。</li>
-        <li>Leaf：B、C 两臂在正则强度 C=10、温度校准（B 选 T=1.1 / p^0.9 时已知 C 臂校准有效）、margin 列 log1p 等处互相参照；B 臂第 18 轮收紧收敛容差时，已在 C 臂候选描述中看到收紧迭代带来的大幅提升；B 臂最后一轮的 texture 压缩选择知道 C 臂用了 log1p。</li>
-        <li>Pizza：B 臂选择周期时间编码、标题/正文分块、标题 min_df=1 时，均已知 C 臂对应方向的结果；C 臂批评中"帖子越详细越容易成功"来自 Claude 对该题的先验知识。</li>
-        <li>Claude 的 C 臂批评经常是错的：Leaf 上连续多次推荐的改动（LDA、行归一化、分块加权、逐类尺度、5 折 bagging）全部变差，最严重一次 log loss 从 0.054 变为 0.359；Pizza 上推荐的标题 min_df=2、秩平均、追加长度列也都变差。每次失败都在下一轮批评中明确承认。</li>
-      </ul>
-    </li>
-    <li>Claude 在决策中使用了自身的领域知识（例如各 Kaggle 题的常见做法），这相当于一位有经验的人类，但不代表普通参与者。</li>
-    <li>每轮决策只依据本次重复内的信息，未使用其他重复（replicate）的结果。</li>
-  </ul>
-  <h3>执行与评测</h3>
-  <ul class="prose-list">
-    <li>NOMAD C 第 16、17 轮的实现读取了验证集标签，已被反思标为"实现与假设不符"；这两轮的分数不可信。</li>
-    <li>Nature 第 2 个重复中，B 臂在同一基线上反复出现"实现与假设不符"。</li>
-    <li>Nature 共有 7 次基础设施故障（非模型原因），这些轮次在隔离失败记录后重跑。</li>
-    <li>MLE-bench 只跑在 8 CPU / 16 GiB / 每次 600 秒的沙箱里，不是官方 24 小时 agent 协议；奖牌线仅作参照，不是官方成绩。</li>
-    <li>Nature 任务没有独立测试集，最终分数就是迭代时看到的最好分数，存在对在线反馈过拟合的可能；官方有效性评审未运行。</li>
-    <li>每个 MLE 任务只有 1 个重复；Nature 只有 3 个重复，且 C 臂均值主要由第 2 个重复（0.224）拉动。</li>
-  </ul>
-  <h3>系统自带的局限声明</h3>
-  <ul class="prose-list" id="limitations"></ul>
-  <p class="muted small">本页只公开摘要级信息：候选假设标题与主张、选择理由与批评、对照/干预分数、证据判定与截断后的反思。完整提示词、模型原始输出与代码未公开。数据生成于 <span id="generated"></span>。</p>
+  <div id="disclosures-body" class="doc"><p class="muted">加载中…</p></div>
+  <details class="table-view"><summary>系统导出自带的局限声明（英文原文）</summary><ul class="prose-list" id="limitations"></ul></details>
+  <p class="muted small">数据导出时间：<span id="generated">—</span>。</p>
 </section>
 </main>
 
