@@ -47,6 +47,8 @@
   const dirWord = (s) => (s.direction === 'lower' ? '越低越好' : '越高越好');
   const better = (s, a, b) => (s.direction === 'lower' ? a < b : a > b);
   const metricLabel = (s) => s.metric;
+  // MLE-bench's prepare.py keeps structures only for train molecules, so these test scores measure missing-data handling.
+  const TEST_INVALID = { 'champs-scalar-coupling': '测试分无效：所用 MLE-bench 版本的数据准备脚本只保留了训练分子的结构数据，8502 个测试分子全部没有坐标，而验证分子有。下面的测试分主要反映代码如何处理缺失坐标，不反映预测能力，也不计入测试集比较。详见“披露与局限”。' };
   function studyLabel(s) {
     const many = INDEX.studies.filter((x) => x.task_id === s.task_id).length > 1;
     return many ? `${s.name} · 重复 ${s.replicate}` : s.name;
@@ -200,13 +202,13 @@
         if (k === 0) tr.append(el('th', { scope: 'rowgroup', rowspan: 3, class: 'task-cell' }, el('span', {}, studyLabel(s)),
           el('small', {}, `${metricLabel(s)} · ${dirWord(s)}`), s.status !== 'complete' ? el('small', { class: 'chip run' }, '进行中') : null));
         const sw = el('i', { class: 'dot' }); sw.style.background = color(a);
-        const final = s.bench === 'mle-bench' ? (r.final ? fmt(r.final.value, s) : '待揭晓') : '无独立测试集';
+        const final = s.bench === 'mle-bench' ? (r.final ? fmt(r.final.value, s) + (TEST_INVALID[s.task_id] ? ' *' : '') : '待揭晓') : '无独立测试集';
         tr.append(el('td', { class: 'arm-cell' }, sw, a),
           el('td', {}, `${r.rounds}/${s.planned}` + (r.status === 'complete' ? '' : ' · 进行中')),
           el('td', { class: 'num' }, `${fmt(r.baseline, s)} → ${fmt(r.best, s)}`),
           el('td', { class: 'num' }, pct(r.gap)),
           el('td', { class: 'num' }, final),
-          el('td', {}, medalText(r.final, s)),
+          el('td', {}, TEST_INVALID[s.task_id] ? '* 无效' : medalText(r.final, s)),
           el('td', { class: 'num' }, r.cost.calls ?? '—'),
           el('td', { class: 'num' }, wan((r.cost.prompt || 0) + (r.cost.completion || 0))));
         tb.append(tr);
@@ -324,6 +326,7 @@
       card.append(el('p', { class: 'muted small' }, isMle ? '进行中：测试集分数要等该臂 20 轮全部完成后才评一次。' : '进行中。'));
       return;
     }
+    if (TEST_INVALID[s.task_id]) card.append(el('div', { class: 'notice placeholder', role: 'note' }, el('strong', {}, TEST_INVALID[s.task_id])));
     card.append(el('p', { class: 'sub' }, isMle
       ? `官方测试集 ${metricLabel(s)}（${dirWord(s)}），每臂只对验证集最优的代码评一次；竖线为该比赛 Kaggle 排行榜的奖牌线/中位线（仅作参照）。`
       : 'mean_g（20 轮在线反馈中见过的最好值；没有独立测试集），0 = 与论文参照持平。'));
