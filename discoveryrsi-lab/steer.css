@@ -1,0 +1,53 @@
+/* SteerRSI skin: cool paper ground, editorial serif headings with italic accents, one violet accent.
+   Loaded after style.css; only overrides look, never layout the charts depend on. */
+:root {
+  --paper: #F5F5F8; --sheet: #FFFFFF; --st-ink: #16151C; --st-muted: #5C5C66; --st-rule: #DCDCE3;
+  --accent: #584B9A; --accent-ink: #3C336B; --accent-wash: #ECEAF6;
+  --st-A: #4568B3; --st-B: #C0732E; --st-C: #2E8A63; --st-X: #7279A7;
+  --serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", "Songti SC", "Noto Serif SC", Georgia, serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0F0F14; --sheet: #17171E; --st-ink: #ECEBF2; --st-muted: #A9A8B6; --st-rule: #2C2B36;
+    --accent: #A99FE6; --accent-ink: #CAC3F4; --accent-wash: #211E34;
+    --st-A: #6E8FE6; --st-B: #CF7A36; --st-C: #35A874; --st-X: #A9AED8;
+  }
+}
+body { background: var(--paper); color: var(--st-ink); font-family: "Inter", system-ui, -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; }
+.hero { background: linear-gradient(180deg, var(--accent-wash), var(--paper) 78%); border-bottom: 1px solid var(--st-rule); padding: 64px 0 28px; }
+.hero h1 { font-family: var(--serif); font-weight: 600; font-size: 64px; letter-spacing: -0.02em; margin: 0 0 6px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.subtitle { font-family: var(--serif); font-size: 22px; color: var(--st-muted); margin: 0 0 22px; }
+.eyebrow { text-transform: uppercase; letter-spacing: .12em; font-size: 12px; color: var(--accent); }
+.eyebrow a { color: inherit; }
+h2 { font-family: var(--serif); font-weight: 600; font-size: 32px; letter-spacing: -0.01em; border-top: 1px solid var(--st-rule); padding-top: 28px; }
+h3 { font-family: var(--serif); font-weight: 600; }
+.toc { background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--st-rule); }
+.toc a { color: var(--st-muted); }
+.toc a:hover { color: var(--accent); text-decoration: none; }
+.notice { background: var(--sheet); border: 1px solid var(--st-rule); border-left: 3px solid var(--accent); box-shadow: 0 1px 2px rgb(22 21 40 / .05), 0 8px 24px -12px rgb(22 21 40 / .12); }
+.tldr, .card, .arm-card { background: var(--sheet); border: 1px solid var(--st-rule); border-radius: 14px; box-shadow: 0 1px 2px rgb(22 21 40 / .04); }
+
+/* bias section */
+.bias-body { margin: 20px 0 8px; }
+.bb-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; margin-bottom: 18px; }
+.bb-fact { background: var(--sheet); border: 1px solid var(--st-rule); border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px; }
+.bb-fact b { font-family: var(--serif); font-size: 38px; line-height: 1.05; color: var(--accent); font-weight: 600; }
+.bb-fact span { font-weight: 600; font-size: 14px; }
+.bb-fact small { color: var(--st-muted); font-size: 12px; line-height: 1.4; }
+.bb-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 14px; }
+.bb-card { background: var(--sheet); border: 1px solid var(--st-rule); border-radius: 14px; padding: 18px 20px; }
+.bb-card h4 { font-family: var(--serif); font-size: 18px; margin: 0 0 4px; }
+.bb-note { color: var(--st-muted); font-size: 13px; margin: 0 0 14px; line-height: 1.5; }
+.bb-row { display: grid; grid-template-columns: 92px 1fr auto; align-items: center; gap: 10px; margin: 8px 0; font-size: 13px; }
+.bb-label { color: var(--st-muted); }
+.bb-track { position: relative; height: 12px; background: var(--accent-wash); border-radius: 6px; }
+.bb-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 6px; }
+.bb-fill.arm-A { background: var(--st-A); } .bb-fill.arm-B { background: var(--st-B); }
+.bb-fill.arm-C { background: var(--st-C); } .bb-fill.arm-X { background: var(--st-X); }
+.bb-ci { position: absolute; top: 4px; height: 4px; background: var(--st-ink); opacity: .55; border-radius: 2px; }
+.bb-val { font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+.bb-val small { color: var(--st-muted); font-weight: 400; }
+.bias-read { margin-top: 22px; }
+@media (max-width: 640px) { .hero h1 { font-size: 46px; } .bb-row { grid-template-columns: 74px 1fr auto; } }
+.tldr .tldr-h { border-top: 0; padding-top: 0; font-size: 22px; }

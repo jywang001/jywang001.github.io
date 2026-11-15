@@ -1,0 +1,130 @@
+{
+ "rounds": 1051,
+ "tasks": 17,
+ "optimism": {
+  "claimed_support": 229,
+  "actually_improved": 176,
+  "false_support_rate_pct": 23.1,
+  "by_status": {
+   "inconclusive": {
+    "n": 410,
+    "improved_pct": 27.8
+   },
+   "not_supported": {
+    "n": 350,
+    "improved_pct": 8.3
+   },
+   "preliminary_support": {
+    "n": 229,
+    "improved_pct": 76.9
+   },
+   "implementation_mismatch": {
+    "n": 62,
+    "improved_pct": 4.8
+   }
+  },
+  "base_rate_improved_pct": 30.6
+ },
+ "noise": {
+  "improving_rounds": 322,
+  "within_noise_floor": 174,
+  "within_noise_pct": 54.0,
+  "definition": "improvement no larger than the median size of this task's regressions"
+ },
+ "winners_curse": {
+  "runs": 56,
+  "median_gain_to_loss_ratio": 0.62,
+  "note": "a ratio near 1 means improvements are the same size as the regressions around them"
+ },
+ "selection": {
+  "position_share_pct": {
+   "0": 39.2,
+   "1": 32.4,
+   "2": 28.4
+  },
+  "picks_longest_pct": 42.0,
+  "improved_pct_when_longest": 32.2,
+  "improved_pct_when_not_longest": 29.5
+ },
+ "arms": {
+  "A": {
+   "rounds": 353,
+   "improved_pct": 21.2,
+   "claimed_support_pct": 19.5,
+   "improved_ci": [
+    17.3,
+    25.5
+   ],
+   "claimed": 69,
+   "false_support_pct": 52.2,
+   "false_support_ci": [
+    40.6,
+    63.8
+   ]
+  },
+  "B": {
+   "rounds": 356,
+   "improved_pct": 33.7,
+   "claimed_support_pct": 23.6,
+   "improved_ci": [
+    28.9,
+    38.5
+   ],
+   "claimed": 84,
+   "false_support_pct": 10.7,
+   "false_support_ci": [
+    4.8,
+    17.9
+   ]
+  },
+  "C": {
+   "rounds": 342,
+   "improved_pct": 37.1,
+   "claimed_support_pct": 22.2,
+   "improved_ci": [
+    32.2,
+    42.4
+   ],
+   "claimed": 76,
+   "false_support_pct": 10.5,
+   "false_support_ci": [
+    5.3,
+    18.4
+   ]
+  }
+ },
+ "hedged_support": {
+  "claimed_support": 229,
+  "support_that_admits_noise_in_limitations": 177,
+  "pct": 77.3
+ },
+ "streaks": [
+  {
+   "failures_in_a_row": 0,
+   "rounds": 369,
+   "improved_pct": 47.7
+  },
+  {
+   "failures_in_a_row": 1,
+   "rounds": 186,
+   "improved_pct": 34.9
+  },
+  {
+   "failures_in_a_row": 2,
+   "rounds": 116,
+   "improved_pct": 25.0
+  },
+  {
+   "failures_in_a_row": 3,
+   "rounds": 82,
+   "improved_pct": 18.3
+  },
+  {
+   "failures_in_a_row": 4,
+   "rounds": 62,
+   "improved_pct": 14.5
+  }
+ ],
+ "generated": "2026-11-15T12:25:57Z",
+ "source": "11-06 exports, validation scores only; A/B/C arms; 17 tasks"
+}

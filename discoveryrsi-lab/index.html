@@ -3,15 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DiscoveryRSI++ 三臂实验 · 人该在 AI 科研迭代的哪里插手？</title>
-<meta name="description" content="三臂对照实验：AI 自主 / 人类点选 / 人类批评后 AI 选择，在 1 个 Nature 论文任务与 16 个 MLE-bench 任务上的逐轮记录。">
+<title>SteerRSI · 谁来给 AI 科学家掌舵？</title>
+<meta name="description" content="SteerRSI：三臂对照实验：AI 自主 / 人类点选 / 人类批评后 AI 选择，在 1 个 Nature 论文任务与 16 个 MLE-bench 任务上的逐轮记录。">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="steer.css">
 </head>
 <body>
 <header class="hero">
   <div class="wrap">
-    <p class="eyebrow"><a href="/">wjysite.com</a> / discoveryrsi-lab</p>
-    <h1>DiscoveryRSI++ 三臂实验</h1>
+    <p class="eyebrow"><a href="/">wjysite.com</a> / discoveryrsi-lab · 前身 DiscoveryRSI++</p>
+    <h1>Steer<em>RSI</em></h1>
+    <p class="subtitle">谁来给 AI 科学家掌舵？—— 决策者受控对照与偏差诊断</p>
     <p class="lede">让 AI 像研究员一样，围绕一道固定的机器学习/科学题目反复“提出假设 → 做对照实验 → 读结果 → 再提假设”，每个任务迭代 20 轮。我们比较三种决策方式：AI 自己选方向、“人”从 AI 的候选里点选、“人”先写批评再由 AI 选。想知道的是：人在这个循环里插手，到底有没有用，用在哪里。</p>
     <div class="notice" role="note">
       <strong>请先读这条：</strong>本次运行中，B、C 两臂的“人类”决策全部由 <b>Claude（Anthropic 的 Opus 模型）代人类完成</b>（经作者授权），不是真人实验。Claude 在同一任务里同时为 B、C 两臂做决定，能看到各臂进展，存在跨臂信息污染；Claude 给出的不少建议也被实验证明是错的。详见<a href="#disclosure">披露与局限</a>。这是一项工程试跑（pilot），每个 MLE 任务只有 1 个重复，结论只能当作线索。
@@ -27,7 +31,7 @@
 
 <nav class="toc" aria-label="目录">
   <div class="wrap toc-in">
-    <a href="#zero">从 0 到 1</a><a href="#overview">结果总览</a><a href="#tasks">任务与轨迹</a><a href="#takeaways">宏观总结与建议</a><a href="#disclosure">披露与局限</a>
+    <a href="#zero">从 0 到 1</a><a href="#bias">偏差诊断</a><a href="#overview">结果总览</a><a href="#tasks">任务与轨迹</a><a href="#takeaways">宏观总结与建议</a><a href="#disclosure">披露与局限</a>
   </div>
 </nav>
 
@@ -90,6 +94,23 @@
   </ul>
 </section>
 
+<!-- ============================== 偏差诊断 ============================== -->
+<section id="bias">
+  <h2>偏差诊断：AI 科学家的判断哪里不可信</h2>
+  <p class="prose">先别急着改系统。我们把 A/B/C 三臂 1051 个已执行的轮次摊开，只用验证分（不碰封存的测试分），看循环里的“判断”和“实测”在哪里对不上。这些数字是我们想从 harness 层去修正的对象。</p>
+  <div id="bias-body" class="bias-body"><p class="muted">加载中…</p></div>
+  <div class="bias-read">
+    <h3>怎么读这几张图</h3>
+    <ul class="prose-list">
+      <li><b>A 臂自称“支持”时，约一半实际没涨；B、C 约十分之一。</b>两者的 95% 区间不重叠。同一个模型、同一个起点，只有“谁来选”不同，自评的可信度就差出数倍。这是 harness 要补的第一处：判定不该由模型自述，而该由分数驱动。<b>但要注意</b>：A 臂每轮真正改进的比例也更低（21% 对 34%/37%），“支持”里假阳性多一部分是基数低造成的；这里还不能区分“A 更乐观”和“A 的提案更差”，需要把同一批候选分别执行才能拆开。</li>
+      <li><b>超过一半的“改进”没有超出该任务退步的中位幅度。</b>20 轮里取“最好验证分”，天然会把噪声当成改进（赢家诅咒）。后续的持出确认（改进必须在第二份验证集上复现才计入）正是对症的干预。</li>
+      <li><b>连败越久越难成功。</b>连续 4 轮没有改进后，下一轮成功率只有 14.5%，而刚改进过之后是 47.7%。方向被证伪后仍在附近打转，应当由 harness 强制保留“已证伪方向”清单。</li>
+      <li><b>位置和长度没有明显偏好。</b>选第 1/2/3 个候选的比例约 39/32/28，选中最长候选的比例 42%，各自的成功率差异都在区间之内，所以我们<b>没有</b>证据说这里存在偏差。</li>
+    </ul>
+    <p class="muted small">口径与局限：噪声底用“该任务退步的中位幅度”估计，是粗略代理，不是重复执行得到的真实方差；每个任务只有 1 个重复，任务间并非独立；B、C 的“人”是 Claude，与 A 臂的底模同属 AI，不能解读为真人效果。完整脚本见仓库 <code>scripts/bias_analysis.py</code>。数据生成于 <span id="bias-generated">—</span>。</p>
+  </div>
+</section>
+
 <!-- ============================== 结果总览 ============================== -->
 <section id="overview">
   <h2>结果总览</h2>
@@ -126,10 +147,11 @@
 </main>
 
 <footer class="wrap muted small">
-  <p>DiscoveryRSI Lab · Junyang Wang · <a href="/">返回主页</a></p>
+  <p>SteerRSI · Junyang Wang · <a href="/">返回主页</a></p>
 </footer>
 
 <div id="tooltip" class="tooltip" role="status" hidden></div>
 <script src="app.js"></script>
+<script src="bias.js"></script>
 </body>
 </html>
