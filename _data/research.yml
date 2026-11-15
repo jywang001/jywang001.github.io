@@ -45,7 +45,7 @@
     - label: Code
       url: https://github.com/Gen-Verse/DiscoveryRSI
     - label: Lab
-      url: /discoveryrsi-lab/
+      url: /steerrsi/
 
 - id: ascribe
   short_name: ASCRIBE
