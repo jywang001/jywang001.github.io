@@ -4,135 +4,103 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SteerRSI · 谁来给 AI 科学家掌舵？</title>
-<meta name="description" content="SteerRSI：三臂对照实验：AI 自主 / 外部点选 / 外部批评后 AI 选择，在 1 个 Nature 论文任务与 16 个 MLE-bench 任务上的逐轮记录。">
+<meta name="description" content="SteerRSI：在固定题目与预算下，比较 AI 自主、外部点选、外部批评三种掌舵方式，并诊断 AI 科学家判断中的偏差。">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="steer.css">
+<script>try{var t=localStorage.getItem('steer-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 </head>
 <body>
-<header class="hero">
+<div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<header class="masthead">
   <div class="wrap">
-    <p class="eyebrow"><a href="/">wjysite.com</a> / steerrsi</p>
-    <h1>Steer<em>RSI</em></h1>
-    <p class="subtitle">谁来给 AI 科学家掌舵？—— 决策者受控对照与偏差诊断</p>
-    <p class="lede">让 AI 像研究员一样，围绕一道固定的机器学习/科学题目反复“提出假设 → 做对照实验 → 读结果 → 再提假设”，每个任务迭代 20 轮。我们比较三种决策方式：AI 自己选方向、外部决策者从 AI 的候选里点选、外部决策者先写批评再由 AI 选。想知道的是：谁来掌舵，结果差多少，AI 自己的判断偏在哪里。</p>
-    <div class="tldr">
-      <h2 class="tldr-h">一段话版本</h2>
-      <p>同一个基座语言模型、同一份冻结的起始代码、同一批第 1 轮候选假设：A 臂 AI 全程自主；B 臂每轮由外部决策者从 3 个候选里点一个；C 臂每轮由外部决策者写一段批评，AI 读后自己选。每轮被选中的假设都写成代码，在隔离沙箱里与“当前最好代码”做一次对照实验，只看冻结验证集分数；20 轮结束后，才用官方测试集给验证集最好的那份代码评一次分，并对照 Kaggle 奖牌线。<span id="tldr-status"></span></p>
-      <p><b>结果：</b>19 组研究全部完成。在测试分有效的 15 个 MLE 任务上，C 臂 10 次第一，A 臂 3 次，B 臂 2 次。偏差诊断显示，AI 自主时自称“支持”的结论约一半实际没有提升，超过一半的“改进”落在噪声范围内——这是 SteerRSI 要在 harness 层修正的对象。</p>
-      <div class="facts" id="facts"></div>
+    <div class="pill">
+      <a class="brand" href="#top"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11.5" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="16" cy="16" r="5" fill="none" stroke="currentColor" stroke-width="1.4"/><circle class="planet" cx="27.5" cy="16" r="2.6"/></svg><span>Steer<em>RSI</em></span></a>
+      <nav aria-label="目录"><a href="#arms">三种掌舵</a><a href="#bias">偏差诊断</a><a href="#overview">结果</a><a href="#tasks">任务</a><a href="#takeaways">发现</a></nav>
+      <button class="theme" id="theme-toggle" type="button" aria-label="切换明暗主题"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></svg></button>
     </div>
   </div>
 </header>
 
-<nav class="toc" aria-label="目录">
-  <div class="wrap toc-in">
-    <a href="#zero">从 0 到 1</a><a href="#bias">偏差诊断</a><a href="#overview">结果总览</a><a href="#tasks">任务与轨迹</a><a href="#takeaways">主要发现</a>
-  </div>
-</nav>
-
-<main class="wrap">
-
-<!-- ============================== 从 0 到 1 ============================== -->
-<section id="zero">
-  <h2>从 0 到 1：这个项目在做什么</h2>
-
-  <h3>1. 动机：自主迭代的 AI 研究员会不会“越走越偏”？</h3>
-  <p class="prose">闭环 AI 科研系统把研究表示成一个循环：提出若干竞争假设，挑一个去做实验，根据真实结果修正，再提下一批。循环跑得越久，早期的误判越可能累积：反复选择表述漂亮但证据薄弱的方向、偏爱熟悉的方法、或者一味追逐看得见的验证分数。</p>
-  <p class="prose">一个自然的想法是在关键节点让人插手。专家也许只需一句话（“这两列可能来自同一测量，先排除泄漏”）就能把搜索拉回正轨；但人也可能锚定在自己熟悉的方向上，压制 AI 本来有效的探索。所以我们要回答的问题是：</p>
-  <blockquote class="question">在题目、模型、可见信息和每轮实验预算都固定的前提下，人在检查点上的轻量介入（点选一个候选，或写一段批评），能否让“假设驱动”的迭代更有效？如果有效，是因为选对了分支，还是因为带来了新知识、纠正了错误？</blockquote>
-  <p class="prose">研究边界：原题目标、允许的数据、数据划分和官方评分器全部固定；三种方式只改变“提出什么假设、选哪一个去做”。模型权重全程不更新，人的意见只作为上下文进入后续推理。</p>
-
-  <h3>2. 三臂设计：只有“谁来选”不同</h3>
-  <div class="arms">
-    <div class="arm-card"><h4><span class="key" data-arm="A"></span>A · AI 自主</h4><p>AI 每轮生成 3 个候选假设，自己选 1 个，写代码、跑实验、读结果，进入下一轮。没有任何中途意见。</p></div>
-    <div class="arm-card"><h4><span class="key" data-arm="B"></span>B · 外部点选</h4><p>流程同 A，但每轮由外部决策者在 3 个候选里点一个。接口只接受候选编号，不接受任何文字建议。</p></div>
-    <div class="arm-card"><h4><span class="key" data-arm="C"></span>C · 外部批评 → AI 选择</h4><p>决策者不能点选，只能写一段批评/建议；AI 必须逐条回应后自己选，批评同时进入下一轮的候选生成。所以 C 是“影响选择 + 影响生成”的组合干预。</p></div>
-  </div>
-  <p class="prose">三臂保持一致的东西：同一任务、同一份冻结的起始代码（基线）、同一个基座模型和提示词、第 1 轮共享同一批 3 个候选（每臂展示顺序随机打乱）、每轮恰好一次对照 + 一次干预执行、都跑 20 轮。</p>
-
-  <h3>3. 一轮里发生了什么</h3>
-  <ol class="flow" aria-label="一轮的流程">
-    <li class="step"><b>起点</b><span>当前最好代码（incumbent）+ 本臂此前所有轮的实验证据</span></li>
-    <li class="step"><b>① 生成</b><span>AI 提出 3 个互相竞争、可检验的假设：每个都写明预测、只改一处的对照实验、成功判据、证伪条件和其他解释</span></li>
-    <li class="step"><b>② 批评修订</b><span>AI 换成“审稿人”角色，按原题目标、已测证据和资源限制修订这 3 个候选（不打主观分）</span></li>
-    <li class="step step-split"><b>③ 选择：三臂唯一不同之处</b>
-      <span class="armrow"><i data-arm="A"></i>A：AI 自己选</span>
-      <span class="armrow"><i data-arm="B"></i>B：外部决策者点选一个</span>
-      <span class="armrow"><i data-arm="C"></i>C：外部决策者写批评 → AI 回应后选</span>
-    </li>
-    <li class="step"><b>④ 实现</b><span>AI 只在当前最好代码上实施被选中的那一处改动，输出完整 Python 程序</span></li>
-    <li class="step"><b>⑤ 对照实验</b><span>隔离沙箱里分别运行“对照”（当前最好代码原样）和“干预”（改动后），8 CPU / 16 GiB / 600 秒，无网络，单种子</span></li>
-    <li class="step"><b>⑥ 打分</b><span>官方评分器在冻结验证集上给两边打分（Nature 任务为在线 mean_g），算出 Δ = 干预 − 对照</span></li>
-    <li class="step"><b>⑦ 反思</b><span>AI 读真实回执和两份源码，先查实现是否忠于假设，再给出证据判定和下一步建议</span></li>
-    <li class="step step-loop"><b>↻ 下一轮</b><span>验证分更好的代码成为新的 incumbent；失败的尝试作为证据保留，但不会成为起点</span></li>
-  </ol>
-  <p class="prose">证据判定共四种：<span class="ev" data-ev="preliminary_support">初步支持</span> <span class="ev" data-ev="not_supported">不支持</span> <span class="ev" data-ev="inconclusive">不确定</span> <span class="ev" data-ev="implementation_mismatch">实现与假设不符</span>。“初步”是因为每轮只有一次单种子对照，不能当作因果证明。20 轮结束后：<b>MLE 任务</b>从全部已执行的代码里挑验证分最好的一份，用官方私有测试集只评一次分，再对照该比赛 Kaggle 排行榜的奖牌线；<b>Nature 任务</b>没有独立测试集，最终分就是 20 轮中见过的最好在线分数。</p>
-
-  <h3>4. 具体实现</h3>
-  <div class="impl">
-    <div class="impl-item"><h4>研究引擎</h4><p>一个固定版本的基座语言模型，用 5 种提示词角色串起一轮：生成、批评修订、选择（A、C 臂）、实现、反思。所有角色都只能看到公开的任务说明、当前最好代码和本臂的执行历史。</p></div>
-    <div class="impl-item"><h4>沙箱执行器</h4><p>代码交给独立的控制器在无网络的容器中运行，每次 8 CPU、16 GiB 内存，MLE 每次限时 600 秒（Nature 300 秒），只能用 numpy、scipy、pandas、scikit-learn、LightGBM、XGBoost 等库，没有 GPU。模型拿不到服务器 shell；控制器检查代码大小和输出文件格式，并给源码与回执记哈希。</p></div>
-    <div class="impl-item"><h4>验证集与测试集分离</h4><p>MLE 任务：把官方公开训练集按固定随机种子一次性切出冻结验证集（呼吸、分子、句子这类成组数据整组切分，防止相邻样本泄漏）。每轮反馈只有验证分；官方私有测试答案只在控制器内部，运行期间 AI 和决策者都看不到，20 轮后只对验证集选出的那份代码读一次。</p></div>
-    <div class="impl-item"><h4>当前最好代码（incumbent）</h4><p>控制器在本臂全部已完成的执行（对照与干预）中，取验证分最好的那份源码作为下一轮的对照。被选中的假设即使失败，也会作为证据留在上下文里，但不会成为下一轮的起点。</p></div>
-    <div class="impl-item"><h4>重试与归档</h4><p>模型输出不合规（JSON 解析失败、候选格式错误、代码无法解析）时，同一阶段最多重新请求 3 次，每次尝试单独存档。对照执行失败视为基础设施问题，本轮停止，不算作假设被否定；这类轮次先把失败记录隔离归档，再从同一检查点重跑。干预代码自己崩溃或超时，则如实记为“实现与假设不符”。</p></div>
-    <div class="impl-item"><h4>决策接口</h4><p>每个待决检查点展示该臂此前每轮的选择、对照/干预分数、AI 反思，以及本轮 3 个候选的标题、主张、实验和证伪条件。B 臂只提交一个候选编号；C 臂只提交一段批评文字。每条决策带时间戳记入日志。本轮试跑的决策者为 Claude Opus。</p></div>
-  </div>
-
-</section>
-
-<!-- ============================== 偏差诊断 ============================== -->
-<section id="bias">
-  <h2>偏差诊断：AI 科学家的判断哪里不可信</h2>
-  <p class="prose">先别急着改系统。我们把 A/B/C 三臂 1051 个已执行的轮次摊开，只用验证分（不碰封存的测试分），看循环里的“判断”和“实测”在哪里对不上。这些数字是我们想从 harness 层去修正的对象。</p>
-  <div id="bias-body" class="bias-body"><p class="muted">加载中…</p></div>
-  <div class="bias-read">
-    <h3>怎么读这几张图</h3>
-    <ul class="prose-list">
-      <li><b>A 臂自称“支持”时，约一半实际没涨；B、C 约十分之一。</b>两者的 95% 区间不重叠。同一个模型、同一个起点，只有“谁来选”不同，自评的可信度就差出数倍。这是 harness 要补的第一处：判定不该由模型自述，而该由分数驱动。A 臂的真实改进率也更低（21% 对 34%/37%），下一步把同一批候选全部执行，拆开“更乐观”与“提案更差”。</li>
-      <li><b>超过一半的“改进”没有超出该任务退步的中位幅度。</b>20 轮里取“最好验证分”，天然会把噪声当成改进（赢家诅咒）。后续的持出确认（改进必须在第二份验证集上复现才计入）正是对症的干预。</li>
-      <li><b>连败越久越难成功。</b>连续 4 轮没有改进后，下一轮成功率只有 14.5%，而刚改进过之后是 47.7%。方向被证伪后仍在附近打转，应当由 harness 强制保留“已证伪方向”清单。</li>
-      <li><b>位置和长度没有明显偏好。</b>选第 1/2/3 个候选的比例约 39/32/28，选中最长候选的比例 42%，各自的成功率差异都在区间之内，所以我们<b>没有</b>证据说这里存在偏差。</li>
-    </ul>
-    <p class="muted small">脚本见仓库 <code>scripts/bias_analysis.py</code>。数据生成于 <span id="bias-generated">—</span>。</p>
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">AI 科学家 · 受控对照 · 2026</p>
+      <h1>Steer<em>RSI</em></h1>
+    </div>
+    <div class="hero-side">
+      <p class="hero-q">谁来给 AI 科学家<em>掌舵？</em></p>
+      <p class="lede">同一题目、同一模型、同一预算，只换“谁来选下一个假设”。看结果差多少，也看 AI 自己的判断偏在哪里。</p>
+      <div class="facts" id="facts"></div>
+      <p class="muted small" id="tldr-status"></p>
+    </div>
   </div>
 </section>
 
-<!-- ============================== 结果总览 ============================== -->
-<section id="overview">
-  <h2>结果总览</h2>
-  <p class="prose">每一行是一个任务（Nature 任务按重复分行）。横轴是<b>差距关闭比例</b>：把“冻结基线”到“满分”之间的距离记为 100%，看各臂 20 轮里在验证集上走完了多少。对 AUC、准确率、QWK 这类满分为 1 的指标，它等于（最优 − 基线）/（1 − 基线）；对 log loss、RMSE、MAE 这类越低越好、满分为 0 的指标，它就是误差降低的百分比；CHAMPS 的 log MAE 可为负数，换算成几何平均 MAE 的降低比例；Nature 的 mean_g 用论文参照 ARI 推出“全部聚对”时的满分。基线取同一份基线代码所有运行的平均。这样不同指标的任务可以放在一把尺子上，但它仍是<b>验证集</b>上的最好值，偏乐观；测试集结果见下表。点击任一行查看该任务的逐轮轨迹。</p>
-  <div class="legend" id="legend-overview"></div>
-  <div class="card chart-card"><div id="overview-chart" class="chart"></div></div>
-
-  <h3>全部任务 × 三臂</h3>
-  <p class="prose small muted">测试集分数只对每臂“验证集最优”的那份代码评一次；奖牌按该比赛 Kaggle 排行榜阈值判定（CPU 沙箱、非官方协议，仅作参照）。模型调用与 token 为本臂实际记录；第 1 轮共享候选的生成成本只记在一个臂上。标 * 的 CHAMPS 测试分无效（测试分子缺坐标），不计入比较。点击任一行打开该任务。</p>
-  <div class="table-wrap"><table id="overview-table" class="ov-table"></table></div>
+<section class="sec" id="arms">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">三种掌舵方式</p><h2>只有“谁来选”不同</h2></div>
+    <div class="arm-grid">
+      <article class="arm-big" data-arm="A"><span class="no">A</span><h3>AI 自主</h3><p>AI 提 3 个候选，自己选 1 个，做实验，读结果，下一轮。</p><div class="mini"><i>生成</i><i class="on">AI 选</i><i>实验</i></div></article>
+      <article class="arm-big" data-arm="B"><span class="no">B</span><h3>外部点选</h3><p>决策者在 3 个候选里点一个，只给编号，不给理由。</p><div class="mini"><i>生成</i><i class="on">点选</i><i>实验</i></div></article>
+      <article class="arm-big" data-arm="C"><span class="no">C</span><h3>外部批评 → AI 选</h3><p>决策者写一段批评，AI 逐条回应后自己选，批评也进入下一轮生成。</p><div class="mini"><i>生成</i><i class="on">批评</i><i>AI 选</i><i>实验</i></div></article>
+    </div>
+    <ol class="loop" aria-label="一轮的流程">
+      <li><b>生成</b>3 个竞争假设</li><li><b>批评修订</b>按证据修订</li><li class="hl"><b>选择</b>三臂唯一不同</li><li><b>实现</b>只改一处</li><li><b>对照实验</b>沙箱 · 验证集</li><li><b>反思</b>判定并给下一步</li>
+    </ol>
+    <p class="note">每任务 20 轮 · 每轮一次对照 + 一次干预 · 只看冻结验证集；测试集只在最后对验证最优的代码评一次。</p>
+  </div>
 </section>
 
-<!-- ============================== 任务与轨迹 ============================== -->
-<section id="tasks">
-  <h2>任务与轨迹</h2>
-  <p class="prose">先选一个任务。每个任务给出白话说明、冻结基线、最终结果，以及三臂 20 轮的验证分轨迹；点轨迹上的点或下方表格里的任一格，可以看那一轮的 3 个候选假设、谁选了哪个、C 臂的批评、对照与干预分数和 AI 的解读。</p>
-  <div id="task-grid" class="task-grid"></div>
-  <div id="task-detail" class="task-detail" hidden></div>
+<section class="sec" id="bias">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">偏差诊断 · 1051 轮 · 仅验证分</p><h2>AI 科学家的判断哪里不可信</h2></div>
+    <div id="bias-body" class="bias-body"><p class="muted">加载中…</p></div>
+    <div class="find-grid">
+      <article class="find"><b>≈½</b><h4>自称“支持”，实际没涨</h4><p>A 臂约一半，B、C 约十分之一。判定不该由模型自述，而该由分数驱动。</p></article>
+      <article class="find"><b>&gt;50%</b><h4>“改进”不超过噪声</h4><p>20 轮取最优会把噪声当改进。改进须在第二份验证集上复现才计入。</p></article>
+      <article class="find"><b>48→15%</b><h4>连败后越难成功</h4><p>刚改进后成功率 47.7%，连续 4 轮失败后 14.5%。需强制记住已证伪方向。</p></article>
+      <article class="find"><b>无</b><h4>位置、长度无偏好</h4><p>选第 1/2/3 个候选约 39/32/28%，选最长 42%，成功率差异在区间内。</p></article>
+    </div>
+    <p class="note">脚本 <code>scripts/bias_analysis.py</code> · 生成于 <span id="bias-generated">—</span></p>
+  </div>
 </section>
 
-<!-- ============================== 宏观总结 ============================== -->
-<section id="takeaways">
-  <h2>主要发现</h2>
-  <div id="takeaways-body" class="doc"><p class="muted">加载中…</p></div>
+<section class="sec" id="overview">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">结果</p><h2>17 个任务 × 三臂</h2></div>
+    <p class="note first">横轴为差距关闭比例：冻结基线到满分的距离记 100%，看各臂 20 轮在验证集上走了多少。点任一行看逐轮轨迹。</p>
+    <div class="legend" id="legend-overview"></div>
+    <div class="card chart-card"><div id="overview-chart" class="chart"></div></div>
+    <div class="table-wrap"><table id="overview-table" class="ov-table"></table></div>
+    <p class="note">测试分只对每臂“验证最优”的代码评一次；奖牌线仅作参照。* CHAMPS 测试分无效，不计入比较。</p>
+  </div>
 </section>
 
+<section class="sec" id="tasks">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">任务与轨迹</p><h2>选一个任务，看每一轮</h2></div>
+    <div id="task-grid" class="task-grid"></div>
+    <div id="task-detail" class="task-detail" hidden></div>
+  </div>
+</section>
+
+<section class="sec" id="takeaways">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">主要发现</p><h2>结论与下一步</h2></div>
+    <div id="takeaways-body" class="doc"><p class="muted">加载中…</p></div>
+  </div>
+</section>
 </main>
 
-<footer class="wrap muted small">
-  <p>SteerRSI · Junyang Wang</p>
-</footer>
+<footer class="footer"><div class="wrap"><span>SteerRSI · Junyang Wang</span></div></footer>
 
 <div id="tooltip" class="tooltip" role="status" hidden></div>
 <script src="app.js"></script>
 <script src="bias.js"></script>
+<script>document.getElementById('theme-toggle').addEventListener('click',function(){var d=document.documentElement,c=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'),n=c==='dark'?'light':'dark';d.setAttribute('data-theme',n);try{localStorage.setItem('steer-theme',n)}catch(e){}});</script>
 </body>
 </html>
