@@ -1,8 +1,8 @@
 (() => {
   'use strict';
   const ARMS = ['A', 'B', 'C'];
-  const ARM_NAME = { A: 'A · AI 自主', B: 'B · Claude 代人类点选', C: 'C · Claude 批评 → AI 选' };
-  const ARM_SHORT = { A: 'AI 自主', B: 'Claude 代人类点选', C: 'Claude 批评 → AI 选' };
+  const ARM_NAME = { A: 'A · AI 自主', B: 'B · 外部点选', C: 'C · 外部批评 → AI 选' };
+  const ARM_SHORT = { A: 'AI 自主', B: '外部点选', C: '外部批评 → AI 选' };
   const EV = {
     preliminary_support: '初步支持', not_supported: '不支持',
     inconclusive: '不确定', implementation_mismatch: '实现与假设不符',
@@ -541,7 +541,7 @@
         return el('button', { type: 'button', 'aria-selected': String(a === arm), disabled: !has, on: { click: () => selectRound(a, i) } }, k, a);
       })),
       el('button', { type: 'button', disabled: !run.rounds.find((q) => q.i === i + 1), on: { click: () => selectRound(arm, i + 1) } }, '下一轮 →'));
-    const who = arm === 'A' ? 'AI 自己选择' : arm === 'B' ? 'Claude 代人类点选' : 'Claude 写批评后，AI 选择';
+    const who = arm === 'A' ? 'AI 自己选择' : arm === 'B' ? '外部决策者点选' : '外部决策者写批评后，AI 选择';
     const itvTxt = d.itv == null ? `未得分（${ST[d.itv_st] || d.itv_st || '失败'}）` : fmt(d.itv, s);
     const scores = el('div', { class: 'rd-scores' },
       el('div', {}, el('span', {}, '对照（当前最好代码）'), el('b', {}, fmt(d.ctl, s))),
@@ -557,9 +557,9 @@
         c.x ? el('details', {}, el('summary', {}, '实验设计'), el('p', { class: 'c' }, c.x)) : null);
     }));
     const blocks = [];
-    if (arm === 'C' && d.critique) blocks.push(el('div', { class: 'block critique' }, el('b', {}, 'Claude（代人类）的批评意见'), el('p', {}, d.critique)));
-    if (arm === 'C' && !d.critique) blocks.push(el('div', { class: 'block' }, el('b', {}, 'Claude（代人类）的批评意见'), el('p', { class: 'muted' }, '本轮未留下批评文字。')));
-    if (arm === 'B') blocks.push(el('div', { class: 'block' }, el('b', {}, '选择方式'), el('p', {}, 'Claude 代人类直接点选了上面标记的候选。B 臂接口只接受候选编号，不附任何文字理由。')));
+    if (arm === 'C' && d.critique) blocks.push(el('div', { class: 'block critique' }, el('b', {}, '批评意见'), el('p', {}, d.critique)));
+    if (arm === 'C' && !d.critique) blocks.push(el('div', { class: 'block' }, el('b', {}, '批评意见'), el('p', { class: 'muted' }, '本轮未留下批评文字。')));
+    if (arm === 'B') blocks.push(el('div', { class: 'block' }, el('b', {}, '选择方式'), el('p', {}, '决策者直接点选了上面标记的候选。B 臂接口只接受候选编号。')));
     if (d.reason) blocks.push(el('div', { class: 'block' }, el('b', {}, arm === 'C' ? 'AI 读完批评后的选择理由' : 'AI 的选择理由'), el('p', {}, d.reason)));
     if (d.interp) blocks.push(el('div', { class: 'block' }, el('b', {}, 'AI 对结果的解读'), el('p', {}, d.interp)));
     if (d.next) blocks.push(el('div', { class: 'block' }, el('b', {}, 'AI 建议的下一步'), el('p', {}, d.next)));
@@ -617,11 +617,7 @@
     renderOverviewChart();
     renderOverviewTable();
     renderTaskGrid();
-    $('#generated').textContent = INDEX.generated ? INDEX.generated.replace('T', ' ').slice(0, 16) + ' UTC' : '—';
-    const lim = $('#limitations');
-    for (const l of INDEX.limitations || []) lim.append(el('li', {}, l));
     renderDoc('takeaways.json', $('#takeaways-body'));
-    renderDoc('disclosures.json', $('#disclosures-body'));
     window.addEventListener('hashchange', route);
     route();
   }
