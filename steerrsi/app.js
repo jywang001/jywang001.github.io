@@ -138,7 +138,7 @@
   // ---------------------------------------------------------------- mean curve
   async function renderMeanCurve() {
     const box = $('#mean-curve'); if (!box) return;
-    const res = await fetch('data/curve.json?v=20261117b', { cache: 'no-cache' });
+    const res = await fetch('data/curve.json?v=20261117c', { cache: 'no-cache' });
     const data = await res.json();
     legend($('#legend-curve'));
     const N = data.planned;
@@ -582,7 +582,7 @@
   }
 
   async function main() {
-    const res = await fetch('data/index.json?v=20261117b', { cache: 'no-cache' });
+    const res = await fetch('data/index.json?v=20261117c', { cache: 'no-cache' });
     INDEX = await res.json();
     if ($('#facts')) renderFacts();
     renderMeanCurve().catch(() => {});

@@ -7,8 +7,8 @@
 <meta name="description" content="SteerRSI：在固定题目与预算下，比较 AI 自主、外部点选、外部批评三组掌舵方式。">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=20261117b">
-<link rel="stylesheet" href="steer.css?v=20261117b">
+<link rel="stylesheet" href="style.css?v=20261117c">
+<link rel="stylesheet" href="steer.css?v=20261117c">
 <script>try{var t=localStorage.getItem('steer-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   <div class="wrap">
     <div class="pill">
       <a class="brand" href="#top"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11.5" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="16" cy="16" r="5" fill="none" stroke="currentColor" stroke-width="1.4"/><circle class="planet" cx="27.5" cy="16" r="2.6"/></svg><span>Steer<em>RSI</em></span></a>
-      <nav aria-label="目录"><a href="#takeaways">主要发现</a><a href="#curve">平均曲线</a><a href="#tasks">任务</a></nav>
+      <nav aria-label="目录"><a href="#arms">三组</a><a href="#curve">平均曲线</a><a href="#tasks">任务</a></nav>
       <button class="theme" id="theme-toggle" type="button" aria-label="切换明暗主题"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></svg></button>
     </div>
   </div>
@@ -40,10 +40,14 @@
   </div>
 </section>
 
-<section class="sec" id="takeaways">
+<section class="sec" id="arms">
   <div class="wrap">
-    <div class="sec-head"><p class="eyebrow">主要发现</p><h2>结论</h2></div>
-    <div id="takeaways-body" class="doc"><p class="muted">加载中…</p></div>
+    <div class="sec-head"><p class="eyebrow">三种掌舵方式</p><h2>只有“谁来选”不同</h2></div>
+    <div class="arm-grid">
+      <article class="arm-big" data-arm="A"><span class="no">A</span><h3>AI 自主</h3><p>AI 提 3 个候选，自己选 1 个，做实验，读结果，下一轮。</p><div class="mini"><i>生成</i><i class="on">AI 选</i><i>实验</i></div></article>
+      <article class="arm-big" data-arm="B"><span class="no">B</span><h3>外部点选</h3><p>决策者在 3 个候选里点一个，只给编号，不给理由。</p><div class="mini"><i>生成</i><i class="on">点选</i><i>实验</i></div></article>
+      <article class="arm-big" data-arm="C"><span class="no">C</span><h3>外部批评 → AI 选</h3><p>决策者写一段批评，AI 逐条回应后自己选，批评也进入下一轮生成。</p><div class="mini"><i>生成</i><i class="on">批评</i><i>AI 选</i><i>实验</i></div></article>
+    </div>
   </div>
 </section>
 
@@ -67,7 +71,7 @@
 <footer class="footer"><div class="wrap"><span>SteerRSI · Junyang Wang</span></div></footer>
 
 <div id="tooltip" class="tooltip" role="status" hidden></div>
-<script src="app.js?v=20261117b"></script>
+<script src="app.js?v=20261117c"></script>
 <script>document.getElementById('theme-toggle').addEventListener('click',function(){var d=document.documentElement,c=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'),n=c==='dark'?'light':'dark';d.setAttribute('data-theme',n);try{localStorage.setItem('steer-theme',n)}catch(e){}});</script>
 </body>
 </html>
