@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const ARMS = ['A', 'B', 'C'];
-  const ARM_NAME = { A: 'A · AI 自主', B: 'B · 外部点选', C: 'C · 外部批评 → AI 选' };
+  const ARM_NAME = { A: 'A 组 · AI 自主', B: 'B 组 · 外部点选', C: 'C 组 · 外部批评 → AI 选' };
   const ARM_SHORT = { A: 'AI 自主', B: '外部点选', C: '外部批评 → AI 选' };
   const EV = {
     preliminary_support: '初步支持', not_supported: '不支持',
@@ -48,7 +48,7 @@
   const better = (s, a, b) => (s.direction === 'lower' ? a < b : a > b);
   const metricLabel = (s) => s.metric;
   // MLE-bench's prepare.py keeps structures only for train molecules, so these test scores measure missing-data handling.
-  const TEST_INVALID = { 'champs-scalar-coupling': '测试分无效：所用 MLE-bench 版本的数据准备脚本只保留了训练分子的结构数据，8502 个测试分子全部没有坐标，而验证分子有。下面的测试分主要反映代码如何处理缺失坐标，不反映预测能力，也不计入测试集比较。详见“披露与局限”。' };
+  const TEST_INVALID = { 'champs-scalar-coupling': '测试分无效：所用 MLE-bench 版本的数据准备脚本只保留了训练分子的结构数据，8502 个测试分子全部没有坐标，而验证分子有。下面的测试分主要反映代码如何处理缺失坐标，不反映预测能力，也不计入测试集比较。' };
   function studyLabel(s) {
     const many = INDEX.studies.filter((x) => x.task_id === s.task_id).length > 1;
     return many ? `${s.name} · 重复 ${s.replicate}` : s.name;
@@ -130,96 +130,67 @@
     const running = st.filter((s) => s.status !== 'complete');
     const box = $('#facts');
     const fact = (b, t) => el('div', {}, el('b', {}, b), el('span', {}, t));
-    box.append(fact(tasks, '个任务'), fact(st.length, '组研究（任务 × 重复）'), fact(rounds.toLocaleString(), '轮已完成（各臂合计）'),
+    box.append(fact(tasks, '个任务'), fact(st.length, '组研究（任务 × 重复）'), fact(rounds.toLocaleString(), '轮已完成（各组合计）'),
       fact((rounds * 2).toLocaleString(), '次沙箱执行'), fact(calls.toLocaleString(), '次模型调用'), fact(wan(tokens), 'token'));
     if (running.length) $('#tldr-status').textContent = ` 目前仍有 ${running.length} 组研究在进行中，页面标注为“进行中”，宏观总结待全部完成后更新。`;
   }
 
-  // ---------------------------------------------------------------- overview chart
-  function renderOverviewChart() {
-    const box = $('#overview-chart');
-    legend($('#legend-overview'), { extra: [el('span', { class: 'muted' }, el('i', { class: 'dot hollow' }), '空心 = 该臂仍在进行中')] });
+  // ---------------------------------------------------------------- mean curve
+  async function renderMeanCurve() {
+    const box = $('#mean-curve'); if (!box) return;
+    const res = await fetch('data/curve.json', { cache: 'no-cache' });
+    const data = await res.json();
+    legend($('#legend-curve'));
+    const N = data.planned;
     const draw = () => {
-      const studies = INDEX.studies;
-      const W = Math.max(300, box.clientWidth), rowH = 46, top = 8, bottom = 40, left = 8, right = 18;
-      const H = top + rowH * studies.length + bottom;
-      const gaps = studies.flatMap((s) => ARMS.map((a) => s.arms[a] && s.arms[a].gap).filter((g) => g != null));
-      let lo = Math.min(0, ...gaps), hi = Math.max(0.2, ...gaps);
-      const ticks = niceTicks(lo, hi, W < 500 ? 4 : 6);
-      lo = Math.min(lo, ticks[0]); hi = Math.max(hi, ticks[ticks.length - 1]);
-      const x = (v) => left + (v - lo) / (hi - lo) * (W - left - right);
-      const svg = svgEl('svg', { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: 'img', 'aria-label': '各任务三臂的验证集差距关闭比例' });
-      const yb = top + rowH * studies.length;
-      for (const t of ticks) {
-        svg.append(svgEl('line', { class: t === 0 ? 'axis' : 'gridline', x1: x(t), x2: x(t), y1: top, y2: yb }));
-        svg.append(svgEl('text', { x: x(t), y: yb + 16, 'text-anchor': 'middle' }, (t * 100).toFixed(0) + '%'));
+      const W = Math.max(300, box.clientWidth), H = W < 520 ? 280 : 360;
+      const m = { l: 46, r: 16, t: 14, b: 38 };
+      const top = Math.max(...ARMS.flatMap((a) => data.groups[a].filter(Boolean).map((p) => p.mean)));
+      const ticks = niceTicks(0, top * 1.08, 5);
+      const hi = ticks[ticks.length - 1];
+      const plotW = W - m.l - m.r, plotH = H - m.t - m.b;
+      const x = (i) => m.l + (i / N) * plotW;
+      const y = (v) => m.t + (1 - v / hi) * plotH;
+      const svg = svgEl('svg', { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: 'img', 'aria-label': '三组在所有任务上的平均进度曲线' });
+      for (const tk of ticks) {
+        svg.append(svgEl('line', { class: tk === 0 ? 'axis' : 'gridline', x1: m.l, x2: W - m.r, y1: y(tk), y2: y(tk) }));
+        svg.append(svgEl('text', { x: m.l - 6, y: y(tk) + 4, 'text-anchor': 'end' }, (tk * 100).toFixed(0) + '%'));
       }
-      svg.append(svgEl('text', { class: 'lab', x: W - right, y: yb + 34, 'text-anchor': 'end' }, '差距关闭比例（验证集最优）→ 越右越好'));
-      studies.forEach((s, i) => {
-        const y0 = top + rowH * i, cy = y0 + 31;
-        const g = svgEl('g', { class: 'ov-row', tabindex: 0, role: 'button', 'aria-label': `${studyLabel(s)}：打开任务详情` });
-        g.append(svgEl('rect', { class: 'row-hl', x: 0, y: y0, width: W, height: rowH, rx: 6 }));
-        const status = s.status === 'complete' ? '' : '（进行中）';
-        g.append(svgEl('text', { class: 'lab', x: left, y: y0 + 15 }, studyLabel(s) + status));
-        g.append(svgEl('line', { class: 'gridline', x1: left, x2: W - right, y1: cy, y2: cy }));
-        ARMS.forEach((a, k) => {
-          const r = s.arms[a]; if (!r || r.gap == null) return;
-          const running = r.status !== 'complete';
-          g.append(svgEl('circle', { class: 'dot', cx: x(r.gap), cy: cy + (k - 1) * 5, r: 5.5,
-            fill: running ? css('--raised') : color(a), stroke: running ? color(a) : null, 'stroke-width': running ? 2 : null }));
+      for (let i = 0; i <= N; i += 5) svg.append(svgEl('text', { x: x(i), y: H - 18, 'text-anchor': 'middle' }, i));
+      svg.append(svgEl('text', { class: 'lab', x: W - m.r, y: H - 2, 'text-anchor': 'end' }, '轮次 →'));
+      for (const a of ARMS) {
+        const pts = data.groups[a].filter(Boolean);
+        svg.append(svgEl('path', { class: 'line', stroke: color(a), d: pts.map((p, k) => `${k ? 'L' : 'M'}${x(p.i)},${y(p.mean)}`).join(' ') }));
+        const last = pts[pts.length - 1];
+        svg.append(svgEl('circle', { class: 'dot', cx: x(last.i), cy: y(last.mean), r: 5, fill: color(a) }));
+        svg.append(svgEl('text', { class: 'val', x: x(last.i) - 10, y: y(last.mean) - 8, 'text-anchor': 'end' }, `${a} ${pct(last.mean)}`));
+      }
+      const cross = svgEl('line', { class: 'cross', y1: m.t, y2: m.t + plotH, visibility: 'hidden' });
+      svg.append(cross);
+      const colW = plotW / N;
+      for (let i = 0; i <= N; i++) {
+        const rect = svgEl('rect', { x: x(i) - colW / 2, y: m.t, width: colW, height: plotH, fill: 'transparent' });
+        rect.addEventListener('mousemove', (e) => {
+          cross.setAttribute('x1', x(i)); cross.setAttribute('x2', x(i)); cross.setAttribute('visibility', 'visible');
+          showTip(e.clientX, e.clientY, i === 0 ? '起点（冻结基线）' : `第 ${i} 轮`,
+            ARMS.map((a) => ({ arm: a, value: pct(data.groups[a][i] && data.groups[a][i].mean), label: ARM_SHORT[a] })));
         });
-        const tipRows = () => ARMS.filter((a) => s.arms[a]).map((a) => {
-          const r = s.arms[a];
-          return { arm: a, value: pct(r.gap), label: `${a} · 最优 ${fmt(r.best, s)} · ${r.rounds}/${s.planned} 轮` };
-        });
-        const head = () => `${studyLabel(s)} · ${metricLabel(s)}（${dirWord(s)}）· 基线 ${fmt(s.baseline_runs ? s.baseline_runs.mean : s.arms.A.baseline, s)}`;
-        g.addEventListener('mousemove', (e) => showTip(e.clientX, e.clientY, head(), tipRows()));
-        g.addEventListener('mouseleave', hideTip);
-        g.addEventListener('click', () => { hideTip(); openStudy(s.key, { scroll: true }); });
-        g.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openStudy(s.key, { scroll: true }); } });
-        svg.append(g);
-      });
+        rect.addEventListener('mouseleave', () => { cross.setAttribute('visibility', 'hidden'); hideTip(); });
+        svg.append(rect);
+      }
       box.replaceChildren(svg);
     };
-    draw(); onResize('overview', draw);
+    draw(); onResize('mean', draw);
   }
 
-  // ---------------------------------------------------------------- overview table
+  // ---------------------------------------------------------------- task grid
   function medalText(f, s) {
     if (!f || s.bench !== 'mle-bench') return '—';
     if (f.medal) return MEDAL[f.medal];
     return f.above_median ? '中位线以上' : '未达中位线';
   }
-  function renderOverviewTable() {
-    const t = $('#overview-table');
-    t.append(el('thead', {}, el('tr', {}, ['任务', '臂', '进度', '验证集：基线 → 最优', '差距关闭', '测试集（最终）', '奖牌', '模型调用', 'token'].map((h) => el('th', { scope: 'col' }, h)))));
-    const tb = el('tbody');
-    for (const s of INDEX.studies) {
-      ARMS.forEach((a, k) => {
-        const r = s.arms[a]; if (!r) return;
-        const tr = el('tr', { class: 'click' + (k === 0 ? ' grp' : ''), tabindex: 0,
-          on: { click: () => openStudy(s.key, { scroll: true }), keydown: (e) => { if (e.key === 'Enter') openStudy(s.key, { scroll: true }); } } });
-        if (k === 0) tr.append(el('th', { scope: 'rowgroup', rowspan: 3, class: 'task-cell' }, el('span', {}, studyLabel(s)),
-          el('small', {}, `${metricLabel(s)} · ${dirWord(s)}`), s.status !== 'complete' ? el('small', { class: 'chip run' }, '进行中') : null));
-        const sw = el('i', { class: 'dot' }); sw.style.background = color(a);
-        const final = s.bench === 'mle-bench' ? (r.final ? fmt(r.final.value, s) + (TEST_INVALID[s.task_id] ? ' *' : '') : '待揭晓') : '无独立测试集';
-        tr.append(el('td', { class: 'arm-cell' }, sw, a),
-          el('td', {}, `${r.rounds}/${s.planned}` + (r.status === 'complete' ? '' : ' · 进行中')),
-          el('td', { class: 'num' }, `${fmt(r.baseline, s)} → ${fmt(r.best, s)}`),
-          el('td', { class: 'num' }, pct(r.gap)),
-          el('td', { class: 'num' }, final),
-          el('td', {}, TEST_INVALID[s.task_id] ? '* 无效' : medalText(r.final, s)),
-          el('td', { class: 'num' }, r.cost.calls ?? '—'),
-          el('td', { class: 'num' }, wan((r.cost.prompt || 0) + (r.cost.completion || 0))));
-        tb.append(tr);
-      });
-    }
-    t.append(tb);
-  }
-
-  // ---------------------------------------------------------------- task grid
   function renderTaskGrid() {
-    const grid = $('#task-grid');
+    const grid = $('#task-grid'); if (!grid) return;
     const seen = new Map();
     for (const s of INDEX.studies) if (!seen.has(s.task_id)) seen.set(s.task_id, INDEX.studies.filter((x) => x.task_id === s.task_id));
     for (const [tid, list] of seen) {
@@ -227,7 +198,7 @@
       const s = list[0];
       const running = list.some((x) => x.status !== 'complete');
       const prog = running ? ARMS.map((a) => `${a} ${list[0].arms[a] ? list[0].arms[a].rounds : 0}`).join(' · ') + `/${s.planned}` : '';
-      grid.append(el('button', { type: 'button', class: 'task-card', 'data-task': tid, on: { click: () => openStudy(s.key, { scroll: true }) } },
+      grid.append(el('a', { class: 'task-card', 'data-task': tid, href: 'task.html#study=' + encodeURIComponent(s.key) },
         el('span', { class: 'tc-top' }, el('span', { class: 'chip' + (running ? ' run' : '') }, running ? '进行中 ' + prog : '已完成'),
           el('span', { class: 'chip ghost' }, s.bench === 'mle-bench' ? 'MLE-bench' : `NatureBench · ${list.length} 个重复`)),
         el('b', {}, info.name || tid), el('span', { class: 'tc-short' }, info.short || ''),
@@ -253,12 +224,11 @@
     for (const c of document.querySelectorAll('.task-card')) c.setAttribute('aria-current', String(c.dataset.task === summary.task_id));
     if (state.key !== key) {
       box.replaceChildren(el('p', { class: 'muted' }, '加载中…'));
-      if (opts.scroll) box.scrollIntoView({ behavior: 'smooth', block: 'start' });
       let s;
       try { s = await loadStudy(key); } catch (e) { box.replaceChildren(el('p', { class: 'muted' }, String(e.message))); return; }
       state.key = key; state.arm = null; state.round = null;
       renderStudy(s, summary);
-    } else if (opts.scroll) box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
     if (opts.arm && opts.round) selectRound(opts.arm, opts.round, { scroll: true, noHash: true });
     else setHash();
   }
@@ -275,7 +245,8 @@
     const siblings = INDEX.studies.filter((x) => x.task_id === s.task_id);
     const head = el('div', { class: 'td-head' },
       el('div', {}, el('p', { class: 'eyebrow' }, info.source || s.bench), el('h3', { class: 'td-title' }, info.name || s.task_id),
-        el('p', { class: 'muted small' }, `任务 ID：${s.task_id}` + (s.status !== 'complete' ? ' · 进行中' : ''))),
+        info.short ? el('p', { class: 'td-short' }, info.short) : null,
+        el('p', { class: 'muted small' }, `${s.bench === 'mle-bench' ? 'MLE-bench' : 'NatureBench'} · ${metricLabel(s)}（${dirWord(s)}）· 任务 ID：${s.task_id}` + (s.status !== 'complete' ? ' · 进行中' : ''))),
       siblings.length > 1 ? el('div', { class: 'seg', role: 'tablist', 'aria-label': '重复' }, siblings.map((x) =>
         el('button', { type: 'button', role: 'tab', 'aria-selected': String(x.key === s.key), on: { click: () => openStudy(x.key) } }, `重复 ${x.replicate}`))) : null);
 
@@ -299,7 +270,7 @@
     box.replaceChildren(head, infoBox,
       el('h4', { class: 'sub-h' }, '最终结果'), finalBox,
       el('h4', { class: 'sub-h' }, '20 轮轨迹'),
-      el('p', { class: 'prose small' }, `纵轴是验证集 ${metricLabel(s)}（${s.direction === 'lower' ? '↓ 越低越好，线往下走表示变好' : '↑ 越高越好，线往上走表示变好'}）。阶梯线 = 该臂截至此轮的“当前最好代码”分数；实心点 = 本轮干预（被选中假设的实现）；空心小圈 = 本轮对照（当前最好代码重跑）；虚线 = 基线。超出纵轴范围的干预画成边缘三角，执行失败画成边缘 ×。点图例可隐藏/显示某一臂。`),
+      el('p', { class: 'prose small' }, `纵轴是验证集 ${metricLabel(s)}（${s.direction === 'lower' ? '↓ 越低越好，线往下走表示变好' : '↑ 越高越好，线往上走表示变好'}）。阶梯线 = 该组截至此轮的“当前最好代码”分数；实心点 = 本轮干预（被选中假设的实现）；空心小圈 = 本轮对照（当前最好代码重跑）；虚线 = 基线。超出纵轴范围的干预画成边缘三角，执行失败画成边缘 ×。点图例可隐藏/显示某一组。`),
       trajLegend, el('div', { class: 'card chart-card' }, trajBox), detail,
       el('h4', { class: 'sub-h' }, '逐轮表（可点击）'), tableWrap);
 
@@ -323,12 +294,12 @@
     const runs = s.runs.filter((r) => r.final);
     const isMle = s.bench === 'mle-bench';
     if (!runs.length) {
-      card.append(el('p', { class: 'muted small' }, isMle ? '进行中：测试集分数要等该臂 20 轮全部完成后才评一次。' : '进行中。'));
+      card.append(el('p', { class: 'muted small' }, isMle ? '进行中：测试集分数要等该组 20 轮全部完成后才评一次。' : '进行中。'));
       return;
     }
     if (TEST_INVALID[s.task_id]) card.append(el('div', { class: 'notice placeholder', role: 'note' }, el('strong', {}, TEST_INVALID[s.task_id])));
     card.append(el('p', { class: 'sub' }, isMle
-      ? `官方测试集 ${metricLabel(s)}（${dirWord(s)}），每臂只对验证集最优的代码评一次；竖线为该比赛 Kaggle 排行榜的奖牌线/中位线（仅作参照）。`
+      ? `官方测试集 ${metricLabel(s)}（${dirWord(s)}），每组只对验证集最优的代码评一次；竖线为该比赛 Kaggle 排行榜的奖牌线/中位线（仅作参照）。`
       : 'mean_g（20 轮在线反馈中见过的最好值；没有独立测试集），0 = 与论文参照持平。'));
     const chart = el('div', { class: 'chart' });
     card.append(chart);
@@ -383,7 +354,7 @@
     };
     draw(); onResize('final', draw);
     if (isMle) {
-      const tbl = el('table', { class: 'mini-table' }, el('thead', {}, el('tr', {}, ['臂', '验证集最优', '测试集', '奖牌'].map((h) => el('th', {}, h)))),
+      const tbl = el('table', { class: 'mini-table' }, el('thead', {}, el('tr', {}, ['组', '验证集最优', '测试集', '奖牌'].map((h) => el('th', {}, h)))),
         el('tbody', {}, runs.map((r) => el('tr', {}, el('td', {}, r.arm), el('td', { class: 'num' }, fmt(summary.arms[r.arm].best, s)),
           el('td', { class: 'num' }, fmt(r.final.value, s)), el('td', {}, medalText(r.final, s))))));
       card.append(el('details', { class: 'table-view' }, el('summary', {}, '数据表'), tbl,
@@ -411,7 +382,7 @@
     const y = (v) => m.t + (1 - (v - lo) / (hi - lo)) * plotH;
     const worseY = s.direction === 'lower' ? m.t + 4 : m.t + plotH - 4;
     const svg = svgEl('svg', { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: 'img',
-      'aria-label': `${studyLabel(s)}：三臂每轮验证分轨迹。详细数值见下方逐轮表。` });
+      'aria-label': `${studyLabel(s)}：三组每轮验证分轨迹。详细数值见下方逐轮表。` });
     for (const t of ticks) {
       if (t < lo || t > hi) continue;
       svg.append(svgEl('line', { class: 'gridline', x1: m.l, x2: W - m.r, y1: y(t), y2: y(t) }));
@@ -559,11 +530,11 @@
     const blocks = [];
     if (arm === 'C' && d.critique) blocks.push(el('div', { class: 'block critique' }, el('b', {}, '批评意见'), el('p', {}, d.critique)));
     if (arm === 'C' && !d.critique) blocks.push(el('div', { class: 'block' }, el('b', {}, '批评意见'), el('p', { class: 'muted' }, '本轮未留下批评文字。')));
-    if (arm === 'B') blocks.push(el('div', { class: 'block' }, el('b', {}, '选择方式'), el('p', {}, '决策者直接点选了上面标记的候选。B 臂接口只接受候选编号。')));
+    if (arm === 'B') blocks.push(el('div', { class: 'block' }, el('b', {}, '选择方式'), el('p', {}, '决策者直接点选了上面标记的候选。B 组接口只接受候选编号。')));
     if (d.reason) blocks.push(el('div', { class: 'block' }, el('b', {}, arm === 'C' ? 'AI 读完批评后的选择理由' : 'AI 的选择理由'), el('p', {}, d.reason)));
     if (d.interp) blocks.push(el('div', { class: 'block' }, el('b', {}, 'AI 对结果的解读'), el('p', {}, d.interp)));
     if (d.next) blocks.push(el('div', { class: 'block' }, el('b', {}, 'AI 建议的下一步'), el('p', {}, d.next)));
-    if (i === 1) blocks.push(el('p', { class: 'muted small' }, '第 1 轮的 3 个候选由三臂共享（只生成一次），各臂展示顺序不同。'));
+    if (i === 1) blocks.push(el('p', { class: 'muted small' }, '第 1 轮的 3 个候选由三组共享（只生成一次），各组展示顺序不同。'));
     panel.replaceChildren(
       el('div', { class: 'rd-head' }, el('h4', {}, sw, `第 ${i} 轮 · ${ARM_NAME[arm]}`), nav),
       scores, el('h5', {}, '本轮的 3 个候选假设（按决策者看到的顺序）'), cands, ...blocks);
@@ -607,17 +578,17 @@
     const p = new URLSearchParams(h);
     const key = p.get('study');
     const arm = p.get('arm'), round = +p.get('round');
-    if (key) openStudy(key, { scroll: true, arm: ARMS.includes(arm) ? arm : null, round: round || null });
+    if (key) openStudy(key, { arm: ARMS.includes(arm) ? arm : null, round: round || null });
   }
 
   async function main() {
     const res = await fetch('data/index.json', { cache: 'no-cache' });
     INDEX = await res.json();
-    renderFacts();
-    renderOverviewChart();
-    renderOverviewTable();
+    if ($('#facts')) renderFacts();
+    renderMeanCurve().catch(() => {});
     renderTaskGrid();
-    renderDoc('takeaways.json', $('#takeaways-body'));
+    if ($('#takeaways-body')) renderDoc('takeaways.json', $('#takeaways-body'));
+    if ($('#task-detail') && !location.hash.includes('study=')) location.replace('./');
     window.addEventListener('hashchange', route);
     route();
   }

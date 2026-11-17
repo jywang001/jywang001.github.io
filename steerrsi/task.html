@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>任务 · SteerRSI</title>
+<meta name="description" content="SteerRSI：在固定题目与预算下，比较 AI 自主、外部点选、外部批评三组掌舵方式。">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="steer.css">
+<script>try{var t=localStorage.getItem('steer-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="pill">
+      <a class="brand" href="#top"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11.5" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="16" cy="16" r="5" fill="none" stroke="currentColor" stroke-width="1.4"/><circle class="planet" cx="27.5" cy="16" r="2.6"/></svg><span>Steer<em>RSI</em></span></a>
+      <nav aria-label="目录"><a href="./">← 返回全部任务</a></nav>
+      <button class="theme" id="theme-toggle" type="button" aria-label="切换明暗主题"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="top" class="task-page">
+<section class="sec">
+  <div class="wrap">
+    <div id="task-detail" class="task-detail"><p class="muted">加载中…</p></div>
+  </div>
+</section>
+</main>
+
+<footer class="footer"><div class="wrap"><span>SteerRSI · Junyang Wang</span></div></footer>
+
+<div id="tooltip" class="tooltip" role="status" hidden></div>
+<script src="app.js"></script>
+<script>document.getElementById('theme-toggle').addEventListener('click',function(){var d=document.documentElement,c=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'),n=c==='dark'?'light':'dark';d.setAttribute('data-theme',n);try{localStorage.setItem('steer-theme',n)}catch(e){}});</script>
+</body>
+</html>

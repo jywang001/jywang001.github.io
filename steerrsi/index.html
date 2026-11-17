@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SteerRSI · 谁来给 AI 科学家掌舵？</title>
-<meta name="description" content="SteerRSI：在固定题目与预算下，比较 AI 自主、外部点选、外部批评三种掌舵方式，并诊断 AI 科学家判断中的偏差。">
+<meta name="description" content="SteerRSI：在固定题目与预算下，比较 AI 自主、外部点选、外部批评三组掌舵方式。">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -18,7 +18,7 @@
   <div class="wrap">
     <div class="pill">
       <a class="brand" href="#top"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11.5" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="16" cy="16" r="5" fill="none" stroke="currentColor" stroke-width="1.4"/><circle class="planet" cx="27.5" cy="16" r="2.6"/></svg><span>Steer<em>RSI</em></span></a>
-      <nav aria-label="目录"><a href="#arms">三种掌舵</a><a href="#bias">偏差诊断</a><a href="#overview">结果</a><a href="#tasks">任务</a><a href="#takeaways">发现</a></nav>
+      <nav aria-label="目录"><a href="#takeaways">主要发现</a><a href="#curve">平均曲线</a><a href="#tasks">任务</a></nav>
       <button class="theme" id="theme-toggle" type="button" aria-label="切换明暗主题"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></svg></button>
     </div>
   </div>
@@ -33,65 +33,33 @@
     </div>
     <div class="hero-side">
       <p class="hero-q">谁来给 AI 科学家<em>掌舵？</em></p>
-      <p class="lede">同一题目、同一模型、同一预算，只换“谁来选下一个假设”。看结果差多少，也看 AI 自己的判断偏在哪里。</p>
+      <p class="lede">同一题目、同一模型、同一预算，只换“谁来选下一个假设”：A 组 AI 自己选，B 组外部决策者点选，C 组外部决策者写批评、AI 再选。</p>
       <div class="facts" id="facts"></div>
       <p class="muted small" id="tldr-status"></p>
     </div>
   </div>
 </section>
 
-<section class="sec" id="arms">
+<section class="sec" id="takeaways">
   <div class="wrap">
-    <div class="sec-head"><p class="eyebrow">三种掌舵方式</p><h2>只有“谁来选”不同</h2></div>
-    <div class="arm-grid">
-      <article class="arm-big" data-arm="A"><span class="no">A</span><h3>AI 自主</h3><p>AI 提 3 个候选，自己选 1 个，做实验，读结果，下一轮。</p><div class="mini"><i>生成</i><i class="on">AI 选</i><i>实验</i></div></article>
-      <article class="arm-big" data-arm="B"><span class="no">B</span><h3>外部点选</h3><p>决策者在 3 个候选里点一个，只给编号，不给理由。</p><div class="mini"><i>生成</i><i class="on">点选</i><i>实验</i></div></article>
-      <article class="arm-big" data-arm="C"><span class="no">C</span><h3>外部批评 → AI 选</h3><p>决策者写一段批评，AI 逐条回应后自己选，批评也进入下一轮生成。</p><div class="mini"><i>生成</i><i class="on">批评</i><i>AI 选</i><i>实验</i></div></article>
-    </div>
-    <ol class="loop" aria-label="一轮的流程">
-      <li><b>生成</b>3 个竞争假设</li><li><b>批评修订</b>按证据修订</li><li class="hl"><b>选择</b>三臂唯一不同</li><li><b>实现</b>只改一处</li><li><b>对照实验</b>沙箱 · 验证集</li><li><b>反思</b>判定并给下一步</li>
-    </ol>
-    <p class="note">每任务 20 轮 · 每轮一次对照 + 一次干预 · 只看冻结验证集；测试集只在最后对验证最优的代码评一次。</p>
+    <div class="sec-head"><p class="eyebrow">主要发现</p><h2>结论</h2></div>
+    <div id="takeaways-body" class="doc"><p class="muted">加载中…</p></div>
   </div>
 </section>
 
-<section class="sec" id="bias">
+<section class="sec" id="curve">
   <div class="wrap">
-    <div class="sec-head"><p class="eyebrow">偏差诊断 · 1051 轮 · 仅验证分</p><h2>AI 科学家的判断哪里不可信</h2></div>
-    <div id="bias-body" class="bias-body"><p class="muted">加载中…</p></div>
-    <div class="find-grid">
-      <article class="find"><b>≈½</b><h4>自称“支持”，实际没涨</h4><p>A 臂约一半，B、C 约十分之一。判定不该由模型自述，而该由分数驱动。</p></article>
-      <article class="find"><b>&gt;50%</b><h4>“改进”不超过噪声</h4><p>20 轮取最优会把噪声当改进。改进须在第二份验证集上复现才计入。</p></article>
-      <article class="find"><b>48→15%</b><h4>连败后越难成功</h4><p>刚改进后成功率 47.7%，连续 4 轮失败后 14.5%。需强制记住已证伪方向。</p></article>
-      <article class="find"><b>无</b><h4>位置、长度无偏好</h4><p>选第 1/2/3 个候选约 39/32/28%，选最长 42%，成功率差异在区间内。</p></article>
-    </div>
-    <p class="note">脚本 <code>scripts/bias_analysis.py</code> · 生成于 <span id="bias-generated">—</span></p>
-  </div>
-</section>
-
-<section class="sec" id="overview">
-  <div class="wrap">
-    <div class="sec-head"><p class="eyebrow">结果</p><h2>17 个任务 × 三臂</h2></div>
-    <p class="note first">横轴为差距关闭比例：冻结基线到满分的距离记 100%，看各臂 20 轮在验证集上走了多少。点任一行看逐轮轨迹。</p>
-    <div class="legend" id="legend-overview"></div>
-    <div class="card chart-card"><div id="overview-chart" class="chart"></div></div>
-    <div class="table-wrap"><table id="overview-table" class="ov-table"></table></div>
-    <p class="note">测试分只对每臂“验证最优”的代码评一次；奖牌线仅作参照。* CHAMPS 测试分无效，不计入比较。</p>
+    <div class="sec-head"><p class="eyebrow">所有任务的平均</p><h2>20 轮里，三组各走了多远</h2></div>
+    <p class="note first">每个任务的起点是冻结基线（记 0%），满分记 100%；曲线是 17 个任务“截至本轮最好分数”的平均，只看验证集。</p>
+    <div class="legend" id="legend-curve"></div>
+    <div class="card chart-card"><div id="mean-curve" class="chart"></div></div>
   </div>
 </section>
 
 <section class="sec" id="tasks">
   <div class="wrap">
-    <div class="sec-head"><p class="eyebrow">任务与轨迹</p><h2>选一个任务，看每一轮</h2></div>
+    <div class="sec-head"><p class="eyebrow">任务</p><h2>点进任务，看每一轮</h2></div>
     <div id="task-grid" class="task-grid"></div>
-    <div id="task-detail" class="task-detail" hidden></div>
-  </div>
-</section>
-
-<section class="sec" id="takeaways">
-  <div class="wrap">
-    <div class="sec-head"><p class="eyebrow">主要发现</p><h2>结论与下一步</h2></div>
-    <div id="takeaways-body" class="doc"><p class="muted">加载中…</p></div>
   </div>
 </section>
 </main>
@@ -100,7 +68,6 @@
 
 <div id="tooltip" class="tooltip" role="status" hidden></div>
 <script src="app.js"></script>
-<script src="bias.js"></script>
 <script>document.getElementById('theme-toggle').addEventListener('click',function(){var d=document.documentElement,c=d.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'),n=c==='dark'?'light':'dark';d.setAttribute('data-theme',n);try{localStorage.setItem('steer-theme',n)}catch(e){}});</script>
 </body>
 </html>
